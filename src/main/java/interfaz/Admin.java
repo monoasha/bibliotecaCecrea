@@ -17,7 +17,7 @@ public class Admin extends javax.swing.JFrame {
      * Creates new form User
      */
     public Admin() {
-      
+
         initComponents();
         this.setTitle(" Sistema Interno Cecrea La Ligua");
     }
@@ -183,86 +183,79 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarlibriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarlibriActionPerformed
-      IngresoLibros il = new IngresoLibros();
-        il.setSize(600,600);
-        il.setLocation(5,5);
+        IngresoLibros il = new IngresoLibros();
+        il.setSize(600, 600);
+        il.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(il,BorderLayout.CENTER);
+        contenedor.add(il, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresarlibriActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-dispose();   
+        dispose();
     }//GEN-LAST:event_salirActionPerformed
 
     private void ingresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresosolicitanteActionPerformed
-    IngresoSolicitante iu = new IngresoSolicitante();
-        iu.setSize(600,600);
-        iu.setLocation(5,5);
+        IngresoSolicitante iu = new IngresoSolicitante();
+        iu.setSize(600, 600);
+        iu.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(iu,BorderLayout.CENTER);
+        contenedor.add(iu, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresosolicitanteActionPerformed
 
     private void busquedalibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalibrosActionPerformed
         BusquedaLibros bl = new BusquedaLibros();
-        bl.setSize(600,600);
-        bl.setLocation(5,5);
+        bl.setSize(600, 600);
+        bl.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(bl,BorderLayout.CENTER);
+        contenedor.add(bl, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_busquedalibrosActionPerformed
 
     private void ingresarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarprestamoActionPerformed
-       Prestamo p = new Prestamo();
-        p.setSize(600,600);
-        p.setLocation(5,5);
+        Prestamo p = new Prestamo();
+        p.setSize(600, 600);
+        p.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(p,BorderLayout.CENTER);
+        contenedor.add(p, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresarprestamoActionPerformed
 
     private void ingresofichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresofichasActionPerformed
-        FormularioFichaCecrea ffc = new FormularioFichaCecrea();
-        ffc.setSize(800,800);
-        ffc.setLocation(5,5);
-        contenedor.removeAll();
-       contenedor.add(ffc,BorderLayout.CENTER);
-        contenedor.revalidate();
-        contenedor.repaint();
-        // TODO add your handling code here:
+      new FormularioFichaCecrea().setVisible(true);
     }//GEN-LAST:event_ingresofichasActionPerformed
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
-   DevolucionPrestamo dp = new DevolucionPrestamo();
-        dp.setSize(600,600);
-        dp.setLocation(5,5);
+        DevolucionPrestamo dp = new DevolucionPrestamo();
+        dp.setSize(600, 600);
+        dp.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(dp,BorderLayout.CENTER);
+        contenedor.add(dp, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_eliminarprestamoActionPerformed
 
     private void agregarusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarusuariosActionPerformed
         AgregarUsuarioCecrea aus = new AgregarUsuarioCecrea();
-        aus.setSize(600,600);
-        aus.setLocation(5,5);
+        aus.setSize(600, 600);
+        aus.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(aus,BorderLayout.CENTER);
+        contenedor.add(aus, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_agregarusuariosActionPerformed
 
     private void eliminareditarfichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminareditarfichasActionPerformed
-BusquedaFicha bf = new BusquedaFicha();
-        bf.setSize(700,600);
-        bf.setLocation(5,5);
+        BusquedaFicha bf = new BusquedaFicha();
+        bf.setSize(700, 600);
+        bf.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(bf,BorderLayout.CENTER);
+        contenedor.add(bf, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_eliminareditarfichasActionPerformed

@@ -220,8 +220,6 @@ public class User extends javax.swing.JFrame {
 
     private void ingresofichascecreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresofichascecreaActionPerformed
       new FormularioFichaCecrea().setVisible(true);
-       
-      
     }//GEN-LAST:event_ingresofichascecreaActionPerformed
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
