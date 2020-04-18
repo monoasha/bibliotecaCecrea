@@ -5,10 +5,18 @@
  */
 package tablas;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Sofia
  */
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Libro {
 
     private String nombre;
@@ -17,47 +25,4 @@ public class Libro {
     private String fechadeingreso;
     private String categoria;
 
-    public Libro() {
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getautor() {
-        return autor;
-    }
-
-    public void setautor(String autor) {
-        this.autor = autor;
-    }
-
-    public Boolean getdisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setdisponibilidad(Boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-    public String getfechadeingreso() {
-        return fechadeingreso;
-    }
-
-    public void setfechadeingreso(String fechadeingreso) {
-        this.fechadeingreso = fechadeingreso;
-
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 }

@@ -140,10 +140,10 @@ public class BusquedaLibros extends javax.swing.JPanel {
 
             for (Libro l : libro) {
                 fila[0] = l.getNombre();
-                fila[1] = l.getautor();
-                fila[2] = l.getfechadeingreso();
+                fila[1] = l.getAutor();
+                fila[2] = l.getFechadeingreso();
                 fila[3] = l.getCategoria();
-                fila[4] = l.getdisponibilidad();
+                fila[4] = l.getDisponibilidad();
                 
                 model.addRow(fila);
             }

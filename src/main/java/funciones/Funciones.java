@@ -1,5 +1,7 @@
 package funciones;
 
+import static VO.CargoVO.CARGO_ADMIN;
+import static VO.CargoVO.CARGO_USER;
 import dto.FormularioRequest;
 import dto.ResumenFicha;
 import tablas.Cargo;
@@ -12,6 +14,7 @@ import tablas.Nacionalidad;
 import tablas.Parentezco;
 import tablas.PueblosOriginarios;
 import com.mysql.jdbc.StringUtils;
+import dto.UserLogin;
 import interfaz.User;
 import interfaz.Admin;
 import interfaz.Mensaje;
@@ -50,45 +53,51 @@ public class Funciones {
         }
     }
 
-    public static void validarLogin(String nombre, String password) throws SQLException {
+    public static boolean validarLogin(String nombre, String password) {
 
         if (StringUtils.isNullOrEmpty(nombre) || StringUtils.isNullOrEmpty(password)) {
-            System.out.println("Ingrese los datos solicitados");
-            new Mensaje("Porfavor ingrese los datos solicitados").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Porfavor ingrese los datos solicitados");
         } else {
 
             try {
 
                 Statement stmt = conn.createStatement();
                 ResultSet rs;
-                String sql = "SELECT u.nombre, u.telefono, u.contraseña, c.nombre "
+                String sql = "SELECT u.idusuario, u.nombre, u.rutusuario, u.contacto, c.nombrecargo "
                         + "FROM usuario u "
-                        + "JOIN cargo c ON c.id_cargo = u.id_cargo "
+                        + "JOIN cargo c ON c.idcargo = u.cargo_idcargo "
                         + "WHERE u.nombre='" + nombre + "' AND u.contraseña=md5('" + password + "')";
                 rs = stmt.executeQuery(sql);
-                while (rs.next()) {
-                    String contacto = rs.getString("contacto");
-                    String cargo = rs.getString("c.nombre");
-                    String usr = rs.getString("u.nombre");
-                    System.out.println(rs.getRow());
-                    if (cargo.equals("usuario")) {
+                if (rs.next()) {
+                    UserLogin userLogin = new UserLogin(
+                            rs.getLong("idusuario"),
+                            rs.getString("nombre"),
+                            rs.getString("contacto"),
+                            rs.getString("rutusuario"),
+                            rs.getString("nombrecargo")
+                    );
+                    if (userLogin.getCargo().equals(CARGO_USER)) {
                         new User().setVisible(true);
-                        System.out.println(cargo);
-                    } else if (cargo.equals("admin")) {
+                        return true;
+                    } else if (userLogin.getCargo().equals(CARGO_ADMIN)) {
                         new Admin().setVisible(true);
+                        return true;
                     } else {
-
-                        System.out.println(rs.getRow());
+                        JOptionPane.showMessageDialog(null, "Usuario no posee rol necesario para hacer login");
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encuentra el usuario o la contraseña es incorrecta");
                 }
-                PreparedStatement pps = conn.prepareStatement(sql);
-                pps.executeUpdate();
             } catch (SQLException e) {
-                System.out.println("La conexión no se pudo establecer debido a " + e);
+                System.out.println("Error inesperado en la consulta de usuario, error: " + e);
             }
         }
-    }
+                    return false;
 
+    }
+    
+
+   
     public static void agregarLibro(String nombre, String autor, String categoria) {
         try {
             String sql = "INSERT into libro VALUES(null,'" + nombre + "','" + autor + "',CURRENT_DATE,'" + categoria + "')";
@@ -105,9 +114,9 @@ public class Funciones {
             String sql = "INSERT into solicitante VALUES(null,'" + nombre + "','" + apellidoPAT + "','" + apellidomat + "','" + rut + "','" + date + "','" + direccion + "','" + telefono + "','" + apoderado + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-           JOptionPane.showMessageDialog(null, "Se ha agregado al solicitante");
+            JOptionPane.showMessageDialog(null, "Se ha agregado al solicitante");
         } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, "No se ha agregado el solicitante");
+            JOptionPane.showMessageDialog(null, "No se ha agregado el solicitante");
             System.out.println("Error en la conexión" + e);
         }
     }
@@ -124,7 +133,7 @@ public class Funciones {
         }
     }
 
-public static ArrayList<Libro> buscarLibro(String nombrelibro) {
+    public static ArrayList<Libro> buscarLibro(String nombrelibro) {
 
         try {
             Statement stmt;
@@ -139,10 +148,10 @@ public static ArrayList<Libro> buscarLibro(String nombrelibro) {
             while (rs.next()) {
                 lib = new Libro();
                 lib.setNombre(rs.getString("nombre"));
-                lib.setautor(rs.getString("autor"));
-                lib.setfechadeingreso(rs.getString("fechaingreso"));
+                lib.setAutor(rs.getString("autor"));
+                lib.setFechadeingreso(rs.getString("fechaingreso"));
                 lib.setCategoria(rs.getString("categoria"));
-                lib.setdisponibilidad(rs.getBoolean("Disponibilidad"));
+                lib.setDisponibilidad(rs.getBoolean("Disponibilidad"));
                 libros.add(lib);
                 lib = null;
             }
@@ -403,7 +412,7 @@ public static ArrayList<Libro> buscarLibro(String nombrelibro) {
         }
         if (StringUtils.isNullOrEmpty(formulario.getFonoretiro2())) {
             mensajesError += "<html>El telefono  no puede estar vacio <br> <br> <html> ";
-        }   
+        }
         if (StringUtils.isNullOrEmpty(formulario.getNombreadresp())) {
             mensajesError += "<html>El nombre del responsable no puede estar vacio <br> <br> <html> ";
 

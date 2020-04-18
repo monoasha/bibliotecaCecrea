@@ -135,20 +135,18 @@ public class IngresoLibros extends javax.swing.JPanel {
     private void btningresarlibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarlibroActionPerformed
         String nombre = nombrelibro.getText();
         String autor = Autorlibro.getText();
-   
-       String categoria = categorialibros.getText();
-      
 
-     
-            Funciones.agregarLibro(nombre,autor,categoria);
-        
+        String categoria = categorialibros.getText();
+
+        Funciones.agregarLibro(nombre, autor, categoria);
+
 
     }//GEN-LAST:event_btningresarlibroActionPerformed
 
     private void BTNCERRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCERRARActionPerformed
-Window w = SwingUtilities.getWindowAncestor(IngresoLibros.this);
-       w.setVisible(false);
-    new User().setVisible(true);       
+        Window w = SwingUtilities.getWindowAncestor(IngresoLibros.this);
+        w.setVisible(false);
+        new User().setVisible(true);
     }//GEN-LAST:event_BTNCERRARActionPerformed
 
 
