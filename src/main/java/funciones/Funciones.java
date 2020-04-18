@@ -460,13 +460,13 @@ public class Funciones {
                     + "'" + request.getApelldpaternopart() + "',"//apellidopatpar
                     + "'" + request.getApelldmaternopart() + "',"//apellidomaternopar
                     + "'" + request.getRun() + "',"//runparticipante
-                    + "'" + request.getNacionalidad1() + "',"//Nacionalidad_idNacionalidad
-                    + "'" + request.getCurso() + "',"//curso_idcurso
-                    + "'" + request.getParentezco() + "',"//Parentezco_idParentezco
-                    + "'" + request.getPueblosoriginarios() + "',"//PueblosOriginarios_idPueblosOriginarios //PROBLEMA
-                    + "'" + request.getGenero() + "',"//Género_idGénero
-                    + "'" + request.getTipoestablecimiento() + "',"//Tipodeestablecimiento_idTipodeestablecimiento
-                    + "'" + request.getTipodediscapacidad() + "',"//tipodediscapacidad_idtipodediscapacidad
+                    + request.getNacionalidad1() + ","//Nacionalidad_idNacionalidad
+                    + request.getCurso() + ","//curso_idcurso
+                    + request.getParentezco() + ","//Parentezco_idParentezco
+                    + request.getPueblosoriginarios() + ","//PueblosOriginarios_idPueblosOriginarios //PROBLEMA
+                    + request.getGenero() + ","//Género_idGénero
+                    + request.getTipoestablecimiento() + ","//Tipodeestablecimiento_idTipodeestablecimiento
+                    + request.getTipodediscapacidad() + ","//tipodediscapacidad_idtipodediscapacidad
                     + "'" + request.getFonoparticipante() + "',"//fonoparticipante
                     + "'" + request.getDomicilio() + "',"//domicilioparticipante
                     + "'" + request.getNombreadresp() + "',"//nombreadultoresponsable
@@ -481,16 +481,16 @@ public class Funciones {
                     + "'" + request.getRunretiro2() + "',"//runrespretirar2
                     + "'" + request.getFonoretiro1() + "',"//fonorespretirar1
                     + "'" + request.getFonoretiro2() + "',"//fonorespretirar2
-                    + "'" + request.getEsdepueblooriginario() + "',"//discapacidad //problema
-                    + "'" + request.getNacionalidad2() + "'," //problema
-                    + "'" + request.getFechanacparticipante() + "',"//
-                    + "'" + request.getTipodediscapacidad() + "')";
-
+                    + request.getEsdiscapacitado() + ","//discapacidad
+                    + request.getEsdepueblooriginario() + ","//pueblo originario
+                    + request.getNacionalidad2() + "," // Segunda nacionalidad
+                    + "'" + new Date(request.getFechanacparticipante().getTime())+ "')"; // Fecha nacimiento
+                    
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha agregado la ficha");
         } catch (SQLException e) {
-            System.out.println("Error en la conexión" + e);
+            System.out.println("Al registrar ficha, error: " + e);
             JOptionPane.showMessageDialog(null, "No se ha agregado la ficha");
         }
     }

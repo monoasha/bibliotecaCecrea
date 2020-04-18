@@ -24,14 +24,14 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         this.setTitle("Formulario de Inscripcion Cecrea La Ligua");
 
         CBCURSO.removeAllItems();
-        
+
         CBESPDISC.removeAllItems();
         CBESPPO.removeAllItems();
         CBESTABLECIMIENTO.removeAllItems();
         CBGENERO.removeAllItems();
         CBNAC1.removeAllItems();
         CBNAC2.removeAllItems();
-    
+
         cbrelacion.removeAllItems();
 
         ArrayList<Nacionalidad> lista = Funciones.llenarComboNacionalidad();
@@ -152,8 +152,8 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         CBESTABLECIMIENTO = new javax.swing.JComboBox<>();
         CBNAC2 = new javax.swing.JComboBox<>();
         CERRARFORM = new javax.swing.JButton();
-        checkpo = new javax.swing.JCheckBox();
-        checkBoxDiscapacidad = new javax.swing.JCheckBox();
+        checkboxPuebloOriginario = new javax.swing.JCheckBox();
+        checkboxDiscapacidad = new javax.swing.JCheckBox();
         jDFechanacparticipante = new com.toedter.calendar.JDateChooser();
 
         jLabel13.setText("jLabel13");
@@ -292,15 +292,15 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             }
         });
 
-        checkpo.addActionListener(new java.awt.event.ActionListener() {
+        checkboxPuebloOriginario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkpoActionPerformed(evt);
+                checkboxPuebloOriginarioActionPerformed(evt);
             }
         });
 
-        checkBoxDiscapacidad.addActionListener(new java.awt.event.ActionListener() {
+        checkboxDiscapacidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxDiscapacidadActionPerformed(evt);
+                checkboxDiscapacidadActionPerformed(evt);
             }
         });
 
@@ -423,7 +423,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(checkpo))))
+                                        .addComponent(checkboxPuebloOriginario))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addGap(18, 18, 18)
@@ -431,7 +431,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(checkBoxDiscapacidad)))
+                                .addComponent(checkboxDiscapacidad)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -524,7 +524,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel11)
-                                    .addComponent(checkpo))
+                                    .addComponent(checkboxPuebloOriginario))
                                 .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -555,7 +555,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(checkBoxDiscapacidad))
+                            .addComponent(checkboxDiscapacidad))
                         .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -632,13 +632,12 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     }//GEN-LAST:event_CBESPPOActionPerformed
 
     private void BTNREGISTRARPARTICIPANTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNREGISTRARPARTICIPANTEActionPerformed
-        
+
         FormularioRequest formularioRequest = new FormularioRequest();
         formularioRequest.setNombreparticipante(NOMPARTICIPANTE.getText());
         formularioRequest.setApelldpaternopart(APELPATPAR.getText());
         formularioRequest.setApelldmaternopart(APELMATPAR.getText());
         formularioRequest.setDomicilio(DOMPAR.getText());
-      //  formularioRequest.setGenerootro(ESPGEN.getText());
         formularioRequest.setFonoparticipante(FONOPAR.getText());
         formularioRequest.setNombretiro1(Nombreresp1.getText());
         formularioRequest.setNombretiro2(Nombreresp2.getText());
@@ -655,24 +654,34 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         formularioRequest.setGenero(genero.getId());
         Curso curso = (Curso) CBCURSO.getSelectedItem();
         formularioRequest.setCurso(curso.getId());
-        Discapacidad discapacidad = (Discapacidad) CBESPDISC.getSelectedItem();
-        formularioRequest.setTipodediscapacidad(discapacidad.getId());
-        PueblosOriginarios poriginarios = (PueblosOriginarios) CBESPPO.getSelectedItem();
-        formularioRequest.setPueblosoriginarios(poriginarios.getId());
+        if (checkboxDiscapacidad.isSelected()) {
+            Discapacidad discapacidad = (Discapacidad) CBESPDISC.getSelectedItem();
+            formularioRequest.setTipodediscapacidad(discapacidad.getId());
+        } else {
+            formularioRequest.setTipodediscapacidad(null);
+        }
+        if (checkboxPuebloOriginario.isSelected()) {
+            PueblosOriginarios poriginarios = (PueblosOriginarios) CBESPPO.getSelectedItem();
+            formularioRequest.setPueblosoriginarios(poriginarios.getId());
+        } else {
+            formularioRequest.setPueblosoriginarios(null);
+        }
         Establecimiento establecimiento = (Establecimiento) CBESTABLECIMIENTO.getSelectedItem();
         formularioRequest.setTipoestablecimiento(establecimiento.getId());
         Nacionalidad nacionalidad = (Nacionalidad) CBNAC1.getSelectedItem();
         formularioRequest.setNacionalidad1(nacionalidad.getId());
-        Nacionalidad nacionalidaddos = (Nacionalidad) CBNAC2.getSelectedItem();
-        formularioRequest.setNacionalidad1(nacionalidaddos.getId());
         Parentezco parentezco = (Parentezco) cbrelacion.getSelectedItem();
         formularioRequest.setParentezco(parentezco.getId());
         formularioRequest.setEmailadresp(emailresp.getText());
         formularioRequest.setFonoadresp(fonoresp.getText());
+        formularioRequest.setEsdiscapacitado(checkboxDiscapacidad.isSelected());
+        formularioRequest.setEsdepueblooriginario(checkboxPuebloOriginario.isSelected());
+        Nacionalidad nacionalidaddos = (Nacionalidad) CBNAC2.getSelectedItem();
+        formularioRequest.setNacionalidad1(nacionalidaddos.getId());
         formularioRequest.setFechanacparticipante(jDFechanacparticipante.getDate());
-        
+
         String errores = Funciones.validarFormularioParticipante(formularioRequest);
-        if(!StringUtils.isNullOrEmpty(errores)) {
+        if (!StringUtils.isNullOrEmpty(errores)) {
             new Mensaje(errores).setVisible(true);
             return;
         }
@@ -685,60 +694,59 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_CERRARFORMActionPerformed
 
-    private void checkBoxDiscapacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxDiscapacidadActionPerformed
-        if(checkBoxDiscapacidad.isSelected()) {
+    private void checkboxDiscapacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxDiscapacidadActionPerformed
+        if (checkboxDiscapacidad.isSelected()) {
             CBESPDISC.setEnabled(true);
         } else {
             CBESPDISC.setEnabled(false);
         }
-    }//GEN-LAST:event_checkBoxDiscapacidadActionPerformed
+    }//GEN-LAST:event_checkboxDiscapacidadActionPerformed
 
-    private void checkpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkpoActionPerformed
-         if(checkpo.isSelected()) {
+    private void checkboxPuebloOriginarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPuebloOriginarioActionPerformed
+        if (checkboxPuebloOriginario.isSelected()) {
             CBESPPO.setEnabled(true);
         } else {
             CBESPPO.setEnabled(false);
         }
-    }//GEN-LAST:event_checkpoActionPerformed
+    }//GEN-LAST:event_checkboxPuebloOriginarioActionPerformed
 
     private void CBNAC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBNAC1ActionPerformed
-       
+
     }//GEN-LAST:event_CBNAC1ActionPerformed
 
     private void fonorespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fonorespActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fonorespActionPerformed
-private void limpiarcajas(){
+    private void limpiarcajas() {
 
-    APELMATPAR.setText(null);
-    APELPATPAR.setText(null);
-    DOMPAR.setText(null);
-    FONOPAR.setText(null);
-    NOMPARTICIPANTE.setText(null);
-    Nombreresp1.setText(null);
-    Nombreresp2.setText(null);
-    RUNPAR.setText(null);
-   apematresp.setText(null);
-    dirresp.setText(null);
-    emailresp.setText(null);
-    fonoresp.setText(null);
-    fonoresp1.setText(null);
-    fonoresp2.setText(null);
-    nombadresp.setText(null);
-    respappat.setText(null);
-    runresp1.setText(null);
-    runresp2.setText(null);
-    CBCURSO.setSelectedIndex(0);
-    CBESPDISC.setSelectedIndex(0);
-    CBESPPO.setSelectedIndex(0);
-    CBESTABLECIMIENTO.setSelectedIndex(0);
-    CBGENERO.setSelectedIndex(0);
-    CBNAC1.setSelectedIndex(0);
-    CBNAC2.setSelectedIndex(0);
-    cbrelacion.setSelectedIndex(0);
-    
-    
-}
+        APELMATPAR.setText(null);
+        APELPATPAR.setText(null);
+        DOMPAR.setText(null);
+        FONOPAR.setText(null);
+        NOMPARTICIPANTE.setText(null);
+        Nombreresp1.setText(null);
+        Nombreresp2.setText(null);
+        RUNPAR.setText(null);
+        apematresp.setText(null);
+        dirresp.setText(null);
+        emailresp.setText(null);
+        fonoresp.setText(null);
+        fonoresp1.setText(null);
+        fonoresp2.setText(null);
+        nombadresp.setText(null);
+        respappat.setText(null);
+        runresp1.setText(null);
+        runresp2.setText(null);
+        CBCURSO.setSelectedIndex(0);
+        CBESPDISC.setSelectedIndex(0);
+        CBESPPO.setSelectedIndex(0);
+        CBESTABLECIMIENTO.setSelectedIndex(0);
+        CBGENERO.setSelectedIndex(0);
+        CBNAC1.setSelectedIndex(0);
+        CBNAC2.setSelectedIndex(0);
+        cbrelacion.setSelectedIndex(0);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField APELMATPAR;
@@ -760,8 +768,8 @@ private void limpiarcajas(){
     private javax.swing.JTextField RUNPAR;
     private javax.swing.JTextField apematresp;
     private javax.swing.JComboBox<Parentezco> cbrelacion;
-    private javax.swing.JCheckBox checkBoxDiscapacidad;
-    private javax.swing.JCheckBox checkpo;
+    private javax.swing.JCheckBox checkboxDiscapacidad;
+    private javax.swing.JCheckBox checkboxPuebloOriginario;
     private javax.swing.JTextField dirresp;
     private javax.swing.JTextField emailresp;
     private javax.swing.JTextField fonoresp;
@@ -818,4 +826,3 @@ private void limpiarcajas(){
     private javax.swing.JTextField runresp2;
     // End of variables declaration//GEN-END:variables
 }
-
