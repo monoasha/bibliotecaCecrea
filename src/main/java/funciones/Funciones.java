@@ -104,9 +104,9 @@ public class Funciones {
             String sql = "INSERT into solicitante VALUES(null,'" + nombre + "','" + apellidoPAT + "','" + apellidomat + "','" + rut + "','" + date + "','" + direccion + "','" + telefono + "','" + apoderado + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            new Mensaje("Datos Ingresados correctamente ").setVisible(true);
+           JOptionPane.showMessageDialog(null, "Se ha agregado al solicitante");
         } catch (SQLException e) {
-            new Mensaje("los datos no se pudieron ingresar").setVisible(true);
+           JOptionPane.showMessageDialog(null, "No se ha agregado el solicitante");
             System.out.println("Error en la conexión" + e);
         }
     }
