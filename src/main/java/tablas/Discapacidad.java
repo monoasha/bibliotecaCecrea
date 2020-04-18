@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablas;
+package tablas;
 
-
-public class Parentezco {
+/**
+ *
+ * @author shofy
+ */
+public class Discapacidad {
       private String nombre;
-      private Long Id;
+    private Long Id;
 
-    public Parentezco(Long Id, String nombre) {
+    public Discapacidad(Long Id, String nombre) {
         this.nombre = nombre;
         this.Id = Id;
     }
@@ -30,7 +33,8 @@ public class Parentezco {
     public void setId(Long Id) {
         this.Id = Id;
     }
-    public String toString() {
+ public String toString() {
         return this.nombre;
     }
+    
 }

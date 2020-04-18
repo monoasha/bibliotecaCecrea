@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Tablas;
 
-/**
- *
- * @author shofy
- */
-public class Cargo {
-   
+package tablas;
+
+
+public class Curso {
     private String nombre;
     private Long Id;
 
-     public Cargo(Long Id, String nombre) {
+     public Curso(Long Id, String nombre) {
         this.nombre = nombre;
         this.Id = Id;}
 

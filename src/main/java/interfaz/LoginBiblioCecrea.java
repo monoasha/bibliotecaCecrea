@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import funciones.Funciones;
+
 /**
  *
  * @author Sofia
@@ -15,6 +17,7 @@ public class LoginBiblioCecrea extends javax.swing.JFrame {
      * Creates new form LoginBiblioCecrea
      */
     public LoginBiblioCecrea() {
+        Funciones.conectarBD();
         initComponents();
         this.setTitle("Sistema de Logueo Cecrea La Ligua");
     }
@@ -56,7 +59,7 @@ public class LoginBiblioCecrea extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("INGRESAR");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/descarga.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/logocecrea.png")));
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

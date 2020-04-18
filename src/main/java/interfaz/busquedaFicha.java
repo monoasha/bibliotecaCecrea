@@ -1,7 +1,7 @@
 
 package interfaz;
 
-import DTO.ResumenFicha;
+import dto.ResumenFicha;
 import funciones.Funciones;
 import java.awt.Window;
 import java.util.List;
@@ -13,10 +13,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author shofy
  */
-public class busquedaFicha extends javax.swing.JPanel {
+public class BusquedaFicha extends javax.swing.JPanel {
 
   
-    public busquedaFicha() {
+    public BusquedaFicha() {
         initComponents();
     }
 
@@ -176,7 +176,7 @@ public class busquedaFicha extends javax.swing.JPanel {
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
-        Window w = SwingUtilities.getWindowAncestor(busquedaFicha.this);
+        Window w = SwingUtilities.getWindowAncestor(BusquedaFicha.this);
         w.setVisible(false);
         new User().setVisible(true);
     }//GEN-LAST:event_cerrarbusqActionPerformed

@@ -5,7 +5,7 @@
  */
 package interfaz;
 
-import Tablas.Cargo;
+import tablas.Cargo;
 import funciones.Funciones;
 import java.util.ArrayList;
 

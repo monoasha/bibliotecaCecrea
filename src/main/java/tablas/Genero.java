@@ -1,23 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Tablas;
+package tablas;
 
-/**
- *
- * @author shofy
- */
-public class Discapacidad {
-      private String nombre;
+public class Genero {
+
+    private String nombre;
     private Long Id;
 
-    public Discapacidad(Long Id, String nombre) {
+    public Genero(Long Id, String nombre) {
         this.nombre = nombre;
         this.Id = Id;
     }
 
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -33,8 +27,9 @@ public class Discapacidad {
     public void setId(Long Id) {
         this.Id = Id;
     }
- public String toString() {
+
+    public String toString() {
         return this.nombre;
     }
-    
+
 }

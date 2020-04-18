@@ -1,16 +1,16 @@
 package funciones;
 
-import DTO.FormularioRequest;
-import DTO.ResumenFicha;
-import Tablas.Cargo;
-import Tablas.Curso;
-import Tablas.Discapacidad;
-import Tablas.Establecimiento;
-import Tablas.Genero;
-import Tablas.Libro;
-import Tablas.Nacionalidad;
-import Tablas.Parentezco;
-import Tablas.PueblosOriginarios;
+import dto.FormularioRequest;
+import dto.ResumenFicha;
+import tablas.Cargo;
+import tablas.Curso;
+import tablas.Discapacidad;
+import tablas.Establecimiento;
+import tablas.Genero;
+import tablas.Libro;
+import tablas.Nacionalidad;
+import tablas.Parentezco;
+import tablas.PueblosOriginarios;
 import com.mysql.jdbc.StringUtils;
 import interfaz.User;
 import interfaz.Admin;
@@ -32,10 +32,11 @@ public class Funciones {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String usuario = "root";
     private static final String contra = "";
-    private static final String url = "jdbc:mysql://localhost/biblioteca";
+    private static final String url = "jdbc:mysql://localhost/biblioteca?useSSL=false";
 
     public static void conectarBD() {
         try {
+            System.out.println("Conectando con la base de datos");
             Class.forName(driver);
             conn = DriverManager.getConnection(url, usuario, contra);
             if (conn == null) {
@@ -147,7 +148,7 @@ public static ArrayList<Libro> buscarLibro(String nombrelibro) {
             }
             return libros;
         } catch (SQLException e) {
-            System.out.println("La conexión no se pudo establecer debido a " + e);
+            System.out.println("Error en la busqueda de libros " + e);
         }
         return null;
     }
@@ -402,7 +403,7 @@ public static ArrayList<Libro> buscarLibro(String nombrelibro) {
         }
         if (StringUtils.isNullOrEmpty(formulario.getFonoretiro2())) {
             mensajesError += "<html>El telefono  no puede estar vacio <br> <br> <html> ";
-        }
+        }   
         if (StringUtils.isNullOrEmpty(formulario.getNombreadresp())) {
             mensajesError += "<html>El nombre del responsable no puede estar vacio <br> <br> <html> ";
 

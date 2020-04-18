@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablas;
+package tablas;
 
 /**
  *
  * @author shofy
  */
-public class Nacionalidad {
+public class Establecimiento {
       private String nombre;
     private Long Id;
 
-    public Nacionalidad(Long Id, String nombre) {
+    public Establecimiento (Long Id, String nombre) {
         this.nombre = nombre;
         this.Id = Id;
     }

@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablas;
+package tablas;
 
 /**
  *
  * @author shofy
  */
-public class PueblosOriginarios {
+public class Nacionalidad {
       private String nombre;
     private Long Id;
 
-    public PueblosOriginarios(Long Id, String nombre) {
+    public Nacionalidad(Long Id, String nombre) {
         this.nombre = nombre;
         this.Id = Id;
     }
@@ -34,5 +34,6 @@ public class PueblosOriginarios {
         this.Id = Id;
     }
  public String toString() {
-        return this.nombre;}
+        return this.nombre;
+    }
 }

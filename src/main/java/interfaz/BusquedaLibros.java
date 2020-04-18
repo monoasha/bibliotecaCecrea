@@ -8,7 +8,7 @@ package interfaz;
 import funciones.Funciones;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import Tablas.Libro;
+import tablas.Libro;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 

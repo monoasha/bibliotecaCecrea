@@ -1,17 +1,20 @@
-package Tablas;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tablas;
 
-public class Genero {
 
-    private String nombre;
-    private Long Id;
+public class Parentezco {
+      private String nombre;
+      private Long Id;
 
-    public Genero(Long Id, String nombre) {
+    public Parentezco(Long Id, String nombre) {
         this.nombre = nombre;
         this.Id = Id;
     }
 
-    
-    
     public String getNombre() {
         return nombre;
     }
@@ -27,9 +30,7 @@ public class Genero {
     public void setId(Long Id) {
         this.Id = Id;
     }
-
     public String toString() {
         return this.nombre;
     }
-
 }
