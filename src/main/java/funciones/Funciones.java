@@ -559,7 +559,7 @@ public class Funciones {
 
             while (resultado.next()) {
                 enlista.add(
-                        new Solicitante(resultado.getLong("idSolicitantes"), resultado.getString("nombre"))
+                        new Solicitante(resultado.getLong("idSolicitantes"), resultado.getString("nombres"))
                 );
             }
         } catch (Exception e) {
