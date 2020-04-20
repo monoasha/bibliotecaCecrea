@@ -25,4 +25,8 @@ public class Libro {
     private String fechadeingreso;
     private String categoria;
 
+ 
+ public String toString() {
+        return this.nombre;
+    }
 }

@@ -3,8 +3,12 @@ package interfaz;
 
 import funciones.Funciones;
 import java.awt.Window;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.SwingUtilities;
+import tablas.Genero;
+import tablas.Libro;
+import tablas.Solicitante;
 
 /**
  *
@@ -17,9 +21,16 @@ public class Prestamo extends javax.swing.JPanel {
         initComponents();
         combonombrelibro.removeAllItems();
         combonombresolicitante.removeAllItems();
+   
+        ArrayList<Solicitante> listag = Funciones.llenarComboSolicitante();
+        for (int i = 0; i < listag.size(); i++) {
+            combonombresolicitante.addItem(listag.get(i));
+        }
+        ArrayList<Libro> listado = Funciones.llenarComboLibrosprestamo();
+        for (int i = 0; i < listag.size(); i++) {
+            combonombrelibro.addItem(listado.get(i));
+        }
     }
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,7 +82,7 @@ public class Prestamo extends javax.swing.JPanel {
             }
         });
 
-        combonombrelibro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combonombrelibro.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("OBSERVACIONES :");
@@ -79,7 +90,7 @@ public class Prestamo extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("FECHA DE DEVOLUCION :");
 
-        combonombresolicitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combonombresolicitante.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -205,8 +216,8 @@ Window w = SwingUtilities.getWindowAncestor(Prestamo.this);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Autorlibro;
     private javax.swing.JButton CERRARSESION;
-    private javax.swing.JComboBox<String> combonombrelibro;
-    private javax.swing.JComboBox<String> combonombresolicitante;
+    private javax.swing.JComboBox<Libro> combonombrelibro;
+    private javax.swing.JComboBox<Solicitante> combonombresolicitante;
     private com.toedter.calendar.JDateChooser devolucionprestamo;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
