@@ -149,13 +149,13 @@ public class Funciones {
             Libro lib = null;
             while (rs.next()) {
                 lib = new Libro();
+                lib.setId(rs.getLong("idlibros"));
                 lib.setNombre(rs.getString("nombre"));
                 lib.setAutor(rs.getString("autor"));
                 lib.setFechadeingreso(rs.getString("fechaingreso"));
                 lib.setCategoria(rs.getString("categoria"));
                 lib.setDisponibilidad(rs.getBoolean("Disponibilidad"));
                 libros.add(lib);
-                lib = null;
             }
             return libros;
         } catch (SQLException e) {
@@ -579,7 +579,10 @@ public class Funciones {
 
             while (resultado.next()) {
                 enlista.add(
-                        new Libro(resultado.getLong("idlibros"), resultado.getString("nombre"))
+                        Libro.builder()
+                        .id(resultado.getLong("idlibros"))
+                        .nombre(resultado.getString("nombre"))
+                        .build()
                 );
             }
         } catch (Exception e) {

@@ -6,6 +6,7 @@
 package tablas;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,10 +16,12 @@ import lombok.NoArgsConstructor;
  */
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Libro {
 
+    private Long id;
     private String nombre;
     private String autor;
     private Boolean disponibilidad;
