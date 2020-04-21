@@ -82,12 +82,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarprestamoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="eliminarprestamo">
+            <MenuItem class="javax.swing.JMenuItem" name="devolucionprestamo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DEVOLUCION PRESTAMO"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarprestamoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="devolucionprestamoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
