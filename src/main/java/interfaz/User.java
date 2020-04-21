@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import dto.UserLogin;
 import funciones.Funciones;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
@@ -18,7 +19,11 @@ public class User extends javax.swing.JFrame {
     /**
      * Creates new form User
      */
-    public User() {
+    
+    private UserLogin userLogin;
+    
+    public User(UserLogin userLogin) {
+        this.userLogin = userLogin;
         initComponents();
         this.setTitle(" Sistema Interno Cecrea La Ligua");
     }
@@ -208,11 +213,12 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_busquedalibrosActionPerformed
 
     private void ingresarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarprestamoActionPerformed
-       Prestamo p = new Prestamo();
-        p.setSize(600,600);
+       Prestamo p = new Prestamo(userLogin);
+        this.setSize(620, 650);
+        p.setSize(600, 600);
         p.setLocation(5,5);
         contenedor.removeAll();
-       contenedor.add(p,BorderLayout.LINE_START);
+       contenedor.add(p,BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresarprestamoActionPerformed

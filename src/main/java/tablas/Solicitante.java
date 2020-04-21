@@ -7,9 +7,11 @@ package tablas;
 
 import java.sql.Date;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 @Data
 @AllArgsConstructor
+@Builder
 public class Solicitante {
     private Long id;
     private String nombres;
@@ -23,7 +25,7 @@ public class Solicitante {
 
    
     public String toString() {
-        return this.nombres;
+        return this.nombres + " " + this.Apellidopaterno;
     }
     
 }

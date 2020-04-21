@@ -1,14 +1,14 @@
-
 package interfaz;
 
+import dto.UserLogin;
 import funciones.Funciones;
 import java.awt.Window;
-import java.util.ArrayList;
-import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import tablas.Genero;
 import tablas.Libro;
 import tablas.Solicitante;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 
 /**
  *
@@ -17,12 +17,21 @@ import tablas.Solicitante;
 public class Prestamo extends javax.swing.JPanel {
 
     
-    public Prestamo() {
+    private UserLogin userLogin;
+    
+    public Prestamo(UserLogin userLogin) {
+        this.userLogin = userLogin;
         initComponents();
-        combonombrelibro.removeAllItems();
-        combonombresolicitante.removeAllItems();
-   
-            }
+
+        for (Libro l : Funciones.buscarLibroDisponibles(null)) {
+            combonombrelibro.addItem(l);
+        }
+
+        for (Solicitante s : Funciones.buscarSolicitantes()) {
+            combonombresolicitante.addItem(s);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,9 +42,7 @@ public class Prestamo extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         registrarprestamo = new javax.swing.JButton();
-        Autorlibro = new javax.swing.JTextField();
         CERRARSESION = new javax.swing.JButton();
         combonombrelibro = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -43,8 +50,10 @@ public class Prestamo extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         combonombresolicitante = new javax.swing.JComboBox<>();
         devolucionprestamo = new com.toedter.calendar.JDateChooser();
+        labelDisponibles = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 255));
+        setPreferredSize(new java.awt.Dimension(560, 450));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("PRÉSTAMO DE LIBROS");
@@ -56,9 +65,6 @@ public class Prestamo extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("NOMBRE SOLICITANTE:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("AUTOR DEL LIBRO :");
 
         registrarprestamo.setText("INGRESAR");
         registrarprestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +81,11 @@ public class Prestamo extends javax.swing.JPanel {
         });
 
         combonombrelibro.setModel(new javax.swing.DefaultComboBoxModel<>());
+        combonombrelibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combonombrelibroActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("OBSERVACIONES :");
@@ -84,54 +95,57 @@ public class Prestamo extends javax.swing.JPanel {
 
         combonombresolicitante.setModel(new javax.swing.DefaultComboBoxModel<>());
 
+        labelDisponibles.setText("Unidades disponibles: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(combonombrelibro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Autorlibro)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addComponent(CERRARSESION, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2)))))
+                                .addGap(23, 23, 23)
+                                .addComponent(CERRARSESION, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(combonombresolicitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelDisponibles)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(combonombrelibro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(35, 35, 35))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(observaciones)
-                        .addGap(6, 6, 6))
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(registrarprestamo)
+                        .addGap(183, 183, 183))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(combonombresolicitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(35, 35, 35))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(registrarprestamo)
-                .addGap(101, 101, 101))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(devolucionprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(devolucionprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,26 +157,21 @@ public class Prestamo extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CERRARSESION)))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(Autorlibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combonombrelibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelDisponibles)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(combonombresolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel8)
-                        .addGap(7, 7, 7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(devolucionprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel8)
+                    .addComponent(devolucionprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -170,43 +179,45 @@ public class Prestamo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(observaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                .addGap(35, 35, 35)
                 .addComponent(registrarprestamo)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarprestamoActionPerformed
-        String nombre = combonombrelibro.getSelectedItem().toString();
-        String autor = Autorlibro.getText();
-        String obs = observaciones.getText();
-         Long fechadevolucion = devolucionprestamo.getDate().getTime();
-     
-         String opcionsolicitante=combonombrelibro.getSelectedItem().toString();
-         
-      
-        
-        
-        Funciones.insertarPrestamo(nombre ,autor, (java.sql.Date) new Date(fechadevolucion),obs, opcionsolicitante);
-        
-     
+        Libro l = (Libro) combonombrelibro.getSelectedItem();
+        Solicitante s = (Solicitante) combonombresolicitante.getSelectedItem();
+        if (combonombresolicitante.getSelectedItem() != null && combonombresolicitante.getSelectedItem() != null) {
+            Funciones.insertarPrestamo(
+                    l,
+                    s,
+                    new java.sql.Date(devolucionprestamo.getDate().getTime()),
+                    observaciones.getText());
+            CERRARSESIONActionPerformed(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe ingresar los datos solicitados");
+
+        }
     }//GEN-LAST:event_registrarprestamoActionPerformed
 
     private void CERRARSESIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CERRARSESIONActionPerformed
-Window w = SwingUtilities.getWindowAncestor(Prestamo.this);
-       w.setVisible(false);
-    new User().setVisible(true);     
-      
-        User hola=new User();
-      
-
-       hola.setVisible(true);
-      
+        Window w = SwingUtilities.getWindowAncestor(Prestamo.this);
+        w.setVisible(false);
+        if(userLogin.getCargo().equals(CARGO_ADMIN)) {
+            new Admin(userLogin).setVisible(true);
+        } else if (userLogin.getCargo().equals(CARGO_USER)) {
+            new User(userLogin).setVisible(true);
+        }               
     }//GEN-LAST:event_CERRARSESIONActionPerformed
+
+    private void combonombrelibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combonombrelibroActionPerformed
+        Libro l = (Libro) combonombrelibro.getSelectedItem();
+        labelDisponibles.setText("Unidades disponibles: " + l.getDisponibilidad());
+    }//GEN-LAST:event_combonombrelibroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Autorlibro;
     private javax.swing.JButton CERRARSESION;
     private javax.swing.JComboBox<Libro> combonombrelibro;
     private javax.swing.JComboBox<Solicitante> combonombresolicitante;
@@ -216,10 +227,10 @@ Window w = SwingUtilities.getWindowAncestor(Prestamo.this);
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel labelDisponibles;
     private javax.swing.JTextField observaciones;
     private javax.swing.JButton registrarprestamo;
     // End of variables declaration//GEN-END:variables

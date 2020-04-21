@@ -79,10 +79,10 @@ public class Funciones {
                             rs.getString("nombrecargo")
                     );
                     if (userLogin.getCargo().equals(CARGO_USER)) {
-                        new User().setVisible(true);
+                        new User(userLogin).setVisible(true);
                         return true;
                     } else if (userLogin.getCargo().equals(CARGO_ADMIN)) {
-                        new Admin().setVisible(true);
+                        new Admin(userLogin).setVisible(true);
                         return true;
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuario no posee rol necesario para hacer login");
@@ -94,12 +94,10 @@ public class Funciones {
                 System.out.println("Error inesperado en la consulta de usuario, error: " + e);
             }
         }
-                    return false;
+        return false;
 
     }
-    
 
-   
     public static void agregarLibro(String nombre, String autor, String categoria) {
         try {
             String sql = "INSERT into libro VALUES(null,'" + nombre + "','" + autor + "',CURRENT_DATE,'" + categoria + "')";
@@ -123,15 +121,30 @@ public class Funciones {
         }
     }
 
-    public static void insertarPrestamo(String nombre, String autor, Date fechadevolucion, String obs, String opcion) {
+    public static void insertarPrestamo(Libro l, Solicitante s, Date fechaDevolucion, String observaciones) {
         try {
-            String sql = "INSERT into prestamo VALUES(null,'" + "',CURRENT_DATE,'" + fechadevolucion + "','" + obs + "','" + nombre + "','" + opcion + "')";
+            String sql = "INSERT INTO biblioteca.prestamo (idlibros, idSolicitantes, fechasolicitud, fechadevolucion, observaciones) VALUES(" + l.getId() + ", " + s.getId() + ", current_date(), '" + fechaDevolucion + "', '" + observaciones + "');";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha ingresado el Préstamo");;
+            JOptionPane.showMessageDialog(null, "Se ha ingresado el Préstamo");
+            restarDisponibilidad(l);
+
         } catch (SQLException e) {
             System.out.println("Error en la conexión" + e);
             JOptionPane.showMessageDialog(null, "No Se ha ingresado el préstamo");
+        }
+    }
+
+    public static void restarDisponibilidad(Libro l) {
+        try {
+            String sql = "update libro l set l.disponibilidad = (l.disponibilidad - 1) where l.idlibros = " + l.getId();
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error inesperado al actualizar la disponibilidad del libro: " + l.getNombre() + ", Error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al actualizar disponibilidad del libro");
+
         }
     }
 
@@ -164,11 +177,39 @@ public class Funciones {
         return null;
     }
 
+    public static ArrayList<Libro> buscarLibroDisponibles(String nombrelibro) {
+
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            ResultSet rs;
+            String sql = "select * from biblioteca.libro l where l.disponibilidad > 0";
+
+            rs = stmt.executeQuery(sql);
+
+            ArrayList<Libro> libros = new ArrayList<>();
+            Libro lib = null;
+            while (rs.next()) {
+                lib = new Libro();
+                lib.setId(rs.getLong("idlibros"));
+                lib.setNombre(rs.getString("nombre"));
+                lib.setAutor(rs.getString("autor"));
+                lib.setFechadeingreso(rs.getString("fechaingreso"));
+                lib.setCategoria(rs.getString("categoria"));
+                lib.setDisponibilidad(rs.getInt("Disponibilidad"));
+                libros.add(lib);
+            }
+            return libros;
+        } catch (SQLException e) {
+            System.out.println("Error en la busqueda de libros " + e);
+        }
+        return null;
+    }
+
     public static ArrayList<String> llenarComboDevoluciones(String rut) {
         ArrayList<String> lista = new ArrayList<String>();
 
-        String q = "SELECT * FROM devolucion"
-                ;
+        String q = "SELECT * FROM devolucion";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(q);
@@ -487,8 +528,8 @@ public class Funciones {
                     + request.getEsdiscapacitado() + ","//discapacidad
                     + request.getEsdepueblooriginario() + ","//pueblo originario
                     + request.getNacionalidad2() + "," // Segunda nacionalidad
-                    + "'" + new Date(request.getFechanacparticipante().getTime())+ "')"; // Fecha nacimiento
-                    
+                    + "'" + new Date(request.getFechanacparticipante().getTime()) + "')"; // Fecha nacimiento
+
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha agregado la ficha");
@@ -548,5 +589,31 @@ public class Funciones {
             new Mensaje("los datos no se pudieron ingresar").setVisible(true);
             System.out.println("Error en la conexión" + e);
         }
-    }}
- 
+    }
+
+    public static List<Solicitante> buscarSolicitantes() {
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            String sql = "select * from solicitante s";
+            ResultSet rs = stmt.executeQuery(sql);
+            List<Solicitante> solicitantes = new ArrayList<>();
+            while (rs.next()) {
+                solicitantes.add(
+                        Solicitante.builder()
+                                //Si se necesitan otros datos se agregan a aca en el builder
+                                .id((rs.getLong("idSolicitantes")))
+                                .nombres(rs.getString("nombres"))
+                                .Apellidopaterno("apellido paterno")
+                                .Apellidomaterno("apellido materno")
+                                .rut("rut")
+                                .build());
+            }
+            return solicitantes;
+        } catch (Exception e) {
+            System.out.println("Error inesperado al buscar los solicitantes, error " + e);
+        }
+        return null;
+    }
+
+}
