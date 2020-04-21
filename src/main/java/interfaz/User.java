@@ -228,11 +228,11 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresofichascecreaActionPerformed
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
-   DevolucionPrestamo dp = new DevolucionPrestamo();
-        dp.setSize(450,300);
+   DevolucionPrestamo dp = new DevolucionPrestamo(userLogin);
+        dp.setSize(600, 600);
         dp.setLocation(5,5);
         contenedor.removeAll();
-       contenedor.add(dp,BorderLayout.LINE_START);
+       contenedor.add(dp,BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_eliminarprestamoActionPerformed

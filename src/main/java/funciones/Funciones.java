@@ -14,6 +14,7 @@ import tablas.Nacionalidad;
 import tablas.Parentezco;
 import tablas.PueblosOriginarios;
 import com.mysql.jdbc.StringUtils;
+import dto.ResumenPrestamo;
 import dto.UserLogin;
 import interfaz.User;
 import interfaz.Admin;
@@ -110,7 +111,8 @@ public class Funciones {
     }
 
     public static void agregarSolicitante(String nombre, String apellidoPAT, String apellidomat, String rut, Date date, String direccion, String telefono, String apoderado) {
-        try {
+        try {            
+            rut = limpiarRut(rut);
             String sql = "INSERT into solicitante VALUES(null,'" + nombre + "','" + apellidoPAT + "','" + apellidomat + "','" + rut + "','" + date + "','" + direccion + "','" + telefono + "','" + apoderado + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
@@ -138,6 +140,19 @@ public class Funciones {
     public static void restarDisponibilidad(Libro l) {
         try {
             String sql = "update libro l set l.disponibilidad = (l.disponibilidad - 1) where l.idlibros = " + l.getId();
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error inesperado al actualizar la disponibilidad del libro: " + l.getNombre() + ", Error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al actualizar disponibilidad del libro");
+
+        }
+    }
+    
+        public static void sumarDisponibilidad(Libro l) {
+        try {
+            String sql = "update libro l set l.disponibilidad = (l.disponibilidad + 1) where l.idlibros = " + l.getId();
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
 
@@ -206,29 +221,9 @@ public class Funciones {
         return null;
     }
 
-    public static ArrayList<String> llenarComboDevoluciones(String rut) {
-        ArrayList<String> lista = new ArrayList<String>();
-
-        String q = "SELECT * FROM devolucion";
-
-        try {
-            PreparedStatement stmt = conn.prepareStatement(q);
-
-            ResultSet resultado = stmt.executeQuery(q);
-            while (resultado.next()) {
-                lista.add(resultado.getString(""));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error al consultar data de devoluciones, error " + e);
-            e.printStackTrace();
-            new Mensaje("Error al consultar informacion de devoluciones").setVisible(true);
-        }
-        return lista;
-    }
-
     public static void registrarUsuarios(String name, String rut, String contacto, String contraseña) {
         try {
+            rut = limpiarRut(rut);
             String sql = "INSERT into usuario VALUES(null,'" + name + "','" + rut + "','" + contacto + "','" + (contraseña) + ")";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
@@ -580,15 +575,18 @@ public class Funciones {
         return null;
     }
 
-    public static void registrardevolucion(String rut, String opcion) {
-        try {
-            String sql = "INSERT into devolucion VALUES(null,'" + rut + "',CURRENT_DATE,'" + opcion + "')";
+    public static void registrardevolucion(ResumenPrestamo prestamo) {
+        try {            
+            String sql = "UPDATE biblioteca.prestamo " 
+                    +"set vigente=0 " 
+                    +"WHERE idprestamo="+prestamo.getIdPrestamo();
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha realizado la devolucion");
+            sumarDisponibilidad(Libro.builder().id(prestamo.getIdLibro()).build());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, " No se ha realizado  la devolucion");
-            System.out.println("Error en la conexión" + e);
+            JOptionPane.showMessageDialog(null, " Error al registrar la devolucion");
+            System.out.println("Error inesperado en la devolucion, Error " + e);
         }
     }
 
@@ -605,9 +603,11 @@ public class Funciones {
                                 //Si se necesitan otros datos se agregan a aca en el builder
                                 .id((rs.getLong("idSolicitantes")))
                                 .nombres(rs.getString("nombres"))
-                                .Apellidopaterno("apellido paterno")
-                                .Apellidomaterno("apellido materno")
-                                .rut("rut")
+                                .Apellidopaterno(rs.getString("apellido paterno"))
+                                .Apellidomaterno(rs.getString("apellido materno"))
+                                .direccion(rs.getString("direccion"))
+                                .telefono(rs.getString("telefono"))
+                                .rut(rs.getString("rut"))
                                 .build());
             }
             return solicitantes;
@@ -615,6 +615,67 @@ public class Funciones {
             System.out.println("Error inesperado al buscar los solicitantes, error " + e);
         }
         return null;
+    }
+    
+    public static Solicitante consultarSolicitantePorRut(String rut)  {
+                try {
+                    rut = limpiarRut(rut);
+            Statement stmt;
+            stmt = conn.createStatement();
+            String sql = "select * from solicitante s where s.rut like '%"+rut+"%'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                        return Solicitante.builder()
+                                //Si se necesitan otros datos se agregan a aca en el builder
+                                .id((rs.getLong("idSolicitantes")))
+                                .nombres(rs.getString("nombres"))
+                                .Apellidopaterno(rs.getString("apellido paterno"))
+                                .Apellidomaterno(rs.getString("apellido materno"))
+                                .direccion(rs.getString("direccion"))
+                                .telefono(rs.getString("telefono"))
+                                .rut(rs.getString("rut"))
+                                .build();
+            }
+        } catch (Exception e) {
+            System.out.println("Error inesperado al buscar los solicitantes, error " + e);
+        }
+                JOptionPane.showMessageDialog(null, "Error al buscar solicitante");
+                return null;
+    }
+    
+    public static List<ResumenPrestamo> buscarPrestamosVigentes(Solicitante s) {
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            String sql = "select p.idSolicitantes, p.idlibros, p.idprestamo, p.fechasolicitud, p.fechadevolucion, l.nombre "
+                    + "from biblioteca.prestamo p "
+                    + "join biblioteca.solicitante s on s.idSolicitantes = p.idSolicitantes "
+                    + "join biblioteca.libro l on l.idlibros = p.idlibros "
+                    + "where p.idSolicitantes = "+s.getId()+" and p.vigente = 1";
+            ResultSet rs = stmt.executeQuery(sql);
+            List<ResumenPrestamo> resumenPrestamos = new ArrayList<>();
+            while (rs.next()) {
+                resumenPrestamos.add(
+                        ResumenPrestamo.builder()
+                                .idPrestamo(rs.getLong("idprestamo"))
+                                .idSolicitante(rs.getLong("idSolicitantes"))
+                                .idLibro(rs.getLong("idlibros"))
+                                .fechaSolicitud(rs.getDate("fechasolicitud"))
+                                .fechaDevolucion(rs.getDate("fechadevolucion"))
+                                .nombreLibro(rs.getString("nombre"))
+                                .build());
+            }
+            return resumenPrestamos;
+        } catch (Exception e) {
+            System.out.println("Error inesperado al buscar los prestamos, error " + e);
+            JOptionPane.showMessageDialog(null, "Error al buscar prestamos");
+
+        }
+        return null;
+    }
+    
+    private static String limpiarRut(String rut) {
+        return rut.replace(".", "").replace("-", "").toLowerCase();
     }
 
 }

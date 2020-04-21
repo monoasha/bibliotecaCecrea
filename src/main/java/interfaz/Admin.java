@@ -236,8 +236,8 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresofichasActionPerformed
 
     private void devolucionprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolucionprestamoActionPerformed
-        DevolucionPrestamo dp = new DevolucionPrestamo();
-        dp.setSize(450, 300);
+        DevolucionPrestamo dp = new DevolucionPrestamo(userLogin);
+        dp.setSize(600, 600);
         dp.setLocation(5, 5);
         contenedor.removeAll();
         contenedor.add(dp, BorderLayout.CENTER);

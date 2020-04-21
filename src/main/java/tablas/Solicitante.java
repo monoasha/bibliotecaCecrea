@@ -21,7 +21,7 @@ public class Solicitante {
     private Date fechanacimiento;
     private String direccion;
     private String apoderado;
-    private String contacto;
+    private String telefono;
 
    
     public String toString() {
