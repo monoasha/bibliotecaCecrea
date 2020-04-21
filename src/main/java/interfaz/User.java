@@ -229,7 +229,7 @@ public class User extends javax.swing.JFrame {
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
    DevolucionPrestamo dp = new DevolucionPrestamo();
-        dp.setSize(600,600);
+        dp.setSize(450,300);
         dp.setLocation(5,5);
         contenedor.removeAll();
        contenedor.add(dp,BorderLayout.LINE_START);

@@ -547,6 +547,7 @@ public class Funciones {
             pps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error en la conexión" + e);
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la ficha");
         }
     }
 
@@ -584,9 +585,9 @@ public class Funciones {
             String sql = "INSERT into devolucion VALUES(null,'" + rut + "',CURRENT_DATE,'" + opcion + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            new Mensaje("Datos Ingresados correctamente ").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Se ha realizado la devolucion");
         } catch (SQLException e) {
-            new Mensaje("los datos no se pudieron ingresar").setVisible(true);
+            JOptionPane.showMessageDialog(null, " No se ha realizado  la devolucion");
             System.out.println("Error en la conexión" + e);
         }
     }

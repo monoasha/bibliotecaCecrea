@@ -48,7 +48,7 @@ public class Admin extends javax.swing.JFrame {
         agregarusuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         ingresarprestamo = new javax.swing.JMenuItem();
-        eliminarprestamo = new javax.swing.JMenuItem();
+        devolucionprestamo = new javax.swing.JMenuItem();
         modificareliminarfichas = new javax.swing.JMenu();
         ingresofichas = new javax.swing.JMenuItem();
         eliminareditarfichas = new javax.swing.JMenuItem();
@@ -139,13 +139,13 @@ public class Admin extends javax.swing.JFrame {
         });
         jMenu2.add(ingresarprestamo);
 
-        eliminarprestamo.setText("DEVOLUCION PRESTAMO");
-        eliminarprestamo.addActionListener(new java.awt.event.ActionListener() {
+        devolucionprestamo.setText("DEVOLUCION PRESTAMO");
+        devolucionprestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarprestamoActionPerformed(evt);
+                devolucionprestamoActionPerformed(evt);
             }
         });
-        jMenu2.add(eliminarprestamo);
+        jMenu2.add(devolucionprestamo);
 
         jMenuBar1.add(jMenu2);
 
@@ -235,15 +235,15 @@ public class Admin extends javax.swing.JFrame {
       new FormularioFichaCecrea().setVisible(true);
     }//GEN-LAST:event_ingresofichasActionPerformed
 
-    private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
+    private void devolucionprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolucionprestamoActionPerformed
         DevolucionPrestamo dp = new DevolucionPrestamo();
-        dp.setSize(600, 600);
+        dp.setSize(450, 300);
         dp.setLocation(5, 5);
         contenedor.removeAll();
         contenedor.add(dp, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
-    }//GEN-LAST:event_eliminarprestamoActionPerformed
+    }//GEN-LAST:event_devolucionprestamoActionPerformed
 
     private void agregarusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarusuariosActionPerformed
         AgregarUsuarioCecrea aus = new AgregarUsuarioCecrea();
@@ -269,8 +269,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenuItem agregarusuarios;
     private javax.swing.JMenuItem busquedalibros;
     private javax.swing.JPanel contenedor;
+    private javax.swing.JMenuItem devolucionprestamo;
     private javax.swing.JMenuItem eliminareditarfichas;
-    private javax.swing.JMenuItem eliminarprestamo;
     private javax.swing.JMenuItem ingresarlibri;
     private javax.swing.JMenuItem ingresarprestamo;
     private javax.swing.JMenuItem ingresofichas;
