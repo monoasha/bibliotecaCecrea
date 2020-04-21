@@ -22,12 +22,12 @@ public class Prestamo extends javax.swing.JPanel {
         combonombrelibro.removeAllItems();
         combonombresolicitante.removeAllItems();
    
-        ArrayList<Solicitante> listag = Funciones.llenarComboSolicitante();
-        for (int i = 0; i < listag.size(); i++) {
-            combonombresolicitante.addItem(listag.get(i));
+        ArrayList<Solicitante> lista = Funciones.llenarComboSolicitante();
+        for (int i = 0; i < lista.size(); i++) {
+            combonombresolicitante.addItem(lista.get(i));
         }
         ArrayList<Libro> listado = Funciones.llenarComboLibrosprestamo();
-        for (int i = 0; i < listag.size(); i++) {
+        for (int i = 0; i < listado.size(); i++) {
             combonombrelibro.addItem(listado.get(i));
         }
     }

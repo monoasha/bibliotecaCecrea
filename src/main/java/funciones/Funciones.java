@@ -549,47 +549,4 @@ public class Funciones {
             System.out.println("Error en la conexión" + e);
         }
     }
-    public static ArrayList<Solicitante> llenarComboSolicitante() {
-        ArrayList<Solicitante> enlista = new ArrayList<>();
-        String q = "SELECT * FROM solicitante";
-        try {
-
-            PreparedStatement stmt = conn.prepareStatement(q);
-            ResultSet resultado = stmt.executeQuery();
-
-            while (resultado.next()) {
-                enlista.add(
-                        new Solicitante(resultado.getLong("idSolicitantes"), resultado.getString("nombres"))
-                );
-            }
-        } catch (Exception e) {
-            System.out.println("Error rellenar datos de Solicitante, error " + e);
-            e.printStackTrace();
-            new Mensaje("Error al consultar informacion del Solicitante").setVisible(true);
-        }
-        return enlista;
-    }
-    public static ArrayList<Libro> llenarComboLibrosprestamo() {
-        ArrayList<Libro> enlista = new ArrayList<>();
-        String q = "SELECT * FROM libro";
-        try {
-
-            PreparedStatement stmt = conn.prepareStatement(q);
-            ResultSet resultado = stmt.executeQuery();
-
-            while (resultado.next()) {
-                enlista.add(
-                        Libro.builder()
-                        .id(resultado.getLong("idlibros"))
-                        .nombre(resultado.getString("nombre"))
-                        .build()
-                );
-            }
-        } catch (Exception e) {
-            System.out.println("Error rellenar datos de libros para préstamos, error " + e);
-            e.printStackTrace();
-            new Mensaje("Error al consultar informacion del libros para prestamos").setVisible(true);
-        }
-        return enlista;
-    }
-}
+ 
