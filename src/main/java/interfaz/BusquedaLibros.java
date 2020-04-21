@@ -59,7 +59,7 @@ public class BusquedaLibros extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -139,8 +139,7 @@ public class BusquedaLibros extends javax.swing.JPanel {
             fila[0] = l.getNombre();
             fila[1] = l.getAutor();
             fila[2] = l.getFechadeingreso();
-            fila[3] = l.getCategoria();
-            fila[4] = l.getDisponibilidad();
+            fila[3] = l.getDisponibilidad();
 
             model.addRow(fila);
         }

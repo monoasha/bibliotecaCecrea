@@ -1,7 +1,7 @@
 package funciones;
 
-import static VO.CargoVO.CARGO_ADMIN;
-import static VO.CargoVO.CARGO_USER;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 import dto.FormularioRequest;
 import dto.ResumenFicha;
 import tablas.Cargo;
