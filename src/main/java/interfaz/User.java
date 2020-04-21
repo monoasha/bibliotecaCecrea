@@ -19,7 +19,6 @@ public class User extends javax.swing.JFrame {
      * Creates new form User
      */
     public User() {
-        Funciones.conectarBD();
         initComponents();
         this.setTitle(" Sistema Interno Cecrea La Ligua");
     }

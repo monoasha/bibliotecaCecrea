@@ -24,7 +24,7 @@ public class Libro {
     private Long id;
     private String nombre;
     private String autor;
-    private Boolean disponibilidad;
+    private Integer disponibilidad;
     private String fechadeingreso;
     private String categoria;
 
