@@ -548,5 +548,5 @@ public class Funciones {
             new Mensaje("los datos no se pudieron ingresar").setVisible(true);
             System.out.println("Error en la conexión" + e);
         }
-    }
+    }}
  
