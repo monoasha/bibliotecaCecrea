@@ -187,7 +187,7 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarlibriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarlibriActionPerformed
-        IngresoLibros il = new IngresoLibros();
+        IngresoLibros il = new IngresoLibros(userLogin);
         il.setSize(600, 600);
         il.setLocation(5, 5);
         contenedor.removeAll();
@@ -201,7 +201,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void ingresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresosolicitanteActionPerformed
-        IngresoSolicitante iu = new IngresoSolicitante();
+        IngresoSolicitante iu = new IngresoSolicitante(userLogin);
         iu.setSize(600, 600);
         iu.setLocation(5, 5);
         contenedor.removeAll();
@@ -211,7 +211,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresosolicitanteActionPerformed
 
     private void busquedalibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalibrosActionPerformed
-        BusquedaLibros bl = new BusquedaLibros();
+        BusquedaLibros bl = new BusquedaLibros(userLogin);
         bl.setSize(600, 600);
         bl.setLocation(5, 5);
         contenedor.removeAll();
@@ -256,7 +256,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarusuariosActionPerformed
 
     private void eliminareditarfichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminareditarfichasActionPerformed
-        BusquedaFicha bf = new BusquedaFicha();
+        BusquedaFicha bf = new BusquedaFicha(userLogin);
         bf.setSize(700, 600);
         bf.setLocation(5, 5);
         contenedor.removeAll();

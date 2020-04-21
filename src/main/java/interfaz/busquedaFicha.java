@@ -1,13 +1,15 @@
-
 package interfaz;
 
 import dto.ResumenFicha;
+import dto.UserLogin;
 import funciones.Funciones;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 
 /**
  *
@@ -15,12 +17,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BusquedaFicha extends javax.swing.JPanel {
 
-  
-    public BusquedaFicha() {
+    private UserLogin userLogin;
+
+    public BusquedaFicha(UserLogin userLogin) {
+        this.userLogin = userLogin;
         initComponents();
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -154,18 +157,18 @@ public class BusquedaFicha extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) TABLABUSQUEDAficha.getModel();
             model.setRowCount(0);
             Object fila[] = new Object[6];
-            List <ResumenFicha> fichas = Funciones.buscarficha(nombreparticipante.getText());
+            List<ResumenFicha> fichas = Funciones.buscarficha(nombreparticipante.getText());
             if (fichas.isEmpty()) {
-               JOptionPane.showInputDialog(null,"No hay fichas");
+                JOptionPane.showInputDialog(null, "No hay fichas");
                 return;
             }
 
             for (ResumenFicha fr : fichas) {
                 fila[0] = fr.getId();
-                fila[1]=fr.getNombreparticipante();
-                fila[2]=fr.getApelldpaternopart();
-                fila[3]=fr.getApelldmaternopart();
-                fila[4]=fr.getRun();
+                fila[1] = fr.getNombreparticipante();
+                fila[2] = fr.getApelldpaternopart();
+                fila[3] = fr.getApelldmaternopart();
+                fila[4] = fr.getRun();
 
                 model.addRow(fila);
             }
@@ -178,13 +181,17 @@ public class BusquedaFicha extends javax.swing.JPanel {
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
         Window w = SwingUtilities.getWindowAncestor(BusquedaFicha.this);
         w.setVisible(false);
-        new User().setVisible(true);
+        if (userLogin.getCargo().equals(CARGO_ADMIN)) {
+            new Admin(userLogin).setVisible(true);
+        } else if (userLogin.getCargo().equals(CARGO_USER)) {
+            new User(userLogin).setVisible(true);
+        }
     }//GEN-LAST:event_cerrarbusqActionPerformed
 
     private void eliminarfichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarfichaActionPerformed
-String nombre=nombreparticipante.getText();
+        String nombre = nombreparticipante.getText();
         Funciones.eliminarficha(nombre);
-        JOptionPane.showMessageDialog(null,"Se ha eliminado la ficha");
+        JOptionPane.showMessageDialog(null, "Se ha eliminado la ficha");
     }//GEN-LAST:event_eliminarfichaActionPerformed
 
 

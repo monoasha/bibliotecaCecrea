@@ -1,13 +1,19 @@
 package interfaz;
 
+import dto.UserLogin;
 import funciones.Funciones;
 import java.awt.Window;
 import java.sql.Date;
 import javax.swing.SwingUtilities;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 
 public class IngresoSolicitante extends javax.swing.JPanel {
 
-    public IngresoSolicitante() {
+    private UserLogin userLogin;
+    
+    public IngresoSolicitante(UserLogin userLogin) {
+        this.userLogin = userLogin;
         initComponents();
     }
 
@@ -222,7 +228,11 @@ public class IngresoSolicitante extends javax.swing.JPanel {
     private void cerraringresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerraringresosolicitanteActionPerformed
       Window w = SwingUtilities.getWindowAncestor(IngresoSolicitante.this);
        w.setVisible(false);
-    new User().setVisible(true); 
+        if (userLogin.getCargo().equals(CARGO_ADMIN)) {
+            new Admin(userLogin).setVisible(true);
+        } else if (userLogin.getCargo().equals(CARGO_USER)) {
+            new User(userLogin).setVisible(true);
+        } 
     }//GEN-LAST:event_cerraringresosolicitanteActionPerformed
 
 

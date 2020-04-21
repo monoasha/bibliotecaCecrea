@@ -5,12 +5,15 @@
  */
 package interfaz;
 
+import dto.UserLogin;
 import funciones.Funciones;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import tablas.Libro;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 
 /**
  *
@@ -21,7 +24,10 @@ public class BusquedaLibros extends javax.swing.JPanel {
     /**
      * Creates new form busquedalibros
      */
-    public BusquedaLibros() {
+    private UserLogin userLogin;
+
+    public BusquedaLibros(UserLogin userLogin) {
+        this.userLogin = userLogin;
         initComponents();
     }
 
@@ -149,7 +155,11 @@ public class BusquedaLibros extends javax.swing.JPanel {
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
         Window w = SwingUtilities.getWindowAncestor(BusquedaLibros.this);
         w.setVisible(false);
-        new User().setVisible(true);
+        if (userLogin.getCargo().equals(CARGO_ADMIN)) {
+            new Admin(userLogin).setVisible(true);
+        } else if (userLogin.getCargo().equals(CARGO_USER)) {
+            new User(userLogin).setVisible(true);
+        }
     }//GEN-LAST:event_cerrarbusqActionPerformed
 
 

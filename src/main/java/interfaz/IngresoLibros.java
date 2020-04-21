@@ -5,9 +5,12 @@
  */
 package interfaz;
 
+import dto.UserLogin;
 import funciones.Funciones;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 
 /**
  *
@@ -18,7 +21,11 @@ public class IngresoLibros extends javax.swing.JPanel {
     /**
      * Creates new form Registo_usuario
      */
-    public IngresoLibros() {
+    
+    private UserLogin userLogin;
+
+    public IngresoLibros(UserLogin userLogin) {
+        this.userLogin = userLogin;
         initComponents();
     }
 
@@ -146,7 +153,11 @@ public class IngresoLibros extends javax.swing.JPanel {
     private void BTNCERRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCERRARActionPerformed
         Window w = SwingUtilities.getWindowAncestor(IngresoLibros.this);
         w.setVisible(false);
-        new User().setVisible(true);
+        if(userLogin.getCargo().equals(CARGO_ADMIN)) {
+            new Admin(userLogin).setVisible(true);
+        } else if (userLogin.getCargo().equals(CARGO_USER)) {
+            new User(userLogin).setVisible(true);
+        } 
     }//GEN-LAST:event_BTNCERRARActionPerformed
 
 
