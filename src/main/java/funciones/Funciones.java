@@ -141,7 +141,7 @@ public class Funciones {
             Statement stmt;
             stmt = conn.createStatement();
             ResultSet rs;
-            String sql = "SELECT l.nombre, l.autor,l.fechaingreso ,l.categoria ,l.disponibilidad FROM libro l WHERE l.nombre  LIKE '%" + nombrelibro + "%'";
+            String sql = "SELECT l.idlibros, l.nombre, l.autor,l.fechaingreso ,l.categoria ,l.disponibilidad FROM libro l WHERE l.nombre  LIKE '%" + nombrelibro + "%'";
 
             rs = stmt.executeQuery(sql);
 
@@ -154,7 +154,7 @@ public class Funciones {
                 lib.setAutor(rs.getString("autor"));
                 lib.setFechadeingreso(rs.getString("fechaingreso"));
                 lib.setCategoria(rs.getString("categoria"));
-                lib.setDisponibilidad(rs.getBoolean("Disponibilidad"));
+                lib.setDisponibilidad(rs.getInt("Disponibilidad"));
                 libros.add(lib);
             }
             return libros;

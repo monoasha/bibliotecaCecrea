@@ -12,7 +12,6 @@ import tablas.Libro;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
-
 /**
  *
  * @author Sofia
@@ -127,35 +126,31 @@ public class BusquedaLibros extends javax.swing.JPanel {
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
 
-        try {
-            DefaultTableModel model = (DefaultTableModel) TABLABUSQUEDA.getModel();
-            model.setRowCount(0);
-            Object fila[] = new Object[6];
-            ArrayList <Libro> libro= Funciones.buscarLibro(nombrelibbusqueda.getText());
-            if (libro.isEmpty()) {
-                System.out.println("No hay libros");
-                return;
-            }
-
-            for (Libro l : libro) {
-                fila[0] = l.getNombre();
-                fila[1] = l.getAutor();
-                fila[2] = l.getFechadeingreso();
-                fila[3] = l.getCategoria();
-                fila[4] = l.getDisponibilidad();
-                
-                model.addRow(fila);
-            }
-        } catch (Exception e) {
-            System.out.println("Error en la busqueda de libros, error: " + e);
+        DefaultTableModel model = (DefaultTableModel) TABLABUSQUEDA.getModel();
+        model.setRowCount(0);
+        Object fila[] = new Object[6];
+        ArrayList<Libro> libro = Funciones.buscarLibro(nombrelibbusqueda.getText());
+        if (libro.isEmpty()) {
+            System.out.println("No hay libros");
+            return;
         }
-        
+
+        for (Libro l : libro) {
+            fila[0] = l.getNombre();
+            fila[1] = l.getAutor();
+            fila[2] = l.getFechadeingreso();
+            fila[3] = l.getCategoria();
+            fila[4] = l.getDisponibilidad();
+
+            model.addRow(fila);
+        }
+
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
-     Window w = SwingUtilities.getWindowAncestor(BusquedaLibros.this);
-       w.setVisible(false);
-    new User().setVisible(true); 
+        Window w = SwingUtilities.getWindowAncestor(BusquedaLibros.this);
+        w.setVisible(false);
+        new User().setVisible(true);
     }//GEN-LAST:event_cerrarbusqActionPerformed
 
 
