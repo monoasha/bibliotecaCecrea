@@ -113,7 +113,7 @@ public class Funciones {
     public static void agregarSolicitante(String nombre, String apellidoPAT, String apellidomat, String rut, Date date, String direccion, String telefono, String apoderado) {
         try {            
             rut = limpiarRut(rut);
-            String sql = "INSERT into solicitante VALUES(null,'" + nombre + "','" + apellidoPAT + "','" + apellidomat + "','" + rut + "','" + date + "','" + direccion + "','" + telefono + "','" + apoderado + "')";
+            String sql = "INSERT into solicitante VALUES(null,'" + nombre + "','" + apellidoPAT + "','" + apellidomat + "','" + rut + "','" + date + "','" + direccion + "','" + apoderado + "','" + telefono + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha agregado al solicitante");
@@ -678,4 +678,6 @@ public class Funciones {
         return rut.replace(".", "").replace("-", "").toLowerCase();
     }
 
+    
+  
 }

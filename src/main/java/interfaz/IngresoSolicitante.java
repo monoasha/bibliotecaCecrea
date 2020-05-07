@@ -15,6 +15,8 @@ public class IngresoSolicitante extends javax.swing.JPanel {
     public IngresoSolicitante(UserLogin userLogin) {
         this.userLogin = userLogin;
         initComponents();
+        
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +29,6 @@ public class IngresoSolicitante extends javax.swing.JPanel {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         cerraringresosolicitante = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         direccionsolicitante = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         nombreapsolicitante = new javax.swing.JTextField();
@@ -54,6 +55,7 @@ public class IngresoSolicitante extends javax.swing.JPanel {
         jMenuBar1.add(jMenu2);
 
         setBackground(new java.awt.Color(0, 153, 255));
+        setPreferredSize(new java.awt.Dimension(493, 421));
 
         cerraringresosolicitante.setText("CERRAR");
         cerraringresosolicitante.addActionListener(new java.awt.event.ActionListener() {
@@ -61,8 +63,6 @@ public class IngresoSolicitante extends javax.swing.JPanel {
                 cerraringresosolicitanteActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("USUARIO");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("NOMBRES:");
@@ -111,33 +111,27 @@ public class IngresoSolicitante extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cerraringresosolicitante, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2)
-                        .addGap(11, 11, 11)))
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(cerraringresosolicitante)
+                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(59, 59, 59)
                         .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(fechanac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,8 +148,8 @@ public class IngresoSolicitante extends javax.swing.JPanel {
                     .addComponent(rutsolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(APELLIDOMAT)
                     .addComponent(APELLIDOPAT)
-                    .addComponent(NOMBRESOLICITANTE))
-                .addGap(47, 47, 47))
+                    .addComponent(NOMBRESOLICITANTE, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,11 +159,9 @@ public class IngresoSolicitante extends javax.swing.JPanel {
                         .addGap(42, 42, 42)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(49, 49, 49)
                         .addComponent(cerraringresosolicitante)))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(NOMBRESOLICITANTE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -203,7 +195,7 @@ public class IngresoSolicitante extends javax.swing.JPanel {
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addComponent(btningsolicitante)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,8 +209,13 @@ public class IngresoSolicitante extends javax.swing.JPanel {
         String telefono = telefonosolicitante.getText();
         String apoderado = nombreapsolicitante.getText();
         Long fecha = fechanac.getDate().getTime();
+        
+        Funciones.validarRut(rut);
                   
         Funciones.agregarSolicitante(nombre, apellidoPAT, apellidomat, rut, new Date(fecha), direccion, telefono, apoderado);
+        limpiarcajas();
+        
+        NOMBRESOLICITANTE.requestFocus();
     }//GEN-LAST:event_btningsolicitanteActionPerformed
 
     private void NOMBRESOLICITANTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NOMBRESOLICITANTEActionPerformed
@@ -233,8 +230,21 @@ public class IngresoSolicitante extends javax.swing.JPanel {
         } else if (userLogin.getCargo().equals(CARGO_USER)) {
             new User(userLogin).setVisible(true);
         } 
+        
+        
     }//GEN-LAST:event_cerraringresosolicitanteActionPerformed
+   private void limpiarcajas() {
 
+        NOMBRESOLICITANTE.setText(null);
+        APELLIDOPAT.setText(null);
+        APELLIDOMAT.setText(null);
+        rutsolicitante.setText(null);
+        direccionsolicitante.setText(null);
+        nombreapsolicitante.setText(null);
+        telefonosolicitante.setText(null);
+        fechanac.setCalendar(null);
+     
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField APELLIDOMAT;
@@ -247,7 +257,6 @@ public class IngresoSolicitante extends javax.swing.JPanel {
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

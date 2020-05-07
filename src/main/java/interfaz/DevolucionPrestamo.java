@@ -32,6 +32,7 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
     public DevolucionPrestamo(UserLogin userLogin) {
         this.userLogin = userLogin;
         initComponents();
+        user.setText(this.userLogin.getNombre());
     }
 
     /**
@@ -61,6 +62,7 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
         textFieldDireccion = new javax.swing.JTextField();
         textFieldTelefono = new javax.swing.JTextField();
         botonCerrar = new javax.swing.JButton();
+        user = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,6 +78,7 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         setBackground(new java.awt.Color(0, 153, 255));
+        setPreferredSize(new java.awt.Dimension(455, 422));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE DEVOLUCIONES");
@@ -102,12 +105,16 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
             }
         });
 
+        labelNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         labelNombre.setText("Nombre");
 
+        labelRut.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         labelRut.setText("Rut");
 
+        labelDireccion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         labelDireccion.setText("Direccion");
 
+        labelTelefono.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         labelTelefono.setText("Telefono");
 
         textFieldNombre.setEditable(false);
@@ -124,6 +131,9 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
                 botonCerrarActionPerformed(evt);
             }
         });
+
+        user.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -163,19 +173,26 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
                                         .addGap(28, 28, 28)
                                         .addComponent(btnregistrardevolucion)))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(botonCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(busquedadevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(botonCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(busquedadevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)))))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(21, 21, 21)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(botonCerrar))
-                .addGap(35, 35, 35)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonCerrar)
+                        .addGap(23, 23, 23)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(RUTSOLDEV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +219,7 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnregistrardevolucion)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,5 +285,6 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
     private javax.swing.JTextField textFieldNombre;
     private javax.swing.JTextField textFieldRut;
     private javax.swing.JTextField textFieldTelefono;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,6 +26,7 @@ public class User extends javax.swing.JFrame {
         this.userLogin = userLogin;
         initComponents();
         this.setTitle(" Sistema Interno Cecrea La Ligua");
+        user.setText(this.userLogin.getNombre());
     }
 
     /**
@@ -40,6 +41,8 @@ public class User extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         contenedor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         ingresosolicitante = new javax.swing.JMenuItem();
@@ -57,31 +60,49 @@ public class User extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        contenedor.setBackground(new java.awt.Color(102, 153, 255));
+        contenedor.setBackground(new java.awt.Color(0, 153, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("CECREA LA LIGUA- ");
+
+        user.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel2.setText("bienvenido");
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                .addContainerGap(379, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+            .addGroup(contenedorLayout.createSequentialGroup()
+                .addContainerGap(334, Short.MAX_VALUE)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)))
                 .addContainerGap())
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                .addContainerGap(391, Short.MAX_VALUE)
+            .addGroup(contenedorLayout.createSequentialGroup()
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
 
+        jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
         jMenu1.setText("MENU");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
+        ingresosolicitante.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ingresosolicitante.setText("INGRESO SOLICITANTE");
         ingresosolicitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +111,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu1.add(ingresosolicitante);
 
+        ingresarlibri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ingresarlibri.setText("INGRESO LIBROS");
         ingresarlibri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +120,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu1.add(ingresarlibri);
 
+        busquedalibros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         busquedalibros.setText("BUSQUEDA DE LIBRO");
         busquedalibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +129,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu1.add(busquedalibros);
 
+        salir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         salir.setText("SALIR");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +143,7 @@ public class User extends javax.swing.JFrame {
         jMenu2.setText("PRESTAMOS");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        ingresarprestamo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ingresarprestamo.setText("INGRESAR PRESTAMO");
         ingresarprestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +152,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu2.add(ingresarprestamo);
 
+        eliminarprestamo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         eliminarprestamo.setText("DEVOLUCION PRESTAMO");
         eliminarprestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,8 +164,10 @@ public class User extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("FICHAS");
+        jMenu3.setFocusable(false);
         jMenu3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        ingresofichascecrea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ingresofichascecrea.setText("INGRESO FICHA CECREA");
         ingresofichascecrea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +176,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu3.add(ingresofichascecrea);
 
+        EDITARELIMINARFICHA.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         EDITARELIMINARFICHA.setText("EDITAR /ELIMINAR FICHAS");
         EDITARELIMINARFICHA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,11 +205,12 @@ public class User extends javax.swing.JFrame {
 
     private void ingresarlibriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarlibriActionPerformed
       IngresoLibros il = new IngresoLibros(userLogin);
-        il.setSize(600,600);
+      this.setSize(490  , 400);
+        il.setSize(485,331);
         il.setLocation(5,5);
         contenedor.removeAll();
        contenedor.add(il,BorderLayout.CENTER);
-        contenedor.revalidate();
+       contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresarlibriActionPerformed
 
@@ -194,7 +224,8 @@ public class User extends javax.swing.JFrame {
 
     private void ingresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresosolicitanteActionPerformed
     IngresoSolicitante iu = new IngresoSolicitante(userLogin);
-        iu.setSize(600,600);
+        this.setSize(590, 570);
+        iu.setSize(550,500);
         iu.setLocation(5,5);
         contenedor.removeAll();
        contenedor.add(iu,BorderLayout.CENTER);
@@ -204,7 +235,8 @@ public class User extends javax.swing.JFrame {
 
     private void busquedalibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalibrosActionPerformed
         BusquedaLibros bl = new BusquedaLibros(userLogin);
-        bl.setSize(600,600);
+      this.setSize(600, 600);
+      bl.setSize(600, 600);
         bl.setLocation(5,5);
         contenedor.removeAll();
        contenedor.add(bl,BorderLayout.CENTER);
@@ -229,7 +261,8 @@ public class User extends javax.swing.JFrame {
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
    DevolucionPrestamo dp = new DevolucionPrestamo(userLogin);
-        dp.setSize(600, 600);
+        this.setSize(500, 490);
+        dp.setSize(460, 432);
         dp.setLocation(5,5);
         contenedor.removeAll();
        contenedor.add(dp,BorderLayout.CENTER);
@@ -239,6 +272,7 @@ public class User extends javax.swing.JFrame {
 
     private void EDITARELIMINARFICHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARELIMINARFICHAActionPerformed
         BusquedaFicha bf = new BusquedaFicha(userLogin);
+        this.setSize(700, 550);
         bf.setSize(700,500);
         bf.setLocation(5,5);
         contenedor.removeAll();
@@ -257,11 +291,13 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JMenuItem ingresofichascecrea;
     private javax.swing.JMenuItem ingresosolicitante;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem salir;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

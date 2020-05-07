@@ -20,6 +20,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
      */
     public AgregarUsuarioCecrea() {
         initComponents();
+        
         combousuariosistema.removeAllItems();
          ArrayList<Cargo> enlista = Funciones.llenarComboCargo();
         for (int i = 0; i < enlista.size(); i++)
@@ -28,7 +29,15 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
         
         }
     }
+private void limpiarcajas() {
 
+       conatctouser.setText(null);
+       nomuser.setText(null);
+        rutuser.setText(null);
+        contraseñauser.setText(null);
+        combousuariosistema.setSelectedIndex(0);
+     
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +64,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
         jLabel6.setText("CONTRASEÑA");
 
         setBackground(new java.awt.Color(0, 153, 255));
+        setPreferredSize(new java.awt.Dimension(499, 401));
 
         jLabel1.setText("NOMBRE ");
 
@@ -68,6 +78,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
 
         jLabel5.setText("RUT ");
 
+        btnresgistraruser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnresgistraruser.setText("Registrar usuario");
         btnresgistraruser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,11 +97,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel4)
-                .addGap(0, 45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnresgistraruser)
-                .addGap(98, 98, 98))
+                .addGap(0, 87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -107,11 +114,15 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
                     .addComponent(contraseñauser, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combousuariosistema, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnresgistraruser)
+                .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(51, 51, 51)
                 .addComponent(jLabel4)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -138,7 +149,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
                         .addGap(44, 44, 44)))
                 .addGap(37, 37, 37)
                 .addComponent(btnresgistraruser)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,8 +160,12 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
      String contacto= conatctouser.getText();
      String contraseña =contraseñauser.getText();
      
-     
+    Funciones.validarRut(rut);
      Funciones.registrarUsuarios(name,rut,contacto,contraseña);
+     
+     limpiarcajas();
+     
+     nomuser.requestFocus();
     }//GEN-LAST:event_btnresgistraruserActionPerformed
 
 
