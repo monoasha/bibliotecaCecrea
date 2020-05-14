@@ -6,7 +6,6 @@ import funciones.Funciones;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import static vo.CargoVO.CARGO_ADMIN;
@@ -35,32 +34,37 @@ public class BusquedaFicha extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         nombreparticipante = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TABLABUSQUEDAficha = new javax.swing.JTable();
+        tablaBusquedaFicha = new javax.swing.JTable();
         BUSQ = new javax.swing.JButton();
         cerrarbusq = new javax.swing.JButton();
-        eliminarficha = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         user = new javax.swing.JLabel();
+        botonEditar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("BÚSQUEDA DE FICHA");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 11, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("NOMBRE PARTICIPANTE:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 51, 155, -1));
+        add(nombreparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 81, 375, -1));
 
-        TABLABUSQUEDAficha.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBusquedaFicha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nom Participante", "ApPaterno", "ApMaterno", "Rut"
+                "Id", "Nombre", "Rut"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -71,7 +75,22 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TABLABUSQUEDAficha);
+        tablaBusquedaFicha.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tablaBusquedaFicha);
+        tablaBusquedaFicha.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tablaBusquedaFicha.getColumnModel().getColumnCount() > 0) {
+            tablaBusquedaFicha.getColumnModel().getColumn(0).setMinWidth(20);
+            tablaBusquedaFicha.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaBusquedaFicha.getColumnModel().getColumn(0).setMaxWidth(30);
+            tablaBusquedaFicha.getColumnModel().getColumn(1).setMinWidth(250);
+            tablaBusquedaFicha.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaBusquedaFicha.getColumnModel().getColumn(1).setMaxWidth(500);
+            tablaBusquedaFicha.getColumnModel().getColumn(2).setMinWidth(50);
+            tablaBusquedaFicha.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tablaBusquedaFicha.getColumnModel().getColumn(2).setMaxWidth(150);
+        }
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 121, 680, 299));
 
         BUSQ.setText("BUSCAR");
         BUSQ.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +98,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 BUSQActionPerformed(evt);
             }
         });
+        add(BUSQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 78, 129, -1));
 
         cerrarbusq.setText("CERRAR");
         cerrarbusq.addActionListener(new java.awt.event.ActionListener() {
@@ -86,105 +106,44 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 cerrarbusqActionPerformed(evt);
             }
         });
-
-        eliminarficha.setText("ELIMINAR");
-        eliminarficha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarfichaActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("MODIFICAR");
+        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 130, -1));
 
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 6, 124, 27));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eliminarficha, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreparticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BUSQ, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                    .addComponent(cerrarbusq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreparticipante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(50, Short.MAX_VALUE)
-                        .addComponent(cerrarbusq)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BUSQ)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(eliminarficha))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
-        );
+        botonEditar.setText("Ver/Editar");
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
+        add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 90, -1));
+
+        botonEliminar.setText("Eliminar");
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
 
         try {
-            DefaultTableModel model = (DefaultTableModel) TABLABUSQUEDAficha.getModel();
+            DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
             model.setRowCount(0);
-            Object fila[] = new Object[6];
             List<ResumenFicha> fichas = Funciones.buscarficha(nombreparticipante.getText());
             if (fichas.isEmpty()) {
                 JOptionPane.showInputDialog(null, "No hay fichas");
                 return;
             }
 
+            String fila[] = new String[3];
             for (ResumenFicha fr : fichas) {
-                fila[0] = fr.getId();
-                fila[1] = fr.getNombreparticipante();
-                fila[2] = fr.getApelldpaternopart();
-                fila[3] = fr.getApelldmaternopart();
-                fila[4] = fr.getRun();
-
+                fila[0] = fr.getId().toString();
+                fila[1] = fr.getNombreparticipante() + " " + fr.getApelldpaternopart() + " " + fr.getApelldmaternopart();
+                fila[2] = fr.getRun();
                 model.addRow(fila);
             }
+
         } catch (Exception e) {
-            System.out.println("Error en la busqueda de fichas, error: " + e);
+            System.out.println("Error al cargar tabla con las fichas, error: " + e);
         }
 
     }//GEN-LAST:event_BUSQActionPerformed
@@ -199,29 +158,23 @@ public class BusquedaFicha extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cerrarbusqActionPerformed
 
-    private void eliminarfichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarfichaActionPerformed
-        String nombre = nombreparticipante.getText();
-
-        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
-        if (resp == YES_OPTION) {
-            Funciones.eliminarficha(nombre);
-            JOptionPane.showMessageDialog(null, "Se ha eliminado la ficha exitosamente");
-        }
-
-    }//GEN-LAST:event_eliminarfichaActionPerformed
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        Long idFicha = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
+        new FormularioFichaCecrea(idFicha).setVisible(true);
+    }//GEN-LAST:event_botonEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUSQ;
-    private javax.swing.JTable TABLABUSQUEDAficha;
+    private javax.swing.JButton botonEditar;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton cerrarbusq;
-    private javax.swing.JButton eliminarficha;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombreparticipante;
+    private javax.swing.JTable tablaBusquedaFicha;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

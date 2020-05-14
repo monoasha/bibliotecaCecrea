@@ -12,7 +12,7 @@ import tablas.Genero;
 import tablas.Libro;
 import tablas.Nacionalidad;
 import tablas.Parentezco;
-import tablas.PueblosOriginarios;
+import tablas.PuebloOriginario;
 import com.mysql.jdbc.StringUtils;
 import dto.ResumenPrestamo;
 import dto.UserLogin;
@@ -29,6 +29,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import tablas.FichaInscripcion;
 import tablas.Solicitante;
 import tablas.Libro;
 
@@ -111,7 +112,7 @@ public class Funciones {
     }
 
     public static void agregarSolicitante(String nombre, String apellidoPAT, String apellidomat, String rut, Date date, String direccion, String telefono, String apoderado) {
-        try {            
+        try {
             rut = limpiarRut(rut);
             String sql = "INSERT into solicitante VALUES(null,'" + nombre + "','" + apellidoPAT + "','" + apellidomat + "','" + rut + "','" + date + "','" + direccion + "','" + apoderado + "','" + telefono + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
@@ -149,8 +150,8 @@ public class Funciones {
 
         }
     }
-    
-        public static void sumarDisponibilidad(Libro l) {
+
+    public static void sumarDisponibilidad(Libro l) {
         try {
             String sql = "update libro l set l.disponibilidad = (l.disponibilidad + 1) where l.idlibros = " + l.getId();
             PreparedStatement pps = conn.prepareStatement(sql);
@@ -277,8 +278,8 @@ public class Funciones {
         return enlista;
     }
 
-    public static ArrayList<PueblosOriginarios> llenarComboPueblosOriginarios() {
-        ArrayList<PueblosOriginarios> enlista = new ArrayList<PueblosOriginarios>();
+    public static ArrayList<PuebloOriginario> llenarComboPueblosOriginarios() {
+        ArrayList<PuebloOriginario> enlista = new ArrayList<PuebloOriginario>();
         String q = "SELECT * FROM pueblosoriginarios";
         try {
 
@@ -286,8 +287,7 @@ public class Funciones {
             ResultSet resultado = stmt.executeQuery();
 
             while (resultado.next()) {
-                enlista.add(
-                        new PueblosOriginarios(resultado.getLong("idPueblosOriginarios"), resultado.getString("PueblosOriginariosnombre"))
+                enlista.add(new PuebloOriginario(resultado.getLong("idPueblosOriginarios"), resultado.getString("PueblosOriginariosnombre"))
                 );
             }
         } catch (Exception e) {
@@ -570,16 +570,16 @@ public class Funciones {
             }
             return fichas;
         } catch (SQLException e) {
-            System.out.println("La conexión no se pudo establecer debido a " + e);
+            System.out.println("Error inesperado en la busqueda de fichas, error " + e);
         }
         return null;
     }
 
     public static void registrardevolucion(ResumenPrestamo prestamo) {
-        try {            
-            String sql = "UPDATE biblioteca.prestamo " 
-                    +"set vigente=0 " 
-                    +"WHERE idprestamo="+prestamo.getIdPrestamo();
+        try {
+            String sql = "UPDATE biblioteca.prestamo "
+                    + "set vigente=0 "
+                    + "WHERE idprestamo=" + prestamo.getIdPrestamo();
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha realizado la devolucion");
@@ -616,33 +616,33 @@ public class Funciones {
         }
         return null;
     }
-    
-    public static Solicitante consultarSolicitantePorRut(String rut)  {
-                try {
-                    rut = limpiarRut(rut);
+
+    public static Solicitante consultarSolicitantePorRut(String rut) {
+        try {
+            rut = limpiarRut(rut);
             Statement stmt;
             stmt = conn.createStatement();
-            String sql = "select * from solicitante s where s.rut like '%"+rut+"%'";
+            String sql = "select * from solicitante s where s.rut like '%" + rut + "%'";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                        return Solicitante.builder()
-                                //Si se necesitan otros datos se agregan a aca en el builder
-                                .id((rs.getLong("idSolicitantes")))
-                                .nombres(rs.getString("nombres"))
-                                .Apellidopaterno(rs.getString("apellido paterno"))
-                                .Apellidomaterno(rs.getString("apellido materno"))
-                                .direccion(rs.getString("direccion"))
-                                .telefono(rs.getString("telefono"))
-                                .rut(rs.getString("rut"))
-                                .build();
+                return Solicitante.builder()
+                        //Si se necesitan otros datos se agregan a aca en el builder
+                        .id((rs.getLong("idSolicitantes")))
+                        .nombres(rs.getString("nombres"))
+                        .Apellidopaterno(rs.getString("apellido paterno"))
+                        .Apellidomaterno(rs.getString("apellido materno"))
+                        .direccion(rs.getString("direccion"))
+                        .telefono(rs.getString("telefono"))
+                        .rut(rs.getString("rut"))
+                        .build();
             }
         } catch (Exception e) {
             System.out.println("Error inesperado al buscar los solicitantes, error " + e);
         }
-                JOptionPane.showMessageDialog(null, "Error al buscar solicitante");
-                return null;
+        JOptionPane.showMessageDialog(null, "Error al buscar solicitante");
+        return null;
     }
-    
+
     public static List<ResumenPrestamo> buscarPrestamosVigentes(Solicitante s) {
         try {
             Statement stmt;
@@ -651,7 +651,7 @@ public class Funciones {
                     + "from biblioteca.prestamo p "
                     + "join biblioteca.solicitante s on s.idSolicitantes = p.idSolicitantes "
                     + "join biblioteca.libro l on l.idlibros = p.idlibros "
-                    + "where p.idSolicitantes = "+s.getId()+" and p.vigente = 1";
+                    + "where p.idSolicitantes = " + s.getId() + " and p.vigente = 1";
             ResultSet rs = stmt.executeQuery(sql);
             List<ResumenPrestamo> resumenPrestamos = new ArrayList<>();
             while (rs.next()) {
@@ -673,11 +673,56 @@ public class Funciones {
         }
         return null;
     }
-    
+
     private static String limpiarRut(String rut) {
         return rut.replace(".", "").replace("-", "").toLowerCase();
     }
 
-    
-  
+    public static FichaInscripcion buscarFichaPorId(Long id) {
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM biblioteca.fichainscripcion fi where fi.idFichainscripcion = " + id;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                return FichaInscripcion.builder()
+                        .id(id)
+                        .nombreparticipante(rs.getString("nombreparticipante"))
+                        .apelldpaternopart(rs.getString("apellidopatpar"))
+                        .apelldmaternopart(rs.getString("apellidomaternopar"))
+                        .run(rs.getString("runparticipante"))
+                        .domicilio(rs.getString("domicilioparticipante"))
+                        .fonoparticipante(rs.getString("fonoparticipante"))
+                        .nombreadresp(rs.getString("nombreadultoresponsable"))
+                        .apellpatadresp(rs.getString("apellidopaternoadultoresp"))
+                        .apellmatadresp(rs.getString("apellidomaternoadultoresp"))
+                        .diradresp(rs.getString("direccionadultiresp"))
+                        .fonoadresp(rs.getString("fonoadultoresp"))
+                        .emailadresp(rs.getString("emailadultoresp"))
+                        .nombretiro1(rs.getString("nombrerespretirar1"))
+                        .nombretiro2(rs.getString("nombrerespretirar2"))
+                        .runretiro1(rs.getString("runrespretirar1"))
+                        .runretiro2(rs.getString("runrespretirar2"))
+                        .fonoretiro1(rs.getString("fonorespretirar1"))
+                        .fonoretiro2(rs.getString("fonorespretirar2"))
+                        .generootro(null)
+                        .fechanacparticipante(rs.getDate("fecha_nacimiento"))
+                        .genero(rs.getLong("Género_idGénero"))
+                        .nacionalidad1(rs.getLong("Nacionalidad_idNacionalidad"))
+                        .nacionalidad2(null)
+                        .pueblosoriginarios(rs.getLong("PueblosOriginarios_idPueblosOriginarios"))
+                        .tipoestablecimiento(rs.getLong("Tipodeestablecimiento_idTipodeestablecimiento"))
+                        .curso(rs.getLong("curso_idcurso"))
+                        .tipodediscapacidad(rs.getLong("tipodediscapacidad_idtipodediscapacidad"))
+                        .parentezco(rs.getLong("Parentezco_idParentezco"))
+                        .esdiscapacitado(rs.getBoolean("esdiscapacitado"))
+                        .esdepueblooriginario(rs.getBoolean("espuebloindigena"))
+                        .build();
+            }
+        } catch (Exception e) {
+            System.out.println("Error inesperado al buscar ficha de inscripcion " + e);
+            JOptionPane.showMessageDialog(null, "Error al buscar ficha de inscripcion");
+        }
+        return null;
+    }
 }

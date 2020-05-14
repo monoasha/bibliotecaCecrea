@@ -272,9 +272,8 @@ public class User extends javax.swing.JFrame {
 
     private void EDITARELIMINARFICHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARELIMINARFICHAActionPerformed
         BusquedaFicha bf = new BusquedaFicha(userLogin);
-        this.setSize(700, 550);
-        bf.setSize(700,500);
-        bf.setLocation(5,5);
+        this.setSize(780, 600);
+        bf.setSize(780,600);
         contenedor.removeAll();
        contenedor.add(bf,BorderLayout.CENTER);
         contenedor.revalidate();

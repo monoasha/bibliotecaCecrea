@@ -283,9 +283,8 @@ public class Admin extends javax.swing.JFrame {
 
     private void eliminareditarfichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminareditarfichasActionPerformed
         BusquedaFicha bf = new BusquedaFicha(userLogin);
-        this.setSize(700, 600);
-        bf.setSize(700, 570);
-        bf.setLocation(5, 5);
+        this.setSize(780, 600);
+        bf.setSize(780,600);
         contenedor.removeAll();
         contenedor.add(bf, BorderLayout.CENTER);
         contenedor.revalidate();

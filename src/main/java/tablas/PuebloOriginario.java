@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class PueblosOriginarios {
+public class PuebloOriginario {
 
     private Long Id;
     private String nombre;
