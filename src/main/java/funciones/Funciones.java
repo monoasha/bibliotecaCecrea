@@ -527,10 +527,10 @@ public class Funciones {
 
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha agregado la ficha");
+            JOptionPane.showMessageDialog(null, "Se ha agregado el participante");
         } catch (SQLException e) {
-            System.out.println("Al registrar ficha, error: " + e);
-            JOptionPane.showMessageDialog(null, "No se ha agregado la ficha");
+            System.out.println("Error inesperado al insertar el participante, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error al crear el participante");
         }
     }
 
@@ -725,4 +725,47 @@ public class Funciones {
         }
         return null;
     }
+
+    public static void actualizarParticipante(Long id, FormularioRequest request) {
+        try {
+            String sql = "UPDATE biblioteca.fichainscripcion"
+                    + " SET nombreparticipante='" + request.getNombreparticipante() + "',"
+                    + " apellidopatpar='"+request.getApelldpaternopart()+"',"
+                    + " apellidomaternopar='"+request.getApelldmaternopart()+"',"
+                    + " runparticipante='"+request.getRun()+"',"
+                    + " Nacionalidad_idNacionalidad="+request.getNacionalidad1()+","
+                    + " curso_idcurso="+request.getCurso()+","
+                    + " Parentezco_idParentezco="+request.getParentezco()+","
+                    + " PueblosOriginarios_idPueblosOriginarios="+request.getPueblosoriginarios()+","
+                    + " Género_idGénero="+request.getGenero()+","
+                    + " Tipodeestablecimiento_idTipodeestablecimiento="+request.getTipoestablecimiento()+","
+                    + " tipodediscapacidad_idtipodediscapacidad="+request.getTipodediscapacidad()+","
+                    + " fonoparticipante='"+request.getFonoparticipante()+"',"
+                    + " domicilioparticipante='"+request.getDomicilio()+"',"
+                    + " nombreadultoresponsable='"+request.getNombreadresp()+"',"
+                    + " apellidopaternoadultoresp='"+request.getApellpatadresp()+"',"
+                    + " apellidomaternoadultoresp='"+request.getApellmatadresp()+"',"
+                    + " direccionadultiresp='"+request.getDiradresp()+"',"
+                    + " fonoadultoresp='"+request.getFonoadresp()+"',"
+                    + " emailadultoresp='"+request.getEmailadresp()+"',"
+                    + " nombrerespretirar1='"+request.getNombretiro1()+"',"
+                    + " nombrerespretirar2='"+request.getNombretiro2()+"',"
+                    + " runrespretirar1='"+request.getRunretiro1()+"',"
+                    + " runrespretirar2='"+request.getRunretiro2()+"',"
+                    + " fonorespretirar1='"+request.getFonoretiro1()+"',"
+                    + " fonorespretirar2='"+request.getFonoretiro2()+"',"
+                    + " esdiscapacitado="+request.getEsdiscapacitado()+","
+                    + " espuebloindigena="+request.getEsdepueblooriginario()+","
+                    + " nacionalidad2='"+request.getNacionalidad2()+"',"
+                    + " fecha_nacimiento='"+new Date(request.getFechanacparticipante().getTime())+"'"
+                    + " WHERE idFichainscripcion="+id+";";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha actualizado el participante");
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar participante, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al actualizar el participante");
+        }
+    }
+
 }

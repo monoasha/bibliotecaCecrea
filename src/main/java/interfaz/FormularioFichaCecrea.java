@@ -18,9 +18,12 @@ import funciones.Funciones;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import tablas.FichaInscripcion;
 
 public class FormularioFichaCecrea extends javax.swing.JFrame {
+    
+    private Long idFicha;
 
     public FormularioFichaCecrea() {
         initComponents();
@@ -69,8 +72,10 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         ArrayList<Genero> listag = Funciones.llenarComboGenero();
         for (int i = 0; i < listag.size(); i++) {
             CBGENERO.addItem(listag.get(i));
-        }
+        }       
         
+        botonActualizarParticipante.setVisible(false);
+
     }
 
     FormularioFichaCecrea(Long idFicha) {
@@ -79,6 +84,9 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         this(); 
        FichaInscripcion ficha = Funciones.buscarFichaPorId(idFicha);
        llenarCajas(ficha);
+       botonRegistrarParticipante.setVisible(false);
+       botonActualizarParticipante.setVisible(true);
+       this.idFicha = idFicha;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -145,7 +153,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         fonoresp1 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        BTNREGISTRARPARTICIPANTE = new javax.swing.JButton();
+        botonRegistrarParticipante = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -159,6 +167,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         checkboxPuebloOriginario = new javax.swing.JCheckBox();
         checkboxDiscapacidad = new javax.swing.JCheckBox();
         jDFechanacparticipante = new com.toedter.calendar.JDateChooser();
+        botonActualizarParticipante = new javax.swing.JButton();
 
         jLabel13.setText("jLabel13");
 
@@ -270,10 +279,10 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
 
         jLabel36.setText("DATOS ADULTO RESPONSABLE");
 
-        BTNREGISTRARPARTICIPANTE.setText("REGISTRAR PARTICIPANTE");
-        BTNREGISTRARPARTICIPANTE.addActionListener(new java.awt.event.ActionListener() {
+        botonRegistrarParticipante.setText("REGISTRAR PARTICIPANTE");
+        botonRegistrarParticipante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNREGISTRARPARTICIPANTEActionPerformed(evt);
+                botonRegistrarParticipanteActionPerformed(evt);
             }
         });
 
@@ -305,6 +314,13 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         checkboxDiscapacidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkboxDiscapacidadActionPerformed(evt);
+            }
+        });
+
+        botonActualizarParticipante.setText("GUARDAR");
+        botonActualizarParticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarParticipanteActionPerformed(evt);
             }
         });
 
@@ -361,18 +377,12 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(APELPATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
-                                        .addGap(49, 49, 49)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(APELMATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BTNREGISTRARPARTICIPANTE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CERRARFORM))))
+                                    .addComponent(APELPATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(APELMATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,6 +410,9 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                                         .addComponent(fonoresp2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(2, 2, 2)))
                 .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,26 +486,25 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                                     .addComponent(CBNAC2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(RUNPAR))))
                         .addGap(33, 33, 33))
-                    .addComponent(jLabel29)))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel37)
-                .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonRegistrarParticipante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CERRARFORM)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonActualizarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BTNREGISTRARPARTICIPANTE)
-                            .addComponent(CERRARFORM))))
-                .addGap(37, 37, 37)
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel4))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
@@ -621,7 +633,12 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel35)
                             .addComponent(fonoresp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonRegistrarParticipante)
+                    .addComponent(CERRARFORM)
+                    .addComponent(botonActualizarParticipante))
+                .addContainerGap())
         );
 
         pack();
@@ -635,64 +652,18 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CBESPPOActionPerformed
 
-    private void BTNREGISTRARPARTICIPANTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNREGISTRARPARTICIPANTEActionPerformed
+    private void botonRegistrarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarParticipanteActionPerformed
 
-        FormularioRequest formularioRequest = new FormularioRequest();
-        formularioRequest.setNombreparticipante(NOMPARTICIPANTE.getText());
-        formularioRequest.setApelldpaternopart(APELPATPAR.getText());
-        formularioRequest.setApelldmaternopart(APELMATPAR.getText());
-        formularioRequest.setDomicilio(DOMPAR.getText());
-        formularioRequest.setFonoparticipante(FONOPAR.getText());
-        formularioRequest.setNombretiro1(Nombreresp1.getText());
-        formularioRequest.setNombretiro2(Nombreresp2.getText());
-        formularioRequest.setRun(RUNPAR.getText());
-        formularioRequest.setApellmatadresp(apematresp.getText());
-        formularioRequest.setDiradresp(dirresp.getText());
-        formularioRequest.setFonoretiro1(fonoresp1.getText());
-        formularioRequest.setFonoretiro2(fonoresp2.getText());
-        formularioRequest.setNombreadresp(nombadresp.getText());
-        formularioRequest.setApellpatadresp(respappat.getText());
-        formularioRequest.setRunretiro1(runresp1.getText());
-        formularioRequest.setRunretiro2(runresp2.getText());
-        Genero genero = (Genero) CBGENERO.getSelectedItem();
-        formularioRequest.setGenero(genero.getId());
-        Curso curso = (Curso) CBCURSO.getSelectedItem();
-        formularioRequest.setCurso(curso.getId());
-        if (checkboxDiscapacidad.isSelected()) {
-            Discapacidad discapacidad = (Discapacidad) CBESPDISC.getSelectedItem();
-            formularioRequest.setTipodediscapacidad(discapacidad.getId());
-        } else {
-            formularioRequest.setTipodediscapacidad(null);
-        }
-        if (checkboxPuebloOriginario.isSelected()) {
-            PuebloOriginario poriginarios = (PuebloOriginario) CBESPPO.getSelectedItem();
-            formularioRequest.setPueblosoriginarios(poriginarios.getId());
-        } else {
-            formularioRequest.setPueblosoriginarios(null);
-        }
-        Establecimiento establecimiento = (Establecimiento) CBESTABLECIMIENTO.getSelectedItem();
-        formularioRequest.setTipoestablecimiento(establecimiento.getId());
-        Nacionalidad nacionalidad = (Nacionalidad) CBNAC1.getSelectedItem();
-        formularioRequest.setNacionalidad1(nacionalidad.getId());
-        Parentezco parentezco = (Parentezco) cbrelacion.getSelectedItem();
-        formularioRequest.setParentezco(parentezco.getId());
-        formularioRequest.setEmailadresp(emailresp.getText());
-        formularioRequest.setFonoadresp(fonoresp.getText());
-        formularioRequest.setEsdiscapacitado(checkboxDiscapacidad.isSelected());
-        formularioRequest.setEsdepueblooriginario(checkboxPuebloOriginario.isSelected());
-        Nacionalidad nacionalidaddos = (Nacionalidad) CBNAC2.getSelectedItem();
-        formularioRequest.setNacionalidad1(nacionalidaddos.getId());
-        formularioRequest.setFechanacparticipante(jDFechanacparticipante.getDate());
-
+        FormularioRequest formularioRequest = generarRequest();
+        
         String errores = Funciones.validarFormularioParticipante(formularioRequest);
         if (!StringUtils.isNullOrEmpty(errores)) {
-            new Mensaje(errores).setVisible(true);
+            JOptionPane.showMessageDialog(null, errores);
             return;
         }
         Funciones.insertarFormulario(formularioRequest);
-
         limpiarcajas();
-    }//GEN-LAST:event_BTNREGISTRARPARTICIPANTEActionPerformed
+    }//GEN-LAST:event_botonRegistrarParticipanteActionPerformed
 
     private void CERRARFORMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CERRARFORMActionPerformed
         dispose();
@@ -721,6 +692,16 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private void fonorespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fonorespActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fonorespActionPerformed
+
+    private void botonActualizarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarParticipanteActionPerformed
+        FormularioRequest request = generarRequest();
+        String errores = Funciones.validarFormularioParticipante(request);
+        if (!StringUtils.isNullOrEmpty(errores)) {
+            JOptionPane.showMessageDialog(null, errores);
+            return;
+        }        
+        Funciones.actualizarParticipante(idFicha, request);
+    }//GEN-LAST:event_botonActualizarParticipanteActionPerformed
     private void limpiarcajas() {
         APELMATPAR.setText(null);
         APELPATPAR.setText(null);
@@ -731,13 +712,13 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         Nombreresp2.setText(null);
         RUNPAR.setText(null);
         apematresp.setText(null);
+        respappat.setText(null);
         dirresp.setText(null);
         emailresp.setText(null);
         fonoresp.setText(null);
         fonoresp1.setText(null);
         fonoresp2.setText(null);
         nombadresp.setText(null);
-        respappat.setText(null);
         runresp1.setText(null);
         runresp2.setText(null);
         CBCURSO.setSelectedIndex(0);
@@ -761,13 +742,13 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         Nombreresp2.setText(ficha.getNombretiro2());
         RUNPAR.setText(ficha.getRun());
         apematresp.setText(ficha.getApellmatadresp());
+        respappat.setText(ficha.getApellpatadresp());
         dirresp.setText(ficha.getDiradresp());
         emailresp.setText(ficha.getEmailadresp());
         fonoresp.setText(ficha.getFonoadresp());
         fonoresp1.setText(ficha.getFonoretiro1());
         fonoresp2.setText(ficha.getFonoretiro2());
         nombadresp.setText(ficha.getNombreadresp());        
-        respappat.setText(null); //ESTE NO LO ESTAS LLENANDO, NO TIENE ATRIBUTO EN FichaInscripcion NI TAMPOCO COLUMNA EN LA BD
         runresp1.setText(ficha.getRunretiro1());
         runresp2.setText(ficha.getRunretiro2());
         setSelectedCurso(CBCURSO, ficha.getCurso());
@@ -860,10 +841,9 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField APELMATPAR;
     private javax.swing.JTextField APELPATPAR;
-    private javax.swing.JButton BTNREGISTRARPARTICIPANTE;
     private javax.swing.JComboBox<Curso> CBCURSO;
     private javax.swing.JComboBox<Discapacidad> CBESPDISC;
-    private javax.swing.JComboBox<PuebloOriginario> CBESPPO;
+    private javax.swing.JComboBox<tablas.PuebloOriginario> CBESPPO;
     private javax.swing.JComboBox<Establecimiento> CBESTABLECIMIENTO;
     private javax.swing.JComboBox<Genero> CBGENERO;
     private javax.swing.JComboBox<Nacionalidad> CBNAC1;
@@ -876,6 +856,8 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private javax.swing.JTextField Nombreresp2;
     private javax.swing.JTextField RUNPAR;
     private javax.swing.JTextField apematresp;
+    private javax.swing.JButton botonActualizarParticipante;
+    private javax.swing.JButton botonRegistrarParticipante;
     private javax.swing.JComboBox<Parentezco> cbrelacion;
     private javax.swing.JCheckBox checkboxDiscapacidad;
     private javax.swing.JCheckBox checkboxPuebloOriginario;
@@ -934,4 +916,54 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private javax.swing.JTextField runresp1;
     private javax.swing.JTextField runresp2;
     // End of variables declaration//GEN-END:variables
+
+    private FormularioRequest generarRequest() {
+        FormularioRequest formularioRequest = new FormularioRequest();
+        formularioRequest.setNombreparticipante(NOMPARTICIPANTE.getText());
+        formularioRequest.setApelldpaternopart(APELPATPAR.getText());
+        formularioRequest.setApelldmaternopart(APELMATPAR.getText());
+        formularioRequest.setDomicilio(DOMPAR.getText());
+        formularioRequest.setFonoparticipante(FONOPAR.getText());
+        formularioRequest.setNombretiro1(Nombreresp1.getText());
+        formularioRequest.setNombretiro2(Nombreresp2.getText());
+        formularioRequest.setRun(RUNPAR.getText());
+        formularioRequest.setApellmatadresp(apematresp.getText());
+        formularioRequest.setDiradresp(dirresp.getText());
+        formularioRequest.setFonoretiro1(fonoresp1.getText());
+        formularioRequest.setFonoretiro2(fonoresp2.getText());
+        formularioRequest.setNombreadresp(nombadresp.getText());
+        formularioRequest.setApellpatadresp(respappat.getText());
+        formularioRequest.setRunretiro1(runresp1.getText());
+        formularioRequest.setRunretiro2(runresp2.getText());
+        Genero genero = (Genero) CBGENERO.getSelectedItem();
+        formularioRequest.setGenero(genero.getId());
+        Curso curso = (Curso) CBCURSO.getSelectedItem();
+        formularioRequest.setCurso(curso.getId());
+        if (checkboxDiscapacidad.isSelected()) {
+            Discapacidad discapacidad = (Discapacidad) CBESPDISC.getSelectedItem();
+            formularioRequest.setTipodediscapacidad(discapacidad.getId());
+        } else {
+            formularioRequest.setTipodediscapacidad(null);
+        }
+        if (checkboxPuebloOriginario.isSelected()) {
+            PuebloOriginario poriginarios = (PuebloOriginario) CBESPPO.getSelectedItem();
+            formularioRequest.setPueblosoriginarios(poriginarios.getId());
+        } else {
+            formularioRequest.setPueblosoriginarios(null);
+        }
+        Establecimiento establecimiento = (Establecimiento) CBESTABLECIMIENTO.getSelectedItem();
+        formularioRequest.setTipoestablecimiento(establecimiento.getId());
+        Nacionalidad nacionalidad = (Nacionalidad) CBNAC1.getSelectedItem();
+        formularioRequest.setNacionalidad1(nacionalidad.getId());
+        Parentezco parentezco = (Parentezco) cbrelacion.getSelectedItem();
+        formularioRequest.setParentezco(parentezco.getId());
+        formularioRequest.setEmailadresp(emailresp.getText());
+        formularioRequest.setFonoadresp(fonoresp.getText());
+        formularioRequest.setEsdiscapacitado(checkboxDiscapacidad.isSelected());
+        formularioRequest.setEsdepueblooriginario(checkboxPuebloOriginario.isSelected());
+        Nacionalidad nacionalidaddos = (Nacionalidad) CBNAC2.getSelectedItem();
+        formularioRequest.setNacionalidad1(nacionalidaddos.getId());
+        formularioRequest.setFechanacparticipante(jDFechanacparticipante.getDate());
+        return formularioRequest;
+    }
 }
