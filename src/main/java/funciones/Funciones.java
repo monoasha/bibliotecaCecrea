@@ -767,5 +767,17 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, "Error inesperado al actualizar el participante");
         }
     }
+ public static void eliminarparticipante(Long id) {
+        try {
+            String sql = "DELETE from biblioteca.fichainscripcion"
+                    + " WHERE idFichainscripcion="+id+";";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el participante");
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar participante, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
+        }
+    }
 
-}
+    }

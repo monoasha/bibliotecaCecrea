@@ -120,6 +120,11 @@ public class BusquedaFicha extends javax.swing.JPanel {
         add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 90, -1));
 
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
         add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,7 +135,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
             model.setRowCount(0);
             List<ResumenFicha> fichas = Funciones.buscarficha(nombreparticipante.getText());
             if (fichas.isEmpty()) {
-                JOptionPane.showInputDialog(null, "No hay fichas");
+                JOptionPane.showMessageDialog(null, "No hay fichas");
                 return;
             }
 
@@ -162,6 +167,24 @@ public class BusquedaFicha extends javax.swing.JPanel {
         Long idFicha = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
         new FormularioFichaCecrea(idFicha).setVisible(true);
     }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
+        Long idFicha = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
+    int i=idFicha.intValue();
+            int resp ;
+
+        
+     if(idFicha==null){
+        JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna opción", "Error", JOptionPane.WARNING_MESSAGE);
+     }else{
+     resp= JOptionPane.showConfirmDialog(null, "¿Está seguro?","Alerta",JOptionPane.YES_NO_OPTION);
+   Funciones.eliminarparticipante(idFicha);
+  
+model.removeRow(tablaBusquedaFicha.getSelectedRow());
+
+     }
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
