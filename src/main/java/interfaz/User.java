@@ -39,6 +39,7 @@ public class User extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         contenedor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         user = new javax.swing.JLabel();
@@ -55,8 +56,13 @@ public class User extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         ingresofichascecrea = new javax.swing.JMenuItem();
         EDITARELIMINARFICHA = new javax.swing.JMenuItem();
+        LABORATORIOS = new javax.swing.JMenu();
+        ingesolaboratorios = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +82,7 @@ public class User extends javax.swing.JFrame {
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addContainerGap(334, Short.MAX_VALUE)
+                .addContainerGap(422, Short.MAX_VALUE)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
@@ -92,7 +98,7 @@ public class User extends javax.swing.JFrame {
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 444, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -187,6 +193,24 @@ public class User extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        LABORATORIOS.setText("LABORATORIOS");
+        LABORATORIOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        ingesolaboratorios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingesolaboratorios.setText("INGRESO DE LABORATORIOS");
+        ingesolaboratorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingesolaboratoriosActionPerformed(evt);
+            }
+        });
+        LABORATORIOS.add(ingesolaboratorios);
+
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem4.setText("BÚSQUEDA DE LABORATORIOS");
+        LABORATORIOS.add(jMenuItem4);
+
+        jMenuBar1.add(LABORATORIOS);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,11 +304,23 @@ public class User extends javax.swing.JFrame {
         contenedor.repaint();
     }//GEN-LAST:event_EDITARELIMINARFICHAActionPerformed
 
+    private void ingesolaboratoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingesolaboratoriosActionPerformed
+       IngresoLaboratorios IL = new IngresoLaboratorios();
+        this.setSize(780, 600);
+        IL.setSize(780,600);
+        contenedor.removeAll();
+       contenedor.add(IL,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_ingesolaboratoriosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EDITARELIMINARFICHA;
+    private javax.swing.JMenu LABORATORIOS;
     private javax.swing.JMenuItem busquedalibros;
     private javax.swing.JPanel contenedor;
     private javax.swing.JMenuItem eliminarprestamo;
+    private javax.swing.JMenuItem ingesolaboratorios;
     private javax.swing.JMenuItem ingresarlibri;
     private javax.swing.JMenuItem ingresarprestamo;
     private javax.swing.JMenuItem ingresofichascecrea;
@@ -296,6 +332,8 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem salir;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables

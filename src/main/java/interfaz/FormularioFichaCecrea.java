@@ -15,6 +15,7 @@ import tablas.Parentezco;
 import tablas.PuebloOriginario;
 import com.mysql.jdbc.StringUtils;
 import funciones.Funciones;
+import funciones.FuncionesImprimir;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.JComboBox;
@@ -633,7 +634,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel35)
                             .addComponent(fonoresp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonRegistrarParticipante)
                     .addComponent(CERRARFORM)
@@ -662,6 +663,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             return;
         }
         Funciones.insertarFormulario(formularioRequest);
+        FuncionesImprimir.imprimir();
         limpiarcajas();
     }//GEN-LAST:event_botonRegistrarParticipanteActionPerformed
 

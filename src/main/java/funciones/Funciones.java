@@ -9,7 +9,6 @@ import tablas.Curso;
 import tablas.Discapacidad;
 import tablas.Establecimiento;
 import tablas.Genero;
-import tablas.Libro;
 import tablas.Nacionalidad;
 import tablas.Parentezco;
 import tablas.PuebloOriginario;
@@ -582,10 +581,10 @@ public class Funciones {
                     + "WHERE idprestamo=" + prestamo.getIdPrestamo();
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha realizado la devolucion");
+            JOptionPane.showMessageDialog(null, "Se ha realizado la devolución");
             sumarDisponibilidad(Libro.builder().id(prestamo.getIdLibro()).build());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, " Error al registrar la devolucion");
+            JOptionPane.showMessageDialog(null, " Error al registrar la devolución");
             System.out.println("Error inesperado en la devolucion, Error " + e);
         }
     }
@@ -779,5 +778,14 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
         }
     }
-
+public static void agregarlaboexp(String nombre, String facilitador, String tipo, String mes) {
+        try {
+            String sql = "INSERT into Componenteprogramaticos VALUES(null,'" + nombre + "','" + facilitador + "','" + tipo + "','" + mes + "')";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha agregado ");
+        } catch (SQLException e) {
+            System.out.println("Error en la conexión" + e);
+        }
+    }
     }

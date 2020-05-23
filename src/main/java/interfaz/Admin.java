@@ -7,6 +7,7 @@ package interfaz;
 
 import dto.UserLogin;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -219,8 +220,9 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarlibriActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        dispose();
-    }//GEN-LAST:event_salirActionPerformed
+ dispose();   
+    JOptionPane.showMessageDialog(null, "Haz cerrado sesión . ");
+    new LoginBiblioCecrea().setVisible(true);    }//GEN-LAST:event_salirActionPerformed
 
     private void ingresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresosolicitanteActionPerformed
         IngresoSolicitante iu = new IngresoSolicitante(userLogin);

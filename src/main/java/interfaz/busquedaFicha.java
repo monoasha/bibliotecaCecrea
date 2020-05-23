@@ -3,11 +3,13 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
+import funciones.FuncionesImprimir;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import tablas.FichaInscripcion;
 import static vo.CargoVO.CARGO_ADMIN;
 import static vo.CargoVO.CARGO_USER;
 
@@ -40,6 +42,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
         user = new javax.swing.JLabel();
         botonEditar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
+        botonGenerarPDF = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -50,6 +53,12 @@ public class BusquedaFicha extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("NOMBRE PARTICIPANTE:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 51, 155, -1));
+
+        nombreparticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreparticipanteActionPerformed(evt);
+            }
+        });
         add(nombreparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 81, 375, -1));
 
         tablaBusquedaFicha.setModel(new javax.swing.table.DefaultTableModel(
@@ -126,6 +135,14 @@ public class BusquedaFicha extends javax.swing.JPanel {
             }
         });
         add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 90, -1));
+
+        botonGenerarPDF.setText("Generar PDF");
+        botonGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarPDFActionPerformed(evt);
+            }
+        });
+        add(botonGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
@@ -169,28 +186,37 @@ public class BusquedaFicha extends javax.swing.JPanel {
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-    DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
+        DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
         Long idFicha = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
-    int i=idFicha.intValue();
-            int resp ;
 
-        
-     if(idFicha==null){
-        JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna opción", "Error", JOptionPane.WARNING_MESSAGE);
-     }else{
-     resp= JOptionPane.showConfirmDialog(null, "¿Está seguro?","Alerta",JOptionPane.YES_NO_OPTION);
-   Funciones.eliminarparticipante(idFicha);
-  
-model.removeRow(tablaBusquedaFicha.getSelectedRow());
+        if (idFicha == null) {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna opción", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showConfirmDialog(null, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION);
+            Funciones.eliminarparticipante(idFicha);
 
-     }
+            model.removeRow(tablaBusquedaFicha.getSelectedRow());
+
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void nombreparticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreparticipanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreparticipanteActionPerformed
+
+    private void botonGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarPDFActionPerformed
+        // TODO add your handling code here:
+        Long idFicha = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
+        FichaInscripcion ficha = Funciones.buscarFichaPorId(idFicha);
+        FuncionesImprimir.generarPDFFicha(ficha);
+    }//GEN-LAST:event_botonGenerarPDFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUSQ;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonGenerarPDF;
     private javax.swing.JButton cerrarbusq;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
