@@ -824,10 +824,10 @@ public static void agregarlaboexp(String nombre, String facilitador,String tipo,
                     + " WHERE idComponenteprogramaticos="+id+";";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha eliminado el participante");
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el laboratorio");
         } catch (SQLException e) {
-            System.out.println("Error al eliminar participante, error: " + e);
-            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
+            System.out.println("Error al eliminar laboratorio, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el laboratorio");
         }
     }
     }
