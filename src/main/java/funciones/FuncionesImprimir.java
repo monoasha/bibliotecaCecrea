@@ -74,8 +74,17 @@ public class FuncionesImprimir {
                     .replaceAll("#RUT", ficha.getRun())
                     .replaceAll("#FECHAN", ficha.getFechanacparticipante().toString())
                     .replaceAll("#DOMICILIO", ficha.getDomicilio())
-                    .replaceAll("#TELEFONO", ficha.getFonoparticipante());
-                    //AQUI AGREGAR LO DEL APODERADO
+                    .replaceAll("#TELEFONO", ficha.getFonoparticipante())
+                    .replaceAll("#AP_RELACION", ficha.getParentezco().toString())
+                    .replaceAll("#TELEFONO", ficha.getFonoadresp())
+                    .replaceAll("#AP_NOMBRE", ficha.getNombreadresp())
+                    .replaceAll("#AP_APELLIDOP", ficha.getApellpatadresp())
+                    .replaceAll("#AP_APELLIDOM", ficha.getApellmatadresp())
+                    .replaceAll("#AP_DOMICILIO", ficha.getDiradresp())
+                    .replaceAll("#AP_TELEFONO", ficha.getFonoadresp())
+                    .replaceAll("#AP_EMAIL", ficha.getEmailadresp());
+                    
+                    
                     
             File pdfDest = new File(System.getProperty("user.home") + "/Desktop/" + "FICHA_" + ficha.getRun() + ".pdf");
             HtmlConverter.convertToPdf(contenidoHtml, new FileOutputStream(pdfDest));

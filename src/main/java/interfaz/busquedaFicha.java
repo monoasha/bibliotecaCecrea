@@ -192,11 +192,12 @@ public class BusquedaFicha extends javax.swing.JPanel {
         if (idFicha == null) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna opción", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showConfirmDialog(null, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION);
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
             Funciones.eliminarparticipante(idFicha);
 
             model.removeRow(tablaBusquedaFicha.getSelectedRow());
-
+            }
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 

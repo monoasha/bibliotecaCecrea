@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import tablas.FichaInscripcion;
+import tablas.LaboratoriosExperiencias;
 import tablas.Solicitante;
 import tablas.Libro;
 
@@ -545,7 +546,7 @@ public class Funciones {
         }
     }
 
-    public static List<ResumenFicha> buscarficha(String nombre) {
+    public static List<ResumenFicha> buscarficha(String rut) {
 
         try {
             Statement stmt;
@@ -553,7 +554,7 @@ public class Funciones {
             ResultSet rs;
             String sql = "SELECT fichainscripcion.idFichainscripcion,fichainscripcion.nombreparticipante,fichainscripcion.apellidopatpar,fichainscripcion.apellidomaternopar,fichainscripcion.runparticipante\n"
                     + "FROM fichainscripcion\n"
-                    + "WHERE fichainscripcion.nombreparticipante   LIKE '%" + nombre + "%'";
+                    + "WHERE fichainscripcion.runparticipante   LIKE '%" + rut + "%'";
 
             rs = stmt.executeQuery(sql);
 
@@ -562,7 +563,7 @@ public class Funciones {
                 fichas.add(new ResumenFicha(
                         rs.getLong("idFichainscripcion"),
                         rs.getString("nombreparticipante"),
-                        rs.getString("apellidomaternopar"),
+                        rs.getString("apellidopatpar"),
                         rs.getString("apellidomaternopar"),
                         rs.getString("runparticipante")
                 ));
@@ -778,14 +779,55 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
         }
     }
-public static void agregarlaboexp(String nombre, String facilitador, String tipo, String mes) {
+public static void agregarlaboexp(String nombre, String facilitador,String tipo, String mes) {
         try {
             String sql = "INSERT into Componenteprogramaticos VALUES(null,'" + nombre + "','" + facilitador + "','" + tipo + "','" + mes + "')";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha agregado ");
+            JOptionPane.showMessageDialog(null, "Se ha agregado "+tipo);
         } catch (SQLException e) {
             System.out.println("Error en la conexión" + e);
+        }
+    }
+
+  public static ArrayList<LaboratoriosExperiencias> buscarLab(String nombrelab) {
+
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            ResultSet rs;
+            String sql = "select * from biblioteca.componenteprogramaticos c where c.nombrecomponente  LIKE '%" + nombrelab + "%' ";
+
+            rs = stmt.executeQuery(sql);
+
+            ArrayList<LaboratoriosExperiencias> laboratorios = new ArrayList<>();
+           LaboratoriosExperiencias labexp = null;
+            while (rs.next()) {
+                labexp = new LaboratoriosExperiencias();
+                labexp.setId(rs.getLong("idComponenteprogramaticos"));
+                labexp.setNombre(rs.getString("nombrecomponente"));
+                labexp.setNombrefacilitador(rs.getString("nombrefacilitador"));
+                labexp.setTipo(rs.getString("tipo"));
+                labexp.setMes(rs.getString("mes"));
+                
+                laboratorios.add(labexp);
+            }
+            return laboratorios;
+        } catch (SQLException e) {
+            System.out.println("Error en la busqueda de libros " + e);
+        }
+        return null;
+    }
+   public static void eliminarlabexp(Long id) {
+        try {
+            String sql = "DELETE from biblioteca.componenteprogramaticos"
+                    + " WHERE idComponenteprogramaticos="+id+";";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el participante");
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar participante, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
         }
     }
     }

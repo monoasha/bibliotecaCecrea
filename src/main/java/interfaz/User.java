@@ -207,6 +207,11 @@ public class User extends javax.swing.JFrame {
 
         jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem4.setText("BÚSQUEDA DE LABORATORIOS");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         LABORATORIOS.add(jMenuItem4);
 
         jMenuBar1.add(LABORATORIOS);
@@ -306,13 +311,23 @@ public class User extends javax.swing.JFrame {
 
     private void ingesolaboratoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingesolaboratoriosActionPerformed
        IngresoLaboratorios IL = new IngresoLaboratorios();
-        this.setSize(780, 600);
-        IL.setSize(780,600);
+        this.setSize(550, 450);
+        IL.setSize(500,400);
         contenedor.removeAll();
        contenedor.add(IL,BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingesolaboratoriosActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        BusquedaLabExp labexp = new BusquedaLabExp(userLogin);
+        this.setSize(780, 600);
+        labexp.setSize(780,600);
+        contenedor.removeAll();
+       contenedor.add(labexp,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EDITARELIMINARFICHA;
