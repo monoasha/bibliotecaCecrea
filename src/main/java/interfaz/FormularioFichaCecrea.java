@@ -15,7 +15,7 @@ import tablas.Parentezco;
 import tablas.PuebloOriginario;
 import com.mysql.jdbc.StringUtils;
 import funciones.Funciones;
-import funciones.FuncionesImprimir;
+import funciones.FuncionesReportes;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.JComboBox;
@@ -35,13 +35,11 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         CBESTABLECIMIENTO.removeAllItems();
         CBGENERO.removeAllItems();
         CBNAC1.removeAllItems();
-        CBNAC2.removeAllItems();
         cbrelacion.removeAllItems();
         
         ArrayList<Nacionalidad> lista = Funciones.llenarComboNacionalidad();
         for (int i = 0; i < lista.size(); i++) {
             CBNAC1.addItem(lista.get(i));
-            CBNAC2.addItem(lista.get(i));
         }
 
         ArrayList<Curso> enlista = Funciones.llenarComboCurso();
@@ -114,7 +112,6 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         CBESPPO = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         RUNPAR = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -163,12 +160,13 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         fonoresp2 = new javax.swing.JTextField();
         CBGENERO = new javax.swing.JComboBox<>();
         CBESTABLECIMIENTO = new javax.swing.JComboBox<>();
-        CBNAC2 = new javax.swing.JComboBox<>();
         CERRARFORM = new javax.swing.JButton();
         checkboxPuebloOriginario = new javax.swing.JCheckBox();
         checkboxDiscapacidad = new javax.swing.JCheckBox();
         jDFechanacparticipante = new com.toedter.calendar.JDateChooser();
         botonActualizarParticipante = new javax.swing.JButton();
+        labelAcuerdo = new javax.swing.JLabel();
+        checkboxAcuerdo = new javax.swing.JCheckBox();
 
         jLabel13.setText("jLabel13");
 
@@ -190,20 +188,31 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 204));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("NOMBRE");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 73, -1, -1));
 
         jLabel2.setText("APELLIDO MATERNO");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
 
         jLabel3.setText("APELLIDO PATERNO");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
 
         jLabel4.setText("DATOS PERSONALES PARTICIPANTE");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 17, -1, -1));
+        getContentPane().add(NOMPARTICIPANTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 91, 199, -1));
+        getContentPane().add(APELPATPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 190, -1));
+        getContentPane().add(APELMATPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 190, -1));
 
-        jLabel5.setText("FECHA NAC");
+        jLabel5.setText("FECHA NACIMIENTO");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         jLabel6.setText("RUN");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 34, -1));
 
         jLabel7.setText("GENERO");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         CBESPPO.setModel(new javax.swing.DefaultComboBoxModel<>());
         CBESPPO.addActionListener(new java.awt.event.ActionListener() {
@@ -212,24 +221,34 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             }
         });
         CBESPPO.setEnabled(false);
+        getContentPane().add(CBESPPO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 191, -1));
 
-        jLabel9.setText("NACIONALIDAD 1");
-
-        jLabel10.setText("NACIONALIDAD 2");
+        jLabel9.setText("NACIONALIDAD");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
+        getContentPane().add(RUNPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 191, -1));
 
         jLabel11.setText("PERTENECE  A PUEBLO ORIGINARIO");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 250, -1));
 
         jLabel12.setText("CUÁL?");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
 
         jLabel14.setText("DOMICILIO");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 22));
+        getContentPane().add(DOMPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 236, -1));
 
         jLabel15.setText("FONO");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
+        getContentPane().add(FONOPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 191, -1));
 
         jLabel16.setText("DISCAPACIDAD");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         CBCURSO.setModel(new javax.swing.DefaultComboBoxModel<>());
+        getContentPane().add(CBCURSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 191, -1));
 
         jLabel17.setText("CURSO");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         CBNAC1.setModel(new javax.swing.DefaultComboBoxModel<>());
         CBNAC1.addActionListener(new java.awt.event.ActionListener() {
@@ -237,8 +256,10 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 CBNAC1ActionPerformed(evt);
             }
         });
+        getContentPane().add(CBNAC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 159, 20));
 
         jLabel19.setText("TIPO ESTABLECIMIENTO");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         CBESPDISC.setModel(new javax.swing.DefaultComboBoxModel<>());
         CBESPDISC.addActionListener(new java.awt.event.ActionListener() {
@@ -247,38 +268,66 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             }
         });
         CBESPDISC.setEnabled(false);
+        getContentPane().add(CBESPDISC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 191, -1));
 
         jLabel20.setText("TIPO DE DISCAPACIDAD");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 364, 703, 10));
 
         jLabel21.setText("NOMBRES");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         jLabel22.setText("APELLIDO MATERNO");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 127, -1));
 
         jLabel23.setText("APELLIDO PATERNO");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+        getContentPane().add(nombadresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 199, -1));
+        getContentPane().add(respappat, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 183, -1));
+        getContentPane().add(apematresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 189, -1));
 
         jLabel24.setText("DIRECCION");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+        getContentPane().add(dirresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 440, 300, -1));
 
         jLabel26.setText("FONO");
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, -1, -1));
 
         fonoresp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fonorespActionPerformed(evt);
             }
         });
+        getContentPane().add(fonoresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 190, -1));
 
         jLabel27.setText("RELACION");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
+
+        getContentPane().add(cbrelacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 470, 180, 20));
+        getContentPane().add(emailresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 280, -1));
 
         jLabel28.setText("E-MAIL");
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, -1, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 529, 703, 10));
 
         jLabel29.setText("DATOS PERSONALES ADULTO AUTORIZADO A RETIRAR");
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 545, -1, -1));
 
         jLabel30.setText("NOMBRE");
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 580, -1, -1));
 
         jLabel31.setText("RUN");
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 615, -1, -1));
 
         jLabel32.setText("FONO");
+        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 654, -1, -1));
+        getContentPane().add(Nombreresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 578, 233, -1));
+        getContentPane().add(runresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 615, 233, -1));
+        getContentPane().add(fonoresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 652, 233, -1));
 
         jLabel36.setText("DATOS ADULTO RESPONSABLE");
+        getContentPane().add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
+        getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 17, -1, -1));
 
         botonRegistrarParticipante.setText("REGISTRAR PARTICIPANTE");
         botonRegistrarParticipante.addActionListener(new java.awt.event.ActionListener() {
@@ -286,18 +335,25 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 botonRegistrarParticipanteActionPerformed(evt);
             }
         });
+        getContentPane().add(botonRegistrarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 721, -1, -1));
 
         jLabel33.setText("NOMBRE");
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 580, -1, -1));
 
         jLabel34.setText("RUN");
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 615, -1, -1));
 
         jLabel35.setText("FONO");
+        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 652, -1, -1));
+        getContentPane().add(Nombreresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 578, 227, -1));
+        getContentPane().add(runresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 615, 227, -1));
+        getContentPane().add(fonoresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 652, 227, -1));
 
         CBGENERO.setModel(new javax.swing.DefaultComboBoxModel<>());
+        getContentPane().add(CBGENERO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 154, -1));
 
         CBESTABLECIMIENTO.setModel(new javax.swing.DefaultComboBoxModel<>());
-
-        CBNAC2.setModel(new javax.swing.DefaultComboBoxModel<>());
+        getContentPane().add(CBESTABLECIMIENTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 150, -1));
 
         CERRARFORM.setText("CERRAR FORMULARIO");
         CERRARFORM.addActionListener(new java.awt.event.ActionListener() {
@@ -305,18 +361,22 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 CERRARFORMActionPerformed(evt);
             }
         });
+        getContentPane().add(CERRARFORM, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 721, -1, -1));
 
         checkboxPuebloOriginario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkboxPuebloOriginarioActionPerformed(evt);
             }
         });
+        getContentPane().add(checkboxPuebloOriginario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 20, 20));
 
         checkboxDiscapacidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkboxDiscapacidadActionPerformed(evt);
             }
         });
+        getContentPane().add(checkboxDiscapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+        getContentPane().add(jDFechanacparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 154, -1));
 
         botonActualizarParticipante.setText("GUARDAR");
         botonActualizarParticipante.addActionListener(new java.awt.event.ActionListener() {
@@ -324,323 +384,11 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 botonActualizarParticipanteActionPerformed(evt);
             }
         });
+        getContentPane().add(botonActualizarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 721, 165, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addComponent(jSeparator2)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel21))
-                            .addComponent(jLabel36)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel24)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(dirresp, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel26)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(fonoresp, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(nombadresp, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(39, 39, 39)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(respappat, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel23))
-                                    .addGap(34, 34, 34)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(apematresp, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel27)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbrelacion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel28)
-                                .addGap(18, 18, 18)
-                                .addComponent(emailresp, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NOMPARTICIPANTE, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(APELPATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(49, 49, 49)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(APELMATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel30)
-                                    .addComponent(jLabel31)
-                                    .addComponent(jLabel32))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Nombreresp1)
-                                    .addComponent(runresp1)
-                                    .addComponent(fonoresp1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel33)
-                                    .addComponent(jLabel34)
-                                    .addComponent(jLabel35))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Nombreresp2)
-                                            .addComponent(runresp2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fonoresp2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(2, 2, 2)))
-                .addGap(38, 38, 38))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel37)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(DOMPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel7))
-                                        .addGap(42, 42, 42)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(CBGENERO, 0, 154, Short.MAX_VALUE)
-                                            .addComponent(jDFechanacparticipante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CBNAC1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(checkboxPuebloOriginario))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(18, 18, 18)
-                                .addComponent(CBESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(checkboxDiscapacidad)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel12)
-                                        .addGap(89, 89, 89))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jLabel17)
-                                        .addGap(82, 82, 82)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CBESPPO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CBCURSO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20)
-                                .addGap(34, 34, 34)
-                                .addComponent(CBESPDISC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(jLabel15)
-                                .addGap(89, 89, 89)
-                                .addComponent(FONOPAR))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel10))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CBNAC2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(RUNPAR))))
-                        .addGap(33, 33, 33))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonRegistrarParticipante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CERRARFORM)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botonActualizarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel4))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NOMPARTICIPANTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(APELPATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(APELMATPAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jDFechanacparticipante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(RUNPAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CBGENERO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(CBNAC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(checkboxPuebloOriginario))
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DOMPAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel19)
-                                    .addComponent(CBESTABLECIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBNAC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
-                                    .addComponent(CBESPPO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(FONOPAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CBCURSO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel17))
-                                .addGap(1, 1, 1)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(checkboxDiscapacidad))
-                        .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(CBESPDISC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel36)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel22))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombadresp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(respappat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apematresp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(dirresp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fonoresp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(cbrelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28)
-                    .addComponent(emailresp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel29)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel30)
-                            .addComponent(Nombreresp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31)
-                            .addComponent(runresp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel32)
-                            .addComponent(fonoresp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel33)
-                            .addComponent(Nombreresp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel34)
-                            .addComponent(runresp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35)
-                            .addComponent(fonoresp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegistrarParticipante)
-                    .addComponent(CERRARFORM)
-                    .addComponent(botonActualizarParticipante))
-                .addContainerGap())
-        );
+        labelAcuerdo.setText("ACUERDA USO DE IMAGEN DEL PUPILO");
+        getContentPane().add(labelAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 250, -1));
+        getContentPane().add(checkboxAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -663,7 +411,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             return;
         }
         Funciones.insertarFormulario(formularioRequest);
-        FuncionesImprimir.imprimir();
+        
         limpiarcajas();
     }//GEN-LAST:event_botonRegistrarParticipanteActionPerformed
 
@@ -729,7 +477,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         CBESTABLECIMIENTO.setSelectedIndex(0);
         CBGENERO.setSelectedIndex(0);
         CBNAC1.setSelectedIndex(0);
-        CBNAC2.setSelectedIndex(0);
+        checkboxAcuerdo.setSelected(false);
         cbrelacion.setSelectedIndex(0);
     }
     
@@ -759,8 +507,8 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         setSelectedEstablecimiento(CBESTABLECIMIENTO, ficha.getTipoestablecimiento());
         setSelectedGenero(CBGENERO, ficha.getGenero());
         setSelectedNacionalidad(CBNAC1, ficha.getNacionalidad1());
-        CBNAC2.setSelectedIndex(0);
-        setSelectedRelacion(cbrelacion, ficha.getNacionalidad1());
+        checkboxAcuerdo.setSelected(ficha.getAcuerdoUsoImagen());
+        setSelectedRelacion(cbrelacion, ficha.getParentezco());
     }
         
     private void setSelectedCurso(JComboBox comboBox, Long value) {
@@ -849,7 +597,6 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private javax.swing.JComboBox<Establecimiento> CBESTABLECIMIENTO;
     private javax.swing.JComboBox<Genero> CBGENERO;
     private javax.swing.JComboBox<Nacionalidad> CBNAC1;
-    private javax.swing.JComboBox<Nacionalidad> CBNAC2;
     private javax.swing.JButton CERRARFORM;
     private javax.swing.JTextField DOMPAR;
     private javax.swing.JTextField FONOPAR;
@@ -861,6 +608,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private javax.swing.JButton botonActualizarParticipante;
     private javax.swing.JButton botonRegistrarParticipante;
     private javax.swing.JComboBox<Parentezco> cbrelacion;
+    private javax.swing.JCheckBox checkboxAcuerdo;
     private javax.swing.JCheckBox checkboxDiscapacidad;
     private javax.swing.JCheckBox checkboxPuebloOriginario;
     private javax.swing.JTextField dirresp;
@@ -874,7 +622,6 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox9;
     private com.toedter.calendar.JDateChooser jDFechanacparticipante;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -913,6 +660,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField15;
+    private javax.swing.JLabel labelAcuerdo;
     private javax.swing.JTextField nombadresp;
     private javax.swing.JTextField respappat;
     private javax.swing.JTextField runresp1;
@@ -922,30 +670,30 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
     private FormularioRequest generarRequest() {
         FormularioRequest formularioRequest = new FormularioRequest();
         formularioRequest.setNombreparticipante(NOMPARTICIPANTE.getText());
-        formularioRequest.setApelldpaternopart(APELPATPAR.getText());
-        formularioRequest.setApelldmaternopart(APELMATPAR.getText());
-        formularioRequest.setDomicilio(DOMPAR.getText());
-        formularioRequest.setFonoparticipante(FONOPAR.getText());
-        formularioRequest.setNombretiro1(Nombreresp1.getText());
-        formularioRequest.setNombretiro2(Nombreresp2.getText());
-        formularioRequest.setRun(RUNPAR.getText());
-        formularioRequest.setApellmatadresp(apematresp.getText());
-        formularioRequest.setDiradresp(dirresp.getText());
-        formularioRequest.setFonoretiro1(fonoresp1.getText());
-        formularioRequest.setFonoretiro2(fonoresp2.getText());
-        formularioRequest.setNombreadresp(nombadresp.getText());
-        formularioRequest.setApellpatadresp(respappat.getText());
-        formularioRequest.setRunretiro1(runresp1.getText());
-        formularioRequest.setRunretiro2(runresp2.getText());
+        formularioRequest.setApellidoPaternoParticipante(APELPATPAR.getText());
+        formularioRequest.setApellidoMaternoParticipante(APELMATPAR.getText());
+        formularioRequest.setDomicilioParticipante(DOMPAR.getText());
+        formularioRequest.setFonoParticipante(FONOPAR.getText());
+        formularioRequest.setNombreRetiro1(Nombreresp1.getText());
+        formularioRequest.setNombreRetiro2(Nombreresp2.getText());
+        formularioRequest.setRutParticipante(RUNPAR.getText());
+        formularioRequest.setApellidoPaternoResponsable(respappat.getText());
+        formularioRequest.setApellidoMaternoResponsable(apematresp.getText());
+        formularioRequest.setDomicilioResponsable(dirresp.getText());
+        formularioRequest.setFonoRetiro1(fonoresp1.getText());
+        formularioRequest.setFonoRetiro2(fonoresp2.getText());
+        formularioRequest.setNombreResponsable(nombadresp.getText());
+        formularioRequest.setRutRetiro1(runresp1.getText());
+        formularioRequest.setRutRetiro2(runresp2.getText());
         Genero genero = (Genero) CBGENERO.getSelectedItem();
-        formularioRequest.setGenero(genero.getId());
+        formularioRequest.setGeneroParticipante(genero.getId());
         Curso curso = (Curso) CBCURSO.getSelectedItem();
-        formularioRequest.setCurso(curso.getId());
+        formularioRequest.setCursoParticipante(curso.getId());
         if (checkboxDiscapacidad.isSelected()) {
             Discapacidad discapacidad = (Discapacidad) CBESPDISC.getSelectedItem();
-            formularioRequest.setTipodediscapacidad(discapacidad.getId());
+            formularioRequest.setTipoDiscapacidadParticipante(discapacidad.getId());
         } else {
-            formularioRequest.setTipodediscapacidad(null);
+            formularioRequest.setTipoDiscapacidadParticipante(null);
         }
         if (checkboxPuebloOriginario.isSelected()) {
             PuebloOriginario poriginarios = (PuebloOriginario) CBESPPO.getSelectedItem();
@@ -956,16 +704,15 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         Establecimiento establecimiento = (Establecimiento) CBESTABLECIMIENTO.getSelectedItem();
         formularioRequest.setTipoestablecimiento(establecimiento.getId());
         Nacionalidad nacionalidad = (Nacionalidad) CBNAC1.getSelectedItem();
-        formularioRequest.setNacionalidad1(nacionalidad.getId());
+        formularioRequest.setNacionalidadParticipante(nacionalidad.getId());
         Parentezco parentezco = (Parentezco) cbrelacion.getSelectedItem();
-        formularioRequest.setParentezco(parentezco.getId());
-        formularioRequest.setEmailadresp(emailresp.getText());
-        formularioRequest.setFonoadresp(fonoresp.getText());
-        formularioRequest.setEsdiscapacitado(checkboxDiscapacidad.isSelected());
-        formularioRequest.setEsdepueblooriginario(checkboxPuebloOriginario.isSelected());
-        Nacionalidad nacionalidaddos = (Nacionalidad) CBNAC2.getSelectedItem();
-        formularioRequest.setNacionalidad1(nacionalidaddos.getId());
-        formularioRequest.setFechanacparticipante(jDFechanacparticipante.getDate());
+        formularioRequest.setParentezcoResponsable(parentezco.getId());
+        formularioRequest.setEmailResponsable(emailresp.getText());
+        formularioRequest.setFonoResponsable(fonoresp.getText());
+        formularioRequest.setEsDiscapacitado(checkboxDiscapacidad.isSelected());
+        formularioRequest.setEsDePuebloOriginario(checkboxPuebloOriginario.isSelected());
+        formularioRequest.setAcuerdoUsoImagen(checkboxAcuerdo.isSelected());
+        formularioRequest.setFechaNacimientoParticipante(jDFechanacparticipante.getDate());
         return formularioRequest;
     }
 }

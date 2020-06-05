@@ -6,6 +6,7 @@
 package interfaz;
 
 import dto.UserLogin;
+import funciones.FuncionesReportes;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
@@ -38,9 +39,11 @@ public class Admin extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         contenedor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         user = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         ingresosolicitante = new javax.swing.JMenuItem();
@@ -55,8 +58,15 @@ public class Admin extends javax.swing.JFrame {
         modificareliminarfichas = new javax.swing.JMenu();
         ingresofichas = new javax.swing.JMenuItem();
         eliminareditarfichas = new javax.swing.JMenuItem();
+        LABORATORIOS = new javax.swing.JMenu();
+        ingresolabexp = new javax.swing.JMenuItem();
+        busquedalabexp = new javax.swing.JMenuItem();
+        REPORTES = new javax.swing.JMenu();
+        generarreporte = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,28 +77,31 @@ public class Admin extends javax.swing.JFrame {
 
         user.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("HOLA");
+
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addContainerGap(369, Short.MAX_VALUE)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addContainerGap(447, Short.MAX_VALUE)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(13, 13, 13))
         );
 
         jMenu1.setText("MENU");
@@ -192,6 +205,43 @@ public class Admin extends javax.swing.JFrame {
 
         jMenuBar1.add(modificareliminarfichas);
 
+        LABORATORIOS.setText("LABORATORIOS");
+        LABORATORIOS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        ingresolabexp.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingresolabexp.setText("INGRESO DE LABORATORIOS / EXPERIENCIAS");
+        ingresolabexp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresolabexpActionPerformed(evt);
+            }
+        });
+        LABORATORIOS.add(ingresolabexp);
+
+        busquedalabexp.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        busquedalabexp.setText("BÚSQUEDA DE EXPERIENCIAS /LABORATORIOS");
+        busquedalabexp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedalabexpActionPerformed(evt);
+            }
+        });
+        LABORATORIOS.add(busquedalabexp);
+
+        jMenuBar1.add(LABORATORIOS);
+
+        REPORTES.setText("REPORTES");
+        REPORTES.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        generarreporte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        generarreporte.setText("GENERAR REPORTE");
+        generarreporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarreporteActionPerformed(evt);
+            }
+        });
+        REPORTES.add(generarreporte);
+
+        jMenuBar1.add(REPORTES);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,7 +252,7 @@ public class Admin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -293,22 +343,53 @@ public class Admin extends javax.swing.JFrame {
         contenedor.repaint();
     }//GEN-LAST:event_eliminareditarfichasActionPerformed
 
+    private void ingresolabexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresolabexpActionPerformed
+   IngresoLaboratorios IL = new IngresoLaboratorios();
+        this.setSize(550, 450);
+        IL.setSize(500,400);
+        contenedor.removeAll();
+       contenedor.add(IL,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_ingresolabexpActionPerformed
+
+    private void busquedalabexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalabexpActionPerformed
+      BusquedaLabExp labexp = new BusquedaLabExp(userLogin);
+        this.setSize(780, 600);
+        labexp.setSize(780,600);
+        contenedor.removeAll();
+       contenedor.add(labexp,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_busquedalabexpActionPerformed
+
+    private void generarreporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarreporteActionPerformed
+        FuncionesReportes.generarPDFReporteMensual();
+    }//GEN-LAST:event_generarreporteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu LABORATORIOS;
+    private javax.swing.JMenu REPORTES;
     private javax.swing.JMenuItem agregarusuarios;
+    private javax.swing.JMenuItem busquedalabexp;
     private javax.swing.JMenuItem busquedalibros;
     private javax.swing.JPanel contenedor;
     private javax.swing.JMenuItem devolucionprestamo;
     private javax.swing.JMenuItem eliminareditarfichas;
+    private javax.swing.JMenuItem generarreporte;
     private javax.swing.JMenuItem ingresarlibri;
     private javax.swing.JMenuItem ingresarprestamo;
     private javax.swing.JMenuItem ingresofichas;
+    private javax.swing.JMenuItem ingresolabexp;
     private javax.swing.JMenuItem ingresosolicitante;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu modificareliminarfichas;
     private javax.swing.JMenuItem salir;
     private javax.swing.JLabel user;

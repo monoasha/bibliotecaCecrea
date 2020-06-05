@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import tablas.FichaInscripcion;
-import tablas.LaboratoriosExperiencias;
+import tablas.ComponenteProgramatico;
 import tablas.Solicitante;
 import tablas.Libro;
 
@@ -58,6 +58,8 @@ public class Funciones {
     }
 
     public static boolean validarLogin(String nombre, String password) {
+
+        obtenerCantidadFichas();
 
         if (StringUtils.isNullOrEmpty(nombre) || StringUtils.isNullOrEmpty(password)) {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese los datos solicitados");
@@ -413,53 +415,53 @@ public class Funciones {
         if (StringUtils.isNullOrEmpty(formulario.getNombreparticipante())) {
             mensajesError += "<html> El apellido paterno no puede estar vacio <br> <br> <html>";
         }
-        if (!validarRut(formulario.getRun())) {
+        if (!validarRut(formulario.getRutParticipante())) {
             mensajesError += "<html>El rut del participante es invalido <br> <br> <html> ";
         }
 
-        if (StringUtils.isNullOrEmpty(formulario.getApelldpaternopart())) {
+        if (StringUtils.isNullOrEmpty(formulario.getApellidoPaternoParticipante())) {
             mensajesError += "<html>El apellido paterno no puede estar vacio <br> <br> <html>";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getApelldmaternopart())) {
+        if (StringUtils.isNullOrEmpty(formulario.getApellidoMaternoParticipante())) {
             mensajesError += "<html>El apellido materno no puede estar vacio <br> <br> <html> ";
 
         }
-        if (StringUtils.isNullOrEmpty(formulario.getApellmatadresp())) {
+        if (StringUtils.isNullOrEmpty(formulario.getApellidoMaternoResponsable())) {
             mensajesError += "<html>El apellido materno del responsable no puede estar vacio <br> <br> <html>";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getApellpatadresp())) {
+        if (StringUtils.isNullOrEmpty(formulario.getApellidoPaternoResponsable())) {
             mensajesError += "<html>El apellido paterno del responsable no puede estar vacio <br> <br> <html> ";
 
         }
-        if (StringUtils.isNullOrEmpty(formulario.getDiradresp())) {
+        if (StringUtils.isNullOrEmpty(formulario.getDomicilioResponsable())) {
             mensajesError += "<html>La direccion del responsable  no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getDomicilio())) {
+        if (StringUtils.isNullOrEmpty(formulario.getDomicilioParticipante())) {
             mensajesError += "<html>El domicilio  no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getEmailadresp())) {
+        if (StringUtils.isNullOrEmpty(formulario.getEmailResponsable())) {
             mensajesError += "<html>El e-mail del responsable no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getFonoadresp())) {
+        if (StringUtils.isNullOrEmpty(formulario.getFonoResponsable())) {
             mensajesError += "<html>El teléfono del responsable no puede estar vacio <br> <br> <html>";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getFonoparticipante())) {
+        if (StringUtils.isNullOrEmpty(formulario.getFonoParticipante())) {
             mensajesError += "<html>El telefono del ´participante no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getFonoretiro1())) {
+        if (StringUtils.isNullOrEmpty(formulario.getFonoRetiro1())) {
             mensajesError += "<html>El teléfono  no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getFonoretiro2())) {
+        if (StringUtils.isNullOrEmpty(formulario.getFonoRetiro2())) {
             mensajesError += "<html>El telefono  no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getNombreadresp())) {
+        if (StringUtils.isNullOrEmpty(formulario.getNombreResponsable())) {
             mensajesError += "<html>El nombre del responsable no puede estar vacio <br> <br> <html> ";
 
         }
-        if (StringUtils.isNullOrEmpty(formulario.getNombretiro1())) {
+        if (StringUtils.isNullOrEmpty(formulario.getNombreRetiro1())) {
             mensajesError += "<html>El nombre de quien retira no puede estar vacio <br> <br> <html> ";
         }
-        if (StringUtils.isNullOrEmpty(formulario.getNombretiro2())) {
+        if (StringUtils.isNullOrEmpty(formulario.getNombreRetiro2())) {
             mensajesError += "<html>El nombre de quien retira no puede estar vacio <br> <br> <html> ";
         }
         return mensajesError;
@@ -496,34 +498,34 @@ public class Funciones {
             String sql = "INSERT INTO fichainscripcion VALUES "
                     + "(null," //idFichainscripcion
                     + "'" + request.getNombreparticipante() + "'," //nombreparticipante
-                    + "'" + request.getApelldpaternopart() + "',"//apellidopatpar
-                    + "'" + request.getApelldmaternopart() + "',"//apellidomaternopar
-                    + "'" + request.getRun() + "',"//runparticipante
-                    + request.getNacionalidad1() + ","//Nacionalidad_idNacionalidad
-                    + request.getCurso() + ","//curso_idcurso
-                    + request.getParentezco() + ","//Parentezco_idParentezco
+                    + "'" + request.getApellidoPaternoParticipante()+ "',"//apellidopatpar
+                    + "'" + request.getApellidoMaternoParticipante()+ "',"//apellidomaternopar
+                    + "'" + request.getRutParticipante()+ "',"//runparticipante
+                    + request.getNacionalidadParticipante()+ ","//Nacionalidad_idNacionalidad
+                    + request.getCursoParticipante()+ ","//curso_idcurso
+                    + request.getParentezcoResponsable()+ ","//Parentezco_idParentezco
                     + request.getPueblosoriginarios() + ","//PueblosOriginarios_idPueblosOriginarios //PROBLEMA
-                    + request.getGenero() + ","//Género_idGénero
+                    + request.getGeneroParticipante() + ","//Género_idGénero
                     + request.getTipoestablecimiento() + ","//Tipodeestablecimiento_idTipodeestablecimiento
-                    + request.getTipodediscapacidad() + ","//tipodediscapacidad_idtipodediscapacidad
-                    + "'" + request.getFonoparticipante() + "',"//fonoparticipante
-                    + "'" + request.getDomicilio() + "',"//domicilioparticipante
-                    + "'" + request.getNombreadresp() + "',"//nombreadultoresponsable
-                    + "'" + request.getApellpatadresp() + "',"//apellidopaternoadultoresp
-                    + "'" + request.getApellmatadresp() + "',"//apellidomaternoadultoresp
-                    + "'" + request.getDiradresp() + "',"//direccionadultiresp
-                    + "'" + request.getFonoadresp() + "',"//fonoadultoresp
-                    + "'" + request.getEmailadresp() + "',"//emailadultoresp
-                    + "'" + request.getNombretiro1() + "',"//nombrerespretirar1
-                    + "'" + request.getNombretiro2() + "',"//nombrerespretirar2
-                    + "'" + request.getRunretiro1() + "',"//runrespretirar1
-                    + "'" + request.getRunretiro2() + "',"//runrespretirar2
-                    + "'" + request.getFonoretiro1() + "',"//fonorespretirar1
-                    + "'" + request.getFonoretiro2() + "',"//fonorespretirar2
-                    + request.getEsdiscapacitado() + ","//discapacidad
-                    + request.getEsdepueblooriginario() + ","//pueblo originario
-                    + request.getNacionalidad2() + "," // Segunda nacionalidad
-                    + "'" + new Date(request.getFechanacparticipante().getTime()) + "')"; // Fecha nacimiento
+                    + request.getTipoDiscapacidadParticipante()+ ","//tipodediscapacidad_idtipodediscapacidad
+                    + "'" + request.getFonoParticipante()+ "',"//fonoparticipante
+                    + "'" + request.getDomicilioParticipante()+ "',"//domicilioparticipante
+                    + "'" + request.getNombreResponsable()+ "',"//nombreadultoresponsable
+                    + "'" + request.getApellidoPaternoResponsable()+ "',"//apellidopaternoadultoresp
+                    + "'" + request.getApellidoMaternoResponsable()+ "',"//apellidomaternoadultoresp
+                    + "'" + request.getDomicilioResponsable()+ "',"//direccionadultiresp
+                    + "'" + request.getFonoResponsable()+ "',"//fonoadultoresp
+                    + "'" + request.getEmailResponsable()+ "',"//emailadultoresp
+                    + "'" + request.getNombreRetiro1()+ "',"//nombrerespretirar1
+                    + "'" + request.getNombreRetiro2() + "',"//nombrerespretirar2
+                    + "'" + request.getRutRetiro1()+ "',"//runrespretirar1
+                    + "'" + request.getRutRetiro2() + "',"//runrespretirar2
+                    + "'" + request.getFonoRetiro1()+ "',"//fonorespretirar1
+                    + "'" + request.getFonoRetiro2() + "',"//fonorespretirar2
+                    + request.getTipoDiscapacidadParticipante()+ ","//discapacidad
+                    + request.getPueblosoriginarios()+ ","//pueblo originario
+                    + request.getAcuerdoUsoImagen()+ "," // acuerdo_uso_imagen
+                    + "'" + new Date(request.getFechaNacimientoParticipante().getTime()) + "')"; // Fecha nacimiento
 
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
@@ -709,7 +711,7 @@ public class Funciones {
                         .fechanacparticipante(rs.getDate("fecha_nacimiento"))
                         .genero(rs.getLong("Género_idGénero"))
                         .nacionalidad1(rs.getLong("Nacionalidad_idNacionalidad"))
-                        .nacionalidad2(null)
+                        .acuerdoUsoImagen(rs.getBoolean("acuerdo_uso_imagen"))
                         .pueblosoriginarios(rs.getLong("PueblosOriginarios_idPueblosOriginarios"))
                         .tipoestablecimiento(rs.getLong("Tipodeestablecimiento_idTipodeestablecimiento"))
                         .curso(rs.getLong("curso_idcurso"))
@@ -730,35 +732,35 @@ public class Funciones {
         try {
             String sql = "UPDATE biblioteca.fichainscripcion"
                     + " SET nombreparticipante='" + request.getNombreparticipante() + "',"
-                    + " apellidopatpar='"+request.getApelldpaternopart()+"',"
-                    + " apellidomaternopar='"+request.getApelldmaternopart()+"',"
-                    + " runparticipante='"+request.getRun()+"',"
-                    + " Nacionalidad_idNacionalidad="+request.getNacionalidad1()+","
-                    + " curso_idcurso="+request.getCurso()+","
-                    + " Parentezco_idParentezco="+request.getParentezco()+","
-                    + " PueblosOriginarios_idPueblosOriginarios="+request.getPueblosoriginarios()+","
-                    + " Género_idGénero="+request.getGenero()+","
-                    + " Tipodeestablecimiento_idTipodeestablecimiento="+request.getTipoestablecimiento()+","
-                    + " tipodediscapacidad_idtipodediscapacidad="+request.getTipodediscapacidad()+","
-                    + " fonoparticipante='"+request.getFonoparticipante()+"',"
-                    + " domicilioparticipante='"+request.getDomicilio()+"',"
-                    + " nombreadultoresponsable='"+request.getNombreadresp()+"',"
-                    + " apellidopaternoadultoresp='"+request.getApellpatadresp()+"',"
-                    + " apellidomaternoadultoresp='"+request.getApellmatadresp()+"',"
-                    + " direccionadultiresp='"+request.getDiradresp()+"',"
-                    + " fonoadultoresp='"+request.getFonoadresp()+"',"
-                    + " emailadultoresp='"+request.getEmailadresp()+"',"
-                    + " nombrerespretirar1='"+request.getNombretiro1()+"',"
-                    + " nombrerespretirar2='"+request.getNombretiro2()+"',"
-                    + " runrespretirar1='"+request.getRunretiro1()+"',"
-                    + " runrespretirar2='"+request.getRunretiro2()+"',"
-                    + " fonorespretirar1='"+request.getFonoretiro1()+"',"
-                    + " fonorespretirar2='"+request.getFonoretiro2()+"',"
-                    + " esdiscapacitado="+request.getEsdiscapacitado()+","
-                    + " espuebloindigena="+request.getEsdepueblooriginario()+","
-                    + " nacionalidad2='"+request.getNacionalidad2()+"',"
-                    + " fecha_nacimiento='"+new Date(request.getFechanacparticipante().getTime())+"'"
-                    + " WHERE idFichainscripcion="+id+";";
+                    + " apellidopatpar='" + request.getApellidoPaternoParticipante()+ "',"
+                    + " apellidomaternopar='" + request.getApellidoMaternoParticipante()+ "',"
+                    + " runparticipante='" + request.getRutParticipante() + "',"
+                    + " Nacionalidad_idNacionalidad=" + request.getNacionalidadParticipante()+ ","
+                    + " curso_idcurso=" + request.getCursoParticipante() + ","
+                    + " Parentezco_idParentezco=" + request.getParentezcoResponsable() + ","
+                    + " PueblosOriginarios_idPueblosOriginarios=" + request.getPueblosoriginarios() + ","
+                    + " Género_idGénero=" + request.getGeneroParticipante() + ","
+                    + " Tipodeestablecimiento_idTipodeestablecimiento=" + request.getTipoestablecimiento() + ","
+                    + " tipodediscapacidad_idtipodediscapacidad=" + request.getTipoDiscapacidadParticipante()+ ","
+                    + " fonoparticipante='" + request.getFonoParticipante()+ "',"
+                    + " domicilioparticipante='" + request.getDomicilioParticipante()+ "',"
+                    + " nombreadultoresponsable='" + request.getNombreResponsable()+ "',"
+                    + " apellidopaternoadultoresp='" + request.getApellidoPaternoResponsable()+ "',"
+                    + " apellidomaternoadultoresp='" + request.getApellidoMaternoResponsable()+ "',"
+                    + " direccionadultiresp='" + request.getDomicilioResponsable()+ "',"
+                    + " fonoadultoresp='" + request.getFonoResponsable()+ "',"
+                    + " emailadultoresp='" + request.getEmailResponsable()+ "',"
+                    + " nombrerespretirar1='" + request.getNombreRetiro1() + "',"
+                    + " nombrerespretirar2='" + request.getNombreRetiro2()+ "',"
+                    + " runrespretirar1='" + request.getRutRetiro1() + "',"
+                    + " runrespretirar2='" + request.getRutRetiro2()+ "',"
+                    + " fonorespretirar1='" + request.getFonoRetiro1() + "',"
+                    + " fonorespretirar2='" + request.getFonoRetiro2()+ "',"
+                    + " esdiscapacitado=" + request.getEsDiscapacitado()+ ","
+                    + " espuebloindigena=" + request.getEsDePuebloOriginario()+ ","
+                    + " acuerdo_uso_imagen=" + request.getAcuerdoUsoImagen()+ ","
+                    + " fecha_nacimiento='" + new Date(request.getFechaNacimientoParticipante().getTime()) + "'"
+                    + " WHERE idFichainscripcion=" + id + ";";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha actualizado el participante");
@@ -767,10 +769,11 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, "Error inesperado al actualizar el participante");
         }
     }
- public static void eliminarparticipante(Long id) {
+
+    public static void eliminarparticipante(Long id) {
         try {
             String sql = "DELETE from biblioteca.fichainscripcion"
-                    + " WHERE idFichainscripcion="+id+";";
+                    + " WHERE idFichainscripcion=" + id + ";";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha eliminado el participante");
@@ -779,18 +782,19 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
         }
     }
-public static void agregarlaboexp(String nombre, String facilitador,String tipo, String mes) {
+
+    public static void agregarlaboexp(String nombre, String facilitador, String tipo, String mes) {
         try {
-            String sql = "INSERT into Componenteprogramaticos VALUES(null,'" + nombre + "','" + facilitador + "','" + tipo + "','" + mes + "')";
+            String sql = "INSERT into Componenteprogramaticos VALUES(null,'" + nombre + "','" + facilitador + "','" + tipo + "','" + mes + "',YEAR(CURDATE()))";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha agregado "+tipo);
+            JOptionPane.showMessageDialog(null, "Se ha agregado " + tipo);
         } catch (SQLException e) {
             System.out.println("Error en la conexión" + e);
         }
     }
 
-  public static ArrayList<LaboratoriosExperiencias> buscarLab(String nombrelab) {
+    public static ArrayList<ComponenteProgramatico> buscarLab(String nombrelab) {
 
         try {
             Statement stmt;
@@ -800,16 +804,16 @@ public static void agregarlaboexp(String nombre, String facilitador,String tipo,
 
             rs = stmt.executeQuery(sql);
 
-            ArrayList<LaboratoriosExperiencias> laboratorios = new ArrayList<>();
-           LaboratoriosExperiencias labexp = null;
+            ArrayList<ComponenteProgramatico> laboratorios = new ArrayList<>();
+            ComponenteProgramatico labexp = null;
             while (rs.next()) {
-                labexp = new LaboratoriosExperiencias();
+                labexp = new ComponenteProgramatico();
                 labexp.setId(rs.getLong("idComponenteprogramaticos"));
                 labexp.setNombre(rs.getString("nombrecomponente"));
                 labexp.setNombrefacilitador(rs.getString("nombrefacilitador"));
                 labexp.setTipo(rs.getString("tipo"));
                 labexp.setMes(rs.getString("mes"));
-                
+
                 laboratorios.add(labexp);
             }
             return laboratorios;
@@ -818,10 +822,11 @@ public static void agregarlaboexp(String nombre, String facilitador,String tipo,
         }
         return null;
     }
-   public static void eliminarlabexp(Long id) {
+
+    public static void eliminarlabexp(Long id) {
         try {
             String sql = "DELETE from biblioteca.componenteprogramaticos"
-                    + " WHERE idComponenteprogramaticos="+id+";";
+                    + " WHERE idComponenteprogramaticos=" + id + ";";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha eliminado el laboratorio");
@@ -830,4 +835,101 @@ public static void agregarlaboexp(String nombre, String facilitador,String tipo,
             JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el laboratorio");
         }
     }
+
+    public static Long obtenerCantidadFichas() {
+        try {
+            String sql = "SELECT COUNT(1) from biblioteca.fichainscripcion";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar la cantidad de fichas, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al consultar cantidad de fichas");
+        }
+        return null;
     }
+
+    public static Long obtenerCantidadPrestamo() {
+        try {
+            String sql = "SELECT COUNT(1) from biblioteca.prestamo";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar la cantidad de préstamos, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al consultar cantidad de préstamos");
+        }
+        return null;
+    }
+
+    public static Long obtenerCantidadDevolucionPrestamo() {
+        try {
+            String sql = "SELECT COUNT(1) from biblioteca.devolucion";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar la cantidad de préstamos, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al consultar cantidad de préstamos");
+        }
+        return null;
+    }
+
+    public static List<ComponenteProgramatico> consultarComponentesProgramaticos() {
+        try {
+            String sql = "SELECT * from biblioteca.componenteprogramaticos";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            List<ComponenteProgramatico> componentesProgramaticos = new ArrayList();
+            while (rs.next()) {
+                componentesProgramaticos.add(ComponenteProgramatico.builder()
+                        .id(rs.getLong("idComponenteprogramaticos"))
+                        .nombre(rs.getString("nombrecomponente"))
+                        .nombrefacilitador(rs.getString("nombrefacilitador"))
+                        .tipo(rs.getString("tipo"))
+                        .mes(rs.getString("mes"))
+                        .anio(rs.getInt("anio"))
+                        .build());
+            }
+            return componentesProgramaticos;
+        } catch (SQLException e) {
+            System.out.println("Error al consultar la cantidad de laboratorios y experiencias, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al consultar cantidad de laboratorios y experiencias");
+        }
+        return null;
+    }
+    public static List<ResumenFicha> buscarfichaanuales(String año) {
+
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            ResultSet rs;
+            String sql = "SELECT fichainscripcion.idFichainscripcion,fichainscripcion.nombreparticipante,fichainscripcion.apellidopatpar,fichainscripcion.apellidomaternopar,fichainscripcion.runparticipante\n"
+                    + "FROM fichainscripcion\n"
+                    + "WHERE fichainscripcion.runparticipante   LIKE '%" + año + "%'";
+
+            rs = stmt.executeQuery(sql);
+
+            List<ResumenFicha> fichas = new ArrayList<>();
+            while (rs.next()) {
+                fichas.add(new ResumenFicha(
+                        rs.getLong("idFichainscripcion"),
+                        rs.getString("nombreparticipante"),
+                        rs.getString("apellidopatpar"),
+                        rs.getString("apellidomaternopar"),
+                        rs.getString("runparticipante")
+                ));
+            }
+            return fichas;
+        } catch (SQLException e) {
+            System.out.println("Error inesperado en la busqueda de fichas, error " + e);
+        }
+        return null;
+    }
+}

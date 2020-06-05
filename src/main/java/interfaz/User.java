@@ -7,6 +7,7 @@ package interfaz;
 
 import dto.UserLogin;
 import funciones.Funciones;
+import funciones.FuncionesReportes;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
@@ -40,6 +41,12 @@ public class User extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         contenedor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         user = new javax.swing.JLabel();
@@ -56,13 +63,28 @@ public class User extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         ingresofichascecrea = new javax.swing.JMenuItem();
         EDITARELIMINARFICHA = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         LABORATORIOS = new javax.swing.JMenu();
         ingesolaboratorios = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        busquedalabexp = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        GENERARREPORTE = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
+
+        jMenu4.setText("jMenu4");
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenu5.setText("jMenu5");
+
+        jMenu6.setText("File");
+        jMenuBar2.add(jMenu6);
+
+        jMenu7.setText("Edit");
+        jMenuBar2.add(jMenu7);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +104,7 @@ public class User extends javax.swing.JFrame {
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addContainerGap(422, Short.MAX_VALUE)
+                .addContainerGap(410, Short.MAX_VALUE)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
@@ -106,9 +128,9 @@ public class User extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jMenu1.setText("MENU");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        ingresosolicitante.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingresosolicitante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresosolicitante.setText("INGRESO SOLICITANTE");
         ingresosolicitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +139,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu1.add(ingresosolicitante);
 
-        ingresarlibri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingresarlibri.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresarlibri.setText("INGRESO LIBROS");
         ingresarlibri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,8 +148,8 @@ public class User extends javax.swing.JFrame {
         });
         jMenu1.add(ingresarlibri);
 
-        busquedalibros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        busquedalibros.setText("BUSQUEDA DE LIBRO");
+        busquedalibros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        busquedalibros.setText("BÚSQUEDA DE LIBRO");
         busquedalibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedalibrosActionPerformed(evt);
@@ -135,7 +157,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu1.add(busquedalibros);
 
-        salir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salir.setText("SALIR");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,9 +169,9 @@ public class User extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("PRESTAMOS");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        ingresarprestamo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingresarprestamo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresarprestamo.setText("INGRESAR PRESTAMO");
         ingresarprestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,8 +180,8 @@ public class User extends javax.swing.JFrame {
         });
         jMenu2.add(ingresarprestamo);
 
-        eliminarprestamo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        eliminarprestamo.setText("DEVOLUCION PRESTAMO");
+        eliminarprestamo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eliminarprestamo.setText("DEVOLUCIÓN PRESTAMO");
         eliminarprestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarprestamoActionPerformed(evt);
@@ -171,9 +193,9 @@ public class User extends javax.swing.JFrame {
 
         jMenu3.setText("FICHAS");
         jMenu3.setFocusable(false);
-        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        ingresofichascecrea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingresofichascecrea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresofichascecrea.setText("INGRESO FICHA CECREA");
         ingresofichascecrea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +204,7 @@ public class User extends javax.swing.JFrame {
         });
         jMenu3.add(ingresofichascecrea);
 
-        EDITARELIMINARFICHA.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        EDITARELIMINARFICHA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         EDITARELIMINARFICHA.setText("EDITAR /ELIMINAR FICHAS");
         EDITARELIMINARFICHA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,12 +213,21 @@ public class User extends javax.swing.JFrame {
         });
         jMenu3.add(EDITARELIMINARFICHA);
 
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem4.setText("BUSCADOR");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
         jMenuBar1.add(jMenu3);
 
         LABORATORIOS.setText("LABORATORIOS");
         LABORATORIOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        ingesolaboratorios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ingesolaboratorios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingesolaboratorios.setText("INGRESO DE LABORATORIOS");
         ingesolaboratorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,16 +236,29 @@ public class User extends javax.swing.JFrame {
         });
         LABORATORIOS.add(ingesolaboratorios);
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem4.setText("BÚSQUEDA DE LABORATORIOS");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        busquedalabexp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        busquedalabexp.setText("BÚSQUEDA DE LABORATORIOS");
+        busquedalabexp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                busquedalabexpActionPerformed(evt);
             }
         });
-        LABORATORIOS.add(jMenuItem4);
+        LABORATORIOS.add(busquedalabexp);
 
         jMenuBar1.add(LABORATORIOS);
+
+        jMenu8.setText("REPORTES");
+        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        GENERARREPORTE.setText("GENERAR REPORTE");
+        GENERARREPORTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GENERARREPORTEActionPerformed(evt);
+            }
+        });
+        jMenu8.add(GENERARREPORTE);
+
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -222,7 +266,7 @@ public class User extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +363,7 @@ public class User extends javax.swing.JFrame {
         contenedor.repaint();
     }//GEN-LAST:event_ingesolaboratoriosActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void busquedalabexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalabexpActionPerformed
         BusquedaLabExp labexp = new BusquedaLabExp(userLogin);
         this.setSize(780, 600);
         labexp.setSize(780,600);
@@ -327,11 +371,27 @@ public class User extends javax.swing.JFrame {
        contenedor.add(labexp,BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
+    }//GEN-LAST:event_busquedalabexpActionPerformed
+
+    private void GENERARREPORTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GENERARREPORTEActionPerformed
+       FuncionesReportes.generarPDFReporteMensual();
+    }//GEN-LAST:event_GENERARREPORTEActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+         BusquedaFichaAnuales bfh = new BusquedaFichaAnuales(userLogin);
+        this.setSize(780, 600);
+        bfh.setSize(780,600);
+        contenedor.removeAll();
+       contenedor.add(bfh,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EDITARELIMINARFICHA;
+    private javax.swing.JMenuItem GENERARREPORTE;
     private javax.swing.JMenu LABORATORIOS;
+    private javax.swing.JMenuItem busquedalabexp;
     private javax.swing.JMenuItem busquedalibros;
     private javax.swing.JPanel contenedor;
     private javax.swing.JMenuItem eliminarprestamo;
@@ -345,9 +405,16 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem salir;
     private javax.swing.JLabel user;

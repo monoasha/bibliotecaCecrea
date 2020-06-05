@@ -17,11 +17,11 @@ import static vo.CargoVO.CARGO_USER;
  *
  * @author shofy
  */
-public class BusquedaFicha extends javax.swing.JPanel {
+public class BusquedaFichaAnuales extends javax.swing.JPanel {
 
     private UserLogin userLogin;
 
-    public BusquedaFicha(UserLogin userLogin) {
+    public BusquedaFichaAnuales(UserLogin userLogin) {
         this.userLogin = userLogin;
         initComponents();
 
@@ -34,7 +34,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nombreparticipante = new javax.swing.JTextField();
+        añoparafiltar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaBusquedaFicha = new javax.swing.JTable();
         BUSQ = new javax.swing.JButton();
@@ -51,15 +51,15 @@ public class BusquedaFicha extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 11, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("NOMBRE PARTICIPANTE:");
+        jLabel2.setText("AÑO PARA FILTRAR :");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 51, 155, -1));
 
-        nombreparticipante.addActionListener(new java.awt.event.ActionListener() {
+        añoparafiltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreparticipanteActionPerformed(evt);
+                añoparafiltarActionPerformed(evt);
             }
         });
-        add(nombreparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 81, 375, -1));
+        add(añoparafiltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 190, -1));
 
         tablaBusquedaFicha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,7 +150,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
         try {
             DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
             model.setRowCount(0);
-            List<ResumenFicha> fichas = Funciones.buscarficha(nombreparticipante.getText());
+            List<ResumenFicha> fichas = Funciones.buscarfichaanuales(añoparafiltar.getText());
             if (fichas.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No hay fichas");
                 return;
@@ -171,7 +171,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
-        Window w = SwingUtilities.getWindowAncestor(BusquedaFicha.this);
+        Window w = SwingUtilities.getWindowAncestor(BusquedaFichaAnuales.this);
         w.setVisible(false);
         if (userLogin.getCargo().equals(CARGO_ADMIN)) {
             new Admin(userLogin).setVisible(true);
@@ -201,9 +201,9 @@ public class BusquedaFicha extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void nombreparticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreparticipanteActionPerformed
+    private void añoparafiltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoparafiltarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreparticipanteActionPerformed
+    }//GEN-LAST:event_añoparafiltarActionPerformed
 
     private void botonGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarPDFActionPerformed
         // TODO add your handling code here:
@@ -215,6 +215,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUSQ;
+    private javax.swing.JTextField añoparafiltar;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonGenerarPDF;
@@ -223,7 +224,6 @@ public class BusquedaFicha extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nombreparticipante;
     private javax.swing.JTable tablaBusquedaFicha;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables

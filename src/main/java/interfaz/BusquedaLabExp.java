@@ -3,14 +3,14 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
-import funciones.FuncionesImprimir;
+import funciones.FuncionesReportes;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import tablas.FichaInscripcion;
-import tablas.LaboratoriosExperiencias;
+import tablas.ComponenteProgramatico;
 import static vo.CargoVO.CARGO_ADMIN;
 import static vo.CargoVO.CARGO_USER;
 
@@ -133,14 +133,14 @@ public class BusquedaLabExp extends javax.swing.JPanel {
         try {
             DefaultTableModel model = (DefaultTableModel) tablabusquedalab.getModel();
             model.setRowCount(0);
-            List<LaboratoriosExperiencias> labexp = Funciones.buscarLab(nombrelabexp.getText());
+            List<ComponenteProgramatico> labexp = Funciones.buscarLab(nombrelabexp.getText());
             if (labexp.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No se han encontrado laboratorios o experiencias");
                 return;
             }
 
             String fila[] = new String[5];
-            for (LaboratoriosExperiencias le : labexp) {
+            for (ComponenteProgramatico le : labexp) {
                 fila[0] = le.getId().toString();
                 fila[1] = le.getNombre();
                 fila[2] = le.getNombrefacilitador();

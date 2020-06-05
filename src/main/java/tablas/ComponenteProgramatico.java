@@ -18,17 +18,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LaboratoriosExperiencias {
+public class ComponenteProgramatico {
  
     private Long id;
     private String nombre;
     private String nombrefacilitador;
     private String tipo;
     private String mes;
-
+    private Integer anio;
  
- public String toString() {
-        return this.nombre;
-    }
 }
 

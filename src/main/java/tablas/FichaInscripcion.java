@@ -32,7 +32,7 @@ public class FichaInscripcion {
     private Date fechanacparticipante;
     private Long genero;
     private Long nacionalidad1;
-    private Long nacionalidad2;
+    private Boolean acuerdoUsoImagen;
     private Long pueblosoriginarios;
     private Long tipoestablecimiento;
     private Long curso;
