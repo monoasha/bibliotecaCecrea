@@ -15,7 +15,8 @@ import tablas.Parentezco;
 import tablas.PuebloOriginario;
 import com.mysql.jdbc.StringUtils;
 import funciones.Funciones;
-import funciones.FuncionesReportes;
+import funciones.FuncionesFichaInscripcion;
+import funciones.FuncionesPDF;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.JComboBox;
@@ -81,7 +82,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         //Esto llama al constructor base, el que no tiene parametro, 
         //esto te permite crear constructores especificos pero aun asi reutilizando la logica de la construccion base y asi no repetir codigo
         this(); 
-       FichaInscripcion ficha = Funciones.buscarFichaPorId(idFicha);
+       FichaInscripcion ficha = FuncionesFichaInscripcion.buscarFichaPorId(idFicha);
        llenarCajas(ficha);
        botonRegistrarParticipante.setVisible(false);
        botonActualizarParticipante.setVisible(true);
@@ -386,7 +387,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         });
         getContentPane().add(botonActualizarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 721, 165, -1));
 
-        labelAcuerdo.setText("ACUERDA USO DE IMAGEN DEL PUPILO");
+        labelAcuerdo.setText("ACUERDA USO DE IMAGEN DEL NNJ");
         getContentPane().add(labelAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 250, -1));
         getContentPane().add(checkboxAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, -1, -1));
 

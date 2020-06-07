@@ -3,7 +3,7 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
-import funciones.FuncionesReportes;
+import funciones.FuncionesPDF;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;

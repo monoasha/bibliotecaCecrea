@@ -40,5 +40,6 @@ public class FichaInscripcion {
     private Long parentezco;
     private Boolean esdiscapacitado;
     private Boolean esdepueblooriginario;
+    private Date fechaInscripcion;
        
 }

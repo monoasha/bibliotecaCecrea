@@ -3,7 +3,8 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
-import funciones.FuncionesReportes;
+import funciones.FuncionesFichaInscripcion;
+import funciones.FuncionesPDF;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -208,8 +209,8 @@ public class BusquedaFicha extends javax.swing.JPanel {
     private void botonGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarPDFActionPerformed
         // TODO add your handling code here:
         Long idFicha = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
-        FichaInscripcion ficha = Funciones.buscarFichaPorId(idFicha);
-        FuncionesReportes.generarPDFFichaCecrea(ficha);
+        FichaInscripcion ficha = FuncionesFichaInscripcion.buscarFichaPorId(idFicha);
+        FuncionesPDF.generarPDFFichaCecrea(ficha);
     }//GEN-LAST:event_botonGenerarPDFActionPerformed
 
 

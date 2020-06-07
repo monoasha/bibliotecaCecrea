@@ -15,8 +15,8 @@ import lombok.Data;
 @Builder
 public class Prestamo {
     private Long id;
-    private String idLibro;
-    private String idSolicitante;
+    private Long idLibro;
+    private Long idSolicitante;
     private Date fechaSolicitud;
     private Date fechaDevolucion;
     private String observaciones;

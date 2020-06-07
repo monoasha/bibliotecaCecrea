@@ -7,9 +7,10 @@ package interfaz;
 
 import dto.UserLogin;
 import funciones.Funciones;
-import funciones.FuncionesReportes;
+import funciones.FuncionesPDF;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
+import utils.FechaUtils;
 
 /**
  *
@@ -20,9 +21,8 @@ public class User extends javax.swing.JFrame {
     /**
      * Creates new form User
      */
-    
     private UserLogin userLogin;
-    
+
     public User(UserLogin userLogin) {
         this.userLogin = userLogin;
         initComponents();
@@ -277,68 +277,68 @@ public class User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarlibriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarlibriActionPerformed
-      IngresoLibros il = new IngresoLibros(userLogin);
-      this.setSize(490  , 400);
-        il.setSize(485,331);
-        il.setLocation(5,5);
+        IngresoLibros il = new IngresoLibros(userLogin);
+        this.setSize(490, 400);
+        il.setSize(485, 331);
+        il.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(il,BorderLayout.CENTER);
-       contenedor.revalidate();
+        contenedor.add(il, BorderLayout.CENTER);
+        contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresarlibriActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-    dispose();   
-    JOptionPane.showMessageDialog(null, "Haz cerrado sesión . ");
-    new LoginBiblioCecrea().setVisible(true);
-    
-    
+        dispose();
+        JOptionPane.showMessageDialog(null, "Haz cerrado sesión . ");
+        new LoginBiblioCecrea().setVisible(true);
+
+
     }//GEN-LAST:event_salirActionPerformed
 
     private void ingresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresosolicitanteActionPerformed
-    IngresoSolicitante iu = new IngresoSolicitante(userLogin);
+        IngresoSolicitante iu = new IngresoSolicitante(userLogin);
         this.setSize(590, 570);
-        iu.setSize(550,500);
-        iu.setLocation(5,5);
+        iu.setSize(550, 500);
+        iu.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(iu,BorderLayout.CENTER);
+        contenedor.add(iu, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresosolicitanteActionPerformed
 
     private void busquedalibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalibrosActionPerformed
         BusquedaLibros bl = new BusquedaLibros(userLogin);
-      this.setSize(600, 600);
-      bl.setSize(600, 600);
-        bl.setLocation(5,5);
+        this.setSize(600, 600);
+        bl.setSize(600, 600);
+        bl.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(bl,BorderLayout.CENTER);
+        contenedor.add(bl, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_busquedalibrosActionPerformed
 
     private void ingresarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarprestamoActionPerformed
-       Prestamo p = new Prestamo(userLogin);
+        Prestamo p = new Prestamo(userLogin);
         this.setSize(620, 650);
         p.setSize(600, 600);
-        p.setLocation(5,5);
+        p.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(p,BorderLayout.CENTER);
+        contenedor.add(p, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingresarprestamoActionPerformed
 
     private void ingresofichascecreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresofichascecreaActionPerformed
-      new FormularioFichaCecrea().setVisible(true);
+        new FormularioFichaCecrea().setVisible(true);
     }//GEN-LAST:event_ingresofichascecreaActionPerformed
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
-   DevolucionPrestamo dp = new DevolucionPrestamo(userLogin);
+        DevolucionPrestamo dp = new DevolucionPrestamo(userLogin);
         this.setSize(500, 490);
         dp.setSize(460, 432);
-        dp.setLocation(5,5);
+        dp.setLocation(5, 5);
         contenedor.removeAll();
-       contenedor.add(dp,BorderLayout.CENTER);
+        contenedor.add(dp, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_eliminarprestamoActionPerformed
@@ -346,19 +346,19 @@ public class User extends javax.swing.JFrame {
     private void EDITARELIMINARFICHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARELIMINARFICHAActionPerformed
         BusquedaFicha bf = new BusquedaFicha(userLogin);
         this.setSize(780, 600);
-        bf.setSize(780,600);
+        bf.setSize(780, 600);
         contenedor.removeAll();
-       contenedor.add(bf,BorderLayout.CENTER);
+        contenedor.add(bf, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_EDITARELIMINARFICHAActionPerformed
 
     private void ingesolaboratoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingesolaboratoriosActionPerformed
-       IngresoLaboratorios IL = new IngresoLaboratorios();
+        IngresoLaboratorios IL = new IngresoLaboratorios();
         this.setSize(550, 450);
-        IL.setSize(500,400);
+        IL.setSize(500, 400);
         contenedor.removeAll();
-       contenedor.add(IL,BorderLayout.CENTER);
+        contenedor.add(IL, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_ingesolaboratoriosActionPerformed
@@ -366,23 +366,23 @@ public class User extends javax.swing.JFrame {
     private void busquedalabexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalabexpActionPerformed
         BusquedaLabExp labexp = new BusquedaLabExp(userLogin);
         this.setSize(780, 600);
-        labexp.setSize(780,600);
+        labexp.setSize(780, 600);
         contenedor.removeAll();
-       contenedor.add(labexp,BorderLayout.CENTER);
+        contenedor.add(labexp, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_busquedalabexpActionPerformed
 
     private void GENERARREPORTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GENERARREPORTEActionPerformed
-       FuncionesReportes.generarPDFReporteMensual();
+        FuncionesPDF.generarPDFReporteMensual(FechaUtils.obtenerMes(), FechaUtils.obtenerAño());
     }//GEN-LAST:event_GENERARREPORTEActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-         BusquedaFichaAnuales bfh = new BusquedaFichaAnuales(userLogin);
+        BusquedaFichaAnuales bfh = new BusquedaFichaAnuales(userLogin);
         this.setSize(780, 600);
-        bfh.setSize(780,600);
+        bfh.setSize(780, 600);
         contenedor.removeAll();
-       contenedor.add(bfh,BorderLayout.CENTER);
+        contenedor.add(bfh, BorderLayout.CENTER);
         contenedor.revalidate();
         contenedor.repaint();
     }//GEN-LAST:event_jMenuItem4ActionPerformed

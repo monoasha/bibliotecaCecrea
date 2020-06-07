@@ -6,9 +6,10 @@
 package interfaz;
 
 import dto.UserLogin;
-import funciones.FuncionesReportes;
+import funciones.FuncionesPDF;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
+import utils.FechaUtils;
 
 /**
  *
@@ -364,7 +365,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_busquedalabexpActionPerformed
 
     private void generarreporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarreporteActionPerformed
-        FuncionesReportes.generarPDFReporteMensual();
+        FuncionesPDF.generarPDFReporteMensual(FechaUtils.obtenerMes(), FechaUtils.obtenerAño());
     }//GEN-LAST:event_generarreporteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

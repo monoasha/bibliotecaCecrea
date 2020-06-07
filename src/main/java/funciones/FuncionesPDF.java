@@ -6,6 +6,7 @@
 package funciones;
 
 import com.itextpdf.html2pdf.HtmlConverter;
+import dto.ReporteMensual;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,8 +25,7 @@ import tablas.ComponenteProgramatico;
 import tablas.FichaInscripcion;
 import vo.TipoComponenteProgramaticoVO;
 
-
-public class FuncionesReportes {
+public class FuncionesPDF {
 
     private final static Logger LOGGER = Logger.getLogger("mx.hash.impresionpdf.Impresor");
 
@@ -47,7 +47,7 @@ public class FuncionesReportes {
 
     public static PDDocument generarPDFFichaCecrea(FichaInscripcion ficha) {
         try {
-            URL uri = FuncionesReportes.class.getClass().getResource("/plantillas/plantillaFichaCecrea.html");
+            URL uri = FuncionesPDF.class.getClass().getResource("/plantillas/plantillaFichaCecrea.html");
             String contenidoHtml = new String(Files.readAllBytes(Paths.get(uri.toURI())));
             contenidoHtml = contenidoHtml
                     .replaceAll("#NOMBRE", ficha.getNombreparticipante())
@@ -65,9 +65,7 @@ public class FuncionesReportes {
                     .replaceAll("#AP_TELEFONO", ficha.getFonoadresp())
                     .replaceAll("#AP_EMAIL", ficha.getEmailadresp())
                     .replaceAll("#ACUERDO_USO_IMAGEN", ficha.getAcuerdoUsoImagen() ? "SI" : "NO");
-                    
-                    
-                    
+
             File pdfDest = new File(System.getProperty("user.home") + "/Desktop/" + "FICHA_" + ficha.getRun() + ".pdf");
             HtmlConverter.convertToPdf(contenidoHtml, new FileOutputStream(pdfDest));
             JOptionPane.showMessageDialog(null, "PDF de ficha generado existosamente en el escritorio");
@@ -78,35 +76,33 @@ public class FuncionesReportes {
         }
         return null;
     }
-    
-        public static PDDocument generarPDFReporteMensual () {
+
+    public static PDDocument generarPDFReporteMensual(Integer mes, Integer año) {
         try {
-            URL uri = FuncionesReportes.class.getClass().getResource("/plantillas/plantillaReporteMensual.html");
+            ReporteMensual reporte = FuncionesReporte.generarDatosReporteMensual(mes, año);
+            URL uri = FuncionesPDF.class.getClass().getResource("/plantillas/plantillaReporteMensual.html");
             String contenidoHtml = new String(Files.readAllBytes(Paths.get(uri.toURI())));
-            List<ComponenteProgramatico> componentesProgramaticos = Funciones.consultarComponentesProgramaticos();
-            Long cantidadLaboratorios = componentesProgramaticos.stream().filter(c -> c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_LABORATORIO)).count();
-            Long cantidadExperiencias = componentesProgramaticos.stream().filter(c -> c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_EXPERIENCIA)).count();
             String htmlLaboratorioFacilitador = "";
             String htmlExperienciaFacilitador = "";
-            for (ComponenteProgramatico c : componentesProgramaticos) {
-                if(c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_LABORATORIO)) {
-                    htmlLaboratorioFacilitador+= c.getNombre() + " - " + c.getNombrefacilitador() + "<br>";
-                }
-                else if(c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_EXPERIENCIA)) {
-                   
-                htmlExperienciaFacilitador+= c.getNombre() + " - " + c.getNombrefacilitador() + "<br>";
+            Long cantidadLaboratorios = reporte.getComponentesProgramaticos().stream().filter(c -> c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_LABORATORIO)).count();
+            Long cantidadExperiencias = reporte.getComponentesProgramaticos().stream().filter(c -> c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_EXPERIENCIA)).count();
+            for (ComponenteProgramatico c : reporte.getComponentesProgramaticos()) {
+                if (c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_LABORATORIO)) {
+                    htmlLaboratorioFacilitador += c.getNombre() + " - " + c.getNombrefacilitador() + "<br>";
+                } else if (c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_EXPERIENCIA)) {
+
+                    htmlExperienciaFacilitador += c.getNombre() + " - " + c.getNombrefacilitador() + "<br>";
                 }
             }
             contenidoHtml = contenidoHtml
-                    .replaceAll("#CANTIDAD_PRESTAMOS", Funciones.obtenerCantidadPrestamo().toString())
-                    .replaceAll("#CANTIDAD_DEVOLUCIONES", Funciones.obtenerCantidadDevolucionPrestamo() .toString())
+                    .replaceAll("#CANTIDAD_PRESTAMOS", reporte.getCantidadPrestamos().toString())
+                    .replaceAll("#CANTIDAD_DEVOLUCIONES", reporte.getCantidadDevoluciones().toString())
                     .replaceAll("#CANTIDAD_LABORATORIOS", cantidadLaboratorios.toString())
                     .replaceAll("#LABORATIORIO_FACILITADOR", htmlLaboratorioFacilitador)
                     .replaceAll("#CANTIDAD_EXPERIENCIAS", cantidadExperiencias.toString())
-                    .replaceAll("#EXPERIENCIA_FACILITADOR",htmlExperienciaFacilitador) 
-                    .replaceAll("#CANTIDAD_FICHAS", Funciones.obtenerCantidadFichas().toString());
-
-                    
+                    .replaceAll("#EXPERIENCIA_FACILITADOR", htmlExperienciaFacilitador)
+                    .replaceAll("#CANTIDAD_FICHAS", reporte.getCantidadFichas().toString())
+                    .replaceAll("#MES", reporte.getPeriodoConsultado());
             File pdfDest = new File(System.getProperty("user.home") + "/Desktop/" + "REPORTE_" + Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + "_CECREA.pdf");
             HtmlConverter.convertToPdf(contenidoHtml, new FileOutputStream(pdfDest));
             JOptionPane.showMessageDialog(null, "PDF de reporte generado existosamente en el escritorio");
@@ -117,5 +113,5 @@ public class FuncionesReportes {
         }
         return null;
     }
-    
+
 }
