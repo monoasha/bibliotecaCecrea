@@ -67,6 +67,7 @@ public class User extends javax.swing.JFrame {
         LABORATORIOS = new javax.swing.JMenu();
         ingesolaboratorios = new javax.swing.JMenuItem();
         busquedalabexp = new javax.swing.JMenuItem();
+        INSCRIPCIONLAB_EXP = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         GENERARREPORTE = new javax.swing.JMenuItem();
 
@@ -104,7 +105,7 @@ public class User extends javax.swing.JFrame {
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addContainerGap(410, Short.MAX_VALUE)
+                .addContainerGap(452, Short.MAX_VALUE)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
@@ -120,7 +121,7 @@ public class User extends javax.swing.JFrame {
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 444, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 445, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -244,6 +245,15 @@ public class User extends javax.swing.JFrame {
             }
         });
         LABORATORIOS.add(busquedalabexp);
+
+        INSCRIPCIONLAB_EXP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        INSCRIPCIONLAB_EXP.setText("INSCRIPCIÓN LAB/EXPERIENCIAS");
+        INSCRIPCIONLAB_EXP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                INSCRIPCIONLAB_EXPActionPerformed(evt);
+            }
+        });
+        LABORATORIOS.add(INSCRIPCIONLAB_EXP);
 
         jMenuBar1.add(LABORATORIOS);
 
@@ -387,9 +397,20 @@ public class User extends javax.swing.JFrame {
         contenedor.repaint();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void INSCRIPCIONLAB_EXPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSCRIPCIONLAB_EXPActionPerformed
+    InscripcionLaboratorio ile = new InscripcionLaboratorio(userLogin);
+        this.setSize(600, 600);
+        ile.setSize(600,600);
+        contenedor.removeAll();
+        contenedor.add(ile, BorderLayout.LINE_START);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_INSCRIPCIONLAB_EXPActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EDITARELIMINARFICHA;
     private javax.swing.JMenuItem GENERARREPORTE;
+    private javax.swing.JMenuItem INSCRIPCIONLAB_EXP;
     private javax.swing.JMenu LABORATORIOS;
     private javax.swing.JMenuItem busquedalabexp;
     private javax.swing.JMenuItem busquedalibros;

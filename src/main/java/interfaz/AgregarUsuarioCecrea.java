@@ -21,13 +21,8 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
     public AgregarUsuarioCecrea() {
         initComponents();
         
-        combousuariosistema.removeAllItems();
-         ArrayList<Cargo> enlista = Funciones.llenarComboCargo();
-        for (int i = 0; i < enlista.size(); i++)
-        {
-            combousuariosistema.addItem(enlista.get(i));
+        cargo.removeAllItems();
         
-        }
     }
 private void limpiarcajas() {
 
@@ -35,7 +30,7 @@ private void limpiarcajas() {
        nomuser.setText(null);
         rutuser.setText(null);
         contraseñauser.setText(null);
-        combousuariosistema.setSelectedIndex(0);
+        cargo.setSelectedIndex(0);
      
     }
     /**
@@ -59,24 +54,34 @@ private void limpiarcajas() {
         contraseñauser = new javax.swing.JTextField();
         btnresgistraruser = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        combousuariosistema = new javax.swing.JComboBox<>();
+        cargo = new javax.swing.JComboBox<>();
 
         jLabel6.setText("CONTRASEÑA");
 
         setBackground(new java.awt.Color(0, 153, 255));
         setPreferredSize(new java.awt.Dimension(499, 401));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("NOMBRE ");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("CONTACTO");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("CONTRASEÑA");
 
         jLabel4.setBackground(new java.awt.Color(51, 153, 255));
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Registro de Usuarios Sistema Interno Cecrea La Ligua");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("RUT ");
+
+        nomuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomuserActionPerformed(evt);
+            }
+        });
 
         btnresgistraruser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnresgistraruser.setText("Registrar usuario");
@@ -86,9 +91,10 @@ private void limpiarcajas() {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("CARGO");
 
-        combousuariosistema.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..","ADMIN", "USER" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,8 +117,8 @@ private void limpiarcajas() {
                     .addComponent(nomuser)
                     .addComponent(rutuser)
                     .addComponent(conatctouser)
-                    .addComponent(contraseñauser, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combousuariosistema, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(contraseñauser, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(cargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,32 +130,35 @@ private void limpiarcajas() {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel4)
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel5)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel2)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel3)
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(combousuariosistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nomuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(rutuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(conatctouser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(contraseñauser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)))
-                .addGap(37, 37, 37)
+                        .addGap(41, 41, 41)
+                        .addComponent(nomuser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(rutuser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(conatctouser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(contraseñauser, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(26, 26, 26)
                 .addComponent(btnresgistraruser)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,19 +168,24 @@ private void limpiarcajas() {
      String rut=rutuser.getText();
      String contacto= conatctouser.getText();
      String contraseña =contraseñauser.getText();
+     int lab=cargo.getSelectedIndex();
      
     Funciones.validarRut(rut);
-     Funciones.registrarUsuarios(name,rut,contacto,contraseña);
+     Funciones.registrarUsuarios(name,rut,contacto,contraseña,lab);
      
      limpiarcajas();
      
      nomuser.requestFocus();
     }//GEN-LAST:event_btnresgistraruserActionPerformed
 
+    private void nomuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomuserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomuserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnresgistraruser;
-    private javax.swing.JComboBox<Cargo> combousuariosistema;
+    private javax.swing.JComboBox<String> cargo;
     private javax.swing.JTextField conatctouser;
     private javax.swing.JTextField contraseñauser;
     private javax.swing.JLabel jLabel1;

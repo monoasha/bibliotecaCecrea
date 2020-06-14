@@ -32,7 +32,12 @@ public class Prestamo extends javax.swing.JPanel {
             combonombresolicitante.addItem(s);
         }
     }
-
+private void limpiarcajas() {
+        
+       observaciones.setText(null);
+       combonombrelibro.setSelectedIndex(0);
+       combonombresolicitante.setSelectedIndex(0);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -201,6 +206,8 @@ public class Prestamo extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debe ingresar los datos solicitados");
 
         }
+        limpiarcajas();
+        combonombrelibro.requestFocus();
     }//GEN-LAST:event_registrarprestamoActionPerformed
 
     private void CERRARSESIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CERRARSESIONActionPerformed

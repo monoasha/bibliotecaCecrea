@@ -227,6 +227,8 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
         ResumenPrestamo prestamo = (ResumenPrestamo) comboPrestamo.getSelectedItem();
         Funciones.registrardevolucion(prestamo);
         botonCerrarActionPerformed(null);
+        limpiarcajas();
+        RUTSOLDEV.requestFocus();
     }//GEN-LAST:event_btnregistrardevolucionActionPerformed
 
     private void busquedadevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedadevolucionesActionPerformed
@@ -265,7 +267,17 @@ public class DevolucionPrestamo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_botonCerrarActionPerformed
 
-
+ private void limpiarcajas() {
+        textFieldTelefono.setText(null);
+        textFieldDireccion.setText(null);
+        textFieldRut.setText(null);
+        textFieldNombre.setText(null);
+       RUTSOLDEV.setText(null);
+        
+        comboPrestamo.setSelectedIndex(0);
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField RUTSOLDEV;
     private javax.swing.JButton botonCerrar;

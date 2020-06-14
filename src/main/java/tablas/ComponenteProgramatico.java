@@ -26,6 +26,12 @@ public class ComponenteProgramatico {
     private String tipo;
     private String mes;
     private Integer anio;
+
+   
+ public String toString() {
+        return this.nombre;
+    }
+    
  
 }
 

@@ -13,7 +13,6 @@ import tablas.Nacionalidad;
 import tablas.Parentezco;
 import tablas.PuebloOriginario;
 import com.mysql.jdbc.StringUtils;
-import dto.IntervaloMensual;
 import dto.ReporteMensual;
 import dto.ResumenPrestamo;
 import dto.UserLogin;
@@ -28,9 +27,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import tablas.FichaInscripcion;
@@ -38,7 +35,6 @@ import tablas.ComponenteProgramatico;
 import tablas.Solicitante;
 import tablas.Libro;
 import tablas.Prestamo;
-import utils.FechaUtils;
 import vo.TipoComponenteProgramaticoVO;
 
 public class Funciones {
@@ -230,10 +226,10 @@ public class Funciones {
         return null;
     }
 
-    public static void registrarUsuarios(String name, String rut, String contacto, String contraseña) {
+    public static void registrarUsuarios(String name, String rut, String contacto, String contraseña, Integer combocargo) {
         try {
             rut = limpiarRut(rut);
-            String sql = "INSERT into usuario VALUES(null,'" + name + "','" + rut + "','" + contacto + "','" + (contraseña) + ")";
+            String sql = "INSERT into usuario VALUES(null,'" + name + "','" + rut + "','" + contacto + "','" + "md5" + (contraseña) + combocargo + ")";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             new Mensaje("Datos Ingresados correctamente ").setVisible(true);
@@ -506,7 +502,7 @@ public class Funciones {
                     + "'" + request.getNombreparticipante() + "'," //nombreparticipante
                     + "'" + request.getApellidoPaternoParticipante() + "',"//apellidopatpar
                     + "'" + request.getApellidoMaternoParticipante() + "',"//apellidomaternopar
-                    + "'" + request.getRutParticipante() + "',"//runparticipante
+                    + "'" + limpiarRut(request.getRutParticipante()) + "',"//runparticipante
                     + request.getNacionalidadParticipante() + ","//Nacionalidad_idNacionalidad
                     + request.getCursoParticipante() + ","//curso_idcurso
                     + request.getParentezcoResponsable() + ","//Parentezco_idParentezco
@@ -626,6 +622,32 @@ public class Funciones {
         return null;
     }
 
+    public static FichaInscripcion consultarInscripcionPorRut(String rut) {
+        try {
+            rut = limpiarRut(rut);
+            Statement stmt;
+            stmt = conn.createStatement();
+            String sql = "select * from fichainscripcion f where f.rut like '%" + rut + "%'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                return FichaInscripcion.builder()
+                        //Si se necesitan otros datos se agregan a aca en el builder
+                        .id((rs.getLong("idfichainscripcion")))
+                        .nombreparticipante(rs.getString("nombres"))
+                        .apelldpaternopart(rs.getString("apellido paterno"))
+                        .apellmatadresp(rs.getString("apellido materno"))
+                        .domicilio(rs.getString("direccion"))
+                        .fonoparticipante(rs.getString("telefono"))
+                        .run(rs.getString("rut"))
+                        .build();
+            }
+        } catch (Exception e) {
+            System.out.println("Error inesperado al buscar los solicitantes, error " + e);
+        }
+        JOptionPane.showMessageDialog(null, "Error al buscar fichas inscritas.");
+        return null;
+    }
+
     public static Solicitante consultarSolicitantePorRut(String rut) {
         try {
             rut = limpiarRut(rut);
@@ -648,7 +670,7 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error inesperado al buscar los solicitantes, error " + e);
         }
-        JOptionPane.showMessageDialog(null, "Error al buscar solicitante");
+        JOptionPane.showMessageDialog(null, "Error al buscar solicitantes.");
         return null;
     }
 
@@ -683,7 +705,7 @@ public class Funciones {
         return null;
     }
 
-    private static String limpiarRut(String rut) {
+    public static String limpiarRut(String rut) {
         return rut.replace(".", "").replace("-", "").toLowerCase();
     }
 
@@ -744,7 +766,7 @@ public class Funciones {
                     + " SET nombreparticipante='" + request.getNombreparticipante() + "',"
                     + " apellidopatpar='" + request.getApellidoPaternoParticipante() + "',"
                     + " apellidomaternopar='" + request.getApellidoMaternoParticipante() + "',"
-                    + " runparticipante='" + request.getRutParticipante() + "',"
+                    + " runparticipante='" + limpiarRut(request.getRutParticipante()) + "',"
                     + " Nacionalidad_idNacionalidad=" + request.getNacionalidadParticipante() + ","
                     + " curso_idcurso=" + request.getCursoParticipante() + ","
                     + " Parentezco_idParentezco=" + request.getParentezcoResponsable() + ","
@@ -916,7 +938,7 @@ public class Funciones {
             ResultSet rs;
             String sql = "SELECT fichainscripcion.idFichainscripcion,fichainscripcion.nombreparticipante,fichainscripcion.apellidopatpar,fichainscripcion.apellidomaternopar,fichainscripcion.runparticipante\n"
                     + "FROM fichainscripcion\n"
-                    + "WHERE fichainscripcion.runparticipante   LIKE '%" + año + "%'";
+                    + "WHERE fichainscripcion.fecha_inscripcion   LIKE '%" + año + "%'";
 
             rs = stmt.executeQuery(sql);
 
@@ -936,4 +958,57 @@ public class Funciones {
         }
         return null;
     }
+
+    public static void Inscripcionlab(String nombre, String rut, String direccion, String telefono, String email, Long lab, boolean ficha) {
+        try {
+            rut = limpiarRut(rut);
+            String sql = "INSERT into ficha_laboratorio VALUES(null,'" + nombre + "','" + rut + "','" + direccion + "','" + telefono + "','" + email + "'," + lab + "," + ficha + "," + ", current_date(),)";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha ingresado la inscripción");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se ha agregado la inscripción");
+            System.out.println("Error en la conexión" + e);
+        }
+    }
+
+    public static void cambiarLenguajeBD() {
+
+        try {
+            String q = " SET lc_time_names = 'es_CL';";
+            PreparedStatement stmt = conn.prepareStatement(q);
+            stmt.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println("Error cambiar el lenguaje BBDD, error " + e);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cambiar el lenguaje de la BBDD");
+        }
+    }
+
+    public static ArrayList<ComponenteProgramatico> llenarComboComponentesProgramaticos() {
+        ArrayList<ComponenteProgramatico> lista = new ArrayList<ComponenteProgramatico>();
+        String q = " SELECT * FROM biblioteca.componenteprogramaticos c "
+                + " WHERE c.anio =YEAR(CURDATE()) AND c.mes = monthname (CURDATE());";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(q);
+            ResultSet resultado = stmt.executeQuery();
+
+            while (resultado.next()) {
+                lista.add(
+                        ComponenteProgramatico.builder()
+                                .id(resultado.getLong("idComponenteprogramaticos"))
+                                .nombre(resultado.getString("nombrecomponente"))
+                                .build()
+                );
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error rellenar datos de componentes programaticos, error " + e);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error para desplegar los componentes programaticos");
+        }
+        return lista;
+    }
+   
 }
