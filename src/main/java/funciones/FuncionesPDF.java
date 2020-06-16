@@ -55,7 +55,9 @@ public class FuncionesPDF {
                     .replaceAll("#APELLIDOM", ficha.getApelldmaternopart())
                     .replaceAll("#RUT", ficha.getRun())
                     .replaceAll("#FECHAN", ficha.getFechanacparticipante().toString())
-                    .replaceAll("#DOMICILIO", ficha.getDomicilio())
+                    .replace("#AP_RUTADULTORESP", ficha.getRunretiro1())
+                    .replace("#PARETEZCO", ficha.getParentezco().toString())
+                    .replaceAll("#DOMICILIO",  ficha.getDomicilio())
                     .replaceAll("#TELEFONO", ficha.getFonoparticipante())
                     .replaceAll("#TELEFONO", ficha.getFonoadresp())
                     .replaceAll("#AP_NOMBRE", ficha.getNombreadresp())
@@ -64,6 +66,7 @@ public class FuncionesPDF {
                     .replaceAll("#AP_DOMICILIO", ficha.getDiradresp())
                     .replaceAll("#AP_TELEFONO", ficha.getFonoadresp())
                     .replaceAll("#AP_EMAIL", ficha.getEmailadresp())
+                    .replaceAll("#LOGO_CECREA", obtenerImagen("logocecrea.png"))
                     .replaceAll("#ACUERDO_USO_IMAGEN", ficha.getAcuerdoUsoImagen() ? "SI" : "NO");
 
             File pdfDest = new File(System.getProperty("user.home") + "/Desktop/" + "FICHA_" + ficha.getRun() + ".pdf");
@@ -102,9 +105,14 @@ public class FuncionesPDF {
                     .replaceAll("#CANTIDAD_EXPERIENCIAS", cantidadExperiencias.toString())
                     .replaceAll("#EXPERIENCIA_FACILITADOR", htmlExperienciaFacilitador)
                     .replaceAll("#CANTIDAD_FICHAS", reporte.getCantidadFichas().toString())
-                    .replaceAll("#MES", reporte.getPeriodoConsultado());
+                    .replaceAll("#MES", reporte.getPeriodoConsultado())
+                    .replaceAll("#CANTIDAD_CONFICHA",Funciones.consultarInscripcionesConFichaDelMes().toString())
+                    .replaceAll("#CANTIDAD_SINFICHA",Funciones.consultarInscripcionesSinFichaDelMes().toString())
+                    .replaceAll("#LOGO_CECREA", obtenerImagen("logocecrea.png"));
             File pdfDest = new File(System.getProperty("user.home") + "/Desktop/" + "REPORTE_" + Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + "_CECREA.pdf");
-            HtmlConverter.convertToPdf(contenidoHtml, new FileOutputStream(pdfDest));
+            FileOutputStream output = new FileOutputStream(pdfDest);
+            HtmlConverter.convertToPdf(contenidoHtml, output);
+            output.close();
             JOptionPane.showMessageDialog(null, "PDF de reporte generado existosamente en el escritorio");
             return PDDocument.load(pdfDest);
         } catch (Exception e) {
@@ -112,6 +120,10 @@ public class FuncionesPDF {
             JOptionPane.showMessageDialog(null, "ERROR INESPERADO AL GENERAR PDF DE reporte");
         }
         return null;
+    }
+    
+    public static String obtenerImagen(String nombreImagen) {
+        return FuncionesPDF.class.getClass().getResource("/imagenes/"+nombreImagen).getFile();
     }
 
 }

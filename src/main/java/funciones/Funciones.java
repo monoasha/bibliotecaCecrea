@@ -551,7 +551,7 @@ public class Funciones {
         }
     }
 
-    public static List<ResumenFicha> buscarficha(String rut) {
+    public static List<ResumenFicha> buscarficha(String nombreparticipante) {
 
         try {
             Statement stmt;
@@ -559,7 +559,7 @@ public class Funciones {
             ResultSet rs;
             String sql = "SELECT fichainscripcion.idFichainscripcion,fichainscripcion.nombreparticipante,fichainscripcion.apellidopatpar,fichainscripcion.apellidomaternopar,fichainscripcion.runparticipante\n"
                     + "FROM fichainscripcion\n"
-                    + "WHERE fichainscripcion.runparticipante   LIKE '%" + rut + "%'";
+                    + "WHERE fichainscripcion.nombreparticipante  LIKE '%" +nombreparticipante + "%'";
 
             rs = stmt.executeQuery(sql);
 
@@ -962,7 +962,7 @@ public class Funciones {
     public static void Inscripcionlab(String nombre, String rut, String direccion, String telefono, String email, Long lab, boolean ficha) {
         try {
             rut = limpiarRut(rut);
-            String sql = "INSERT into ficha_laboratorio VALUES(null,'" + nombre + "','" + rut + "','" + direccion + "','" + telefono + "','" + email + "'," + lab + "," + ficha + "," + ", current_date(),)";
+            String sql = "INSERT into ficha_laboratorio VALUES(null,'" + nombre + "','" + rut + "','" + direccion + "','" + telefono + "','" + email + "'," + lab + "," + ficha + "," + "CURDATE())";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se ha ingresado la inscripción");
@@ -1010,5 +1010,34 @@ public class Funciones {
         }
         return lista;
     }
-   
+
+    public static Integer consultarInscripcionesConFichaDelMes() {
+        try {
+            String sql = "select count(*)  from biblioteca.ficha_laboratorio fl where fl.tieneficha = true and month (fl.fecha_inscripionlab) =  month(current_date())";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar cantidad de fichaslab que tienen fichas de inscripción " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+    }
+
+    public static Integer consultarInscripcionesSinFichaDelMes() {
+        try {
+            String sql = "select count(*)  from biblioteca.ficha_laboratorio fl where fl.tieneficha = false and month (fl.fecha_inscripionlab) =  month(current_date())";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar cantidad de fichaslab que no tienen fichas de inscripción " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+    }
 }

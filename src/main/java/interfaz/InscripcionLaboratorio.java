@@ -198,8 +198,8 @@ public class InscripcionLaboratorio extends javax.swing.JPanel {
        String direccion = textFieldDireccion.getText();
        String telefono = textFieldTelefono.getText();
        String email = textFieldEmail.getText();
-        Long lab = ((ComponenteProgramatico) combolaboratorios.getSelectedItem()).getId();
-        boolean ficha = checkboxTieneFicha.isSelected();
+       Long lab = ((ComponenteProgramatico) combolaboratorios.getSelectedItem()).getId();
+       boolean ficha = checkboxTieneFicha.isSelected();
     
    Funciones.Inscripcionlab(nombre,run,direccion,telefono,email,lab,ficha);
        

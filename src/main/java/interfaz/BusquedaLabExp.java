@@ -65,7 +65,7 @@ public class BusquedaLabExp extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Nombre", "NombreFacilitador", "tipo", "Mes"
+                "Id", "Nombre", "Nombre Facilitador", "tipo", "Mes"
             }
         ) {
             Class[] types = new Class [] {

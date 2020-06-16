@@ -84,7 +84,7 @@
               <Table columnCount="5" rowCount="0">
                 <Column editable="false" title="Id" type="java.lang.Long"/>
                 <Column editable="false" title="Nombre" type="java.lang.String"/>
-                <Column editable="false" title="NombreFacilitador" type="java.lang.String"/>
+                <Column editable="false" title="Nombre Facilitador" type="java.lang.String"/>
                 <Column editable="false" title="tipo" type="java.lang.Object"/>
                 <Column editable="false" title="Mes" type="java.lang.Object"/>
               </Table>
