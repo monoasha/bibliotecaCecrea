@@ -13,6 +13,7 @@ import tablas.Nacionalidad;
 import tablas.Parentezco;
 import tablas.PuebloOriginario;
 import com.mysql.jdbc.StringUtils;
+import config.ApplicationProperties;
 import dto.ReporteMensual;
 import dto.ResumenPrestamo;
 import dto.UserLogin;
@@ -41,9 +42,9 @@ public class Funciones {
 
     private static Connection conn;
     private static final String driver = "com.mysql.jdbc.Driver";
-    private static final String usuario = "root";
-    private static final String contra = "";
-    private static final String url = "jdbc:mysql://localhost/biblioteca?useSSL=false";
+    private static final String usuario = ApplicationProperties.INSTANCE.getDbUser();
+    private static final String contra = ApplicationProperties.INSTANCE.getDbPass();
+    private static final String url = ApplicationProperties.INSTANCE.getDbConnection();
 
     public static void conectarBD() {
         try {
