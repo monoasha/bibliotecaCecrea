@@ -17,6 +17,7 @@ public class LoginBiblioCecrea extends javax.swing.JFrame {
      * Creates new form LoginBiblioCecrea
      */
     public LoginBiblioCecrea() {
+        System.out.println(this.getClass().getName());
         Funciones.conectarBD();
         initComponents();
         this.setTitle("Sistema de Logueo Cecrea La Ligua");
