@@ -24,3 +24,4 @@ hs_err_pid*
 nbproject/private/private.properties
 /target/
 nbactions.xml
+nbactions-release-profile.xml
