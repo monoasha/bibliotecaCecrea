@@ -7,7 +7,7 @@ package vo;
 
 /**
  *
- * @author mono_
+ * @author sreyes
  */
 public class CargoVO {
     

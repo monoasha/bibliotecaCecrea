@@ -8,6 +8,7 @@ package interfaz;
 import tablas.Cargo;
 import funciones.Funciones;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,6 +23,10 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
         initComponents();
         
         cargo.removeAllItems();
+        List<Cargo> cargos = Funciones.llenarComboCargo();
+        for(Cargo c : cargos) {
+            cargo.addItem(c);
+        }
         
     }
 
@@ -56,7 +61,7 @@ private void limpiarcajas() {
         contraseñauser = new javax.swing.JTextField();
         btnresgistraruser = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        cargo = new javax.swing.JComboBox<>();
+        cargo = new javax.swing.JComboBox<Cargo>();
 
         jLabel6.setText("CONTRASEÑA");
 
@@ -95,8 +100,6 @@ private void limpiarcajas() {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("CARGO");
-
-        cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione..","ADMIN", "USER" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -187,7 +190,7 @@ private void limpiarcajas() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnresgistraruser;
-    private javax.swing.JComboBox<String> cargo;
+    private javax.swing.JComboBox<Cargo> cargo;
     private javax.swing.JTextField conatctouser;
     private javax.swing.JTextField contraseñauser;
     private javax.swing.JLabel jLabel1;

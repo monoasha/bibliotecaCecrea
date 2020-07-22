@@ -6,14 +6,15 @@
 package config;
 
 import com.mysql.jdbc.StringUtils;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/**D
  *
- * @author mono_
+ * @author sreyes
  */
 public enum ApplicationProperties {
     INSTANCE;
@@ -21,9 +22,19 @@ public enum ApplicationProperties {
     private final Properties properties;
 
     ApplicationProperties() {
-        properties = new Properties();
+        properties = new Properties();       
+        
+        //Intentaremos cargar por properties externas
         try {
-            properties.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
+            properties.load(new FileInputStream("application.properties"));
+            return;
+        } catch (IOException e) {
+            System.out.println("No fue posible cargar por properties externas, error: " + e.getMessage());
+        }
+        
+        //Sino se pudo por externas le damos por las compiladas
+        try {
+            properties.load(getClass().getClassLoader().getResourceAsStream("application.properties"));       
         } catch (IOException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
