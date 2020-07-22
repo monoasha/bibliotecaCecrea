@@ -17,6 +17,7 @@ import config.ApplicationProperties;
 import dto.ReporteMensual;
 import dto.ResumenPrestamo;
 import dto.UserLogin;
+import dto.Usuario;
 import interfaz.User;
 import interfaz.Admin;
 import interfaz.Mensaje;
@@ -1038,6 +1039,34 @@ public class Funciones {
         } catch (SQLException e) {
             System.out.println("Error al consultar cantidad de fichaslab que no tienen fichas de inscripción " + e);
             JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+    }
+      public static List<Usuario> buscarusuarios(String nombreparticipante) {
+
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            ResultSet rs;
+            String sql = "SELECT usuario.idusuario,usuario.nombre,usuario.contacto,usuario.contraseña,usuario.Rutusuario\n"
+                    + "FROM usuario\n"
+                    + "WHERE usuario.nombre  LIKE '%" +nombreparticipante + "%'";
+
+            rs = stmt.executeQuery(sql);
+
+            List<Usuario> fichas = new ArrayList<>();
+            while (rs.next()) {
+                fichas.add(new Usuario(
+                        rs.getLong("idusuario"),
+                        rs.getString("nombre"),
+                        rs.getString("contacto"),
+                        rs.getString("contraseña"),
+                        rs.getString("Rutusuario")
+                ));
+            }
+            return fichas;
+        } catch (SQLException e) {
+            System.out.println("Error inesperado en la busqueda de fichas, error " + e);
         }
         return null;
     }

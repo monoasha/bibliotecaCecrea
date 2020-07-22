@@ -53,6 +53,7 @@ public class Admin extends javax.swing.JFrame {
         salir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         agregarusuarios = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         ingresarprestamo = new javax.swing.JMenuItem();
         devolucionprestamo = new javax.swing.JMenuItem();
@@ -97,12 +98,15 @@ public class Admin extends javax.swing.JFrame {
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                .addContainerGap(447, Short.MAX_VALUE)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(13, 13, 13))
+                .addContainerGap(439, Short.MAX_VALUE)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1))
+                    .addGroup(contenedorLayout.createSequentialGroup()
+                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)))
+                .addGap(19, 19, 19))
         );
 
         jMenu1.setText("MENU");
@@ -157,6 +161,15 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         jMenu4.add(agregarusuarios);
+
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem3.setText("EDITAR/ELIMINAR USUARIOS");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem3);
 
         jMenuBar1.add(jMenu4);
 
@@ -368,6 +381,15 @@ public class Admin extends javax.swing.JFrame {
         FuncionesPDF.generarPDFReporteMensual(FechaUtils.obtenerMes(), FechaUtils.obtenerAño());
     }//GEN-LAST:event_generarreporteActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+EditarEliminarUsuarios eeu= new EditarEliminarUsuarios(userLogin);
+        this.setSize(780, 600);
+        eeu.setSize(780,600);
+        contenedor.removeAll();
+       contenedor.add(eeu,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu LABORATORIOS;
     private javax.swing.JMenu REPORTES;
@@ -391,6 +413,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu modificareliminarfichas;
     private javax.swing.JMenuItem salir;
     private javax.swing.JLabel user;
