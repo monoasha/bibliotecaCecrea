@@ -230,7 +230,7 @@ public class Funciones {
     public static void registrarUsuarios(String name, String rut, String contacto, String contraseña, Integer combocargo) {
         try {
             rut = limpiarRut(rut);
-            String sql = "INSERT into usuario VALUES(null,'" + name + "','" + rut + "','" + contacto + "','" + "md5" + (contraseña) + combocargo + ")";
+            String sql = "INSERT into usuario VALUES(null, '" + name + "', '" + contacto + "', md5('" + contraseña + "'), '" + rut + "', " + combocargo + ")";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
             new Mensaje("Datos Ingresados correctamente ").setVisible(true);
@@ -390,26 +390,23 @@ public class Funciones {
         return enlistad;
     }
 
-    public static ArrayList<Cargo> llenarComboCargo() {
-        ArrayList<Cargo> enlista = new ArrayList<Cargo>();
+    public static List<Cargo> llenarComboCargo() {
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
         String q = "SELECT * FROM cargo";
         try {
-
             PreparedStatement stmt = conn.prepareStatement(q);
             ResultSet resultado = stmt.executeQuery();
-
             while (resultado.next()) {
-                enlista.add(
+                cargos.add(
                         new Cargo(resultado.getLong("idcargo"), resultado.getString("nombrecargo"))
                 );
             }
-
         } catch (Exception e) {
             System.out.println("Error rellenar datos de cargo, error " + e);
             e.printStackTrace();
             new Mensaje("Error al consultar informacion de cargo").setVisible(true);
         }
-        return enlista;
+        return cargos;
     }
 
     public static String validarFormularioParticipante(FormularioRequest formulario) {
