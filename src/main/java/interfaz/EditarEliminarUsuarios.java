@@ -187,7 +187,7 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
         } else {
             int respuesta = JOptionPane.showConfirmDialog(null, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION);
             if(respuesta == JOptionPane.YES_OPTION){
-            Funciones.eliminarparticipante(idUsuario);
+            Funciones.eliminarusuarios(idUsuario);
 
             model.removeRow(tablaBusquedaFicha.getSelectedRow());
             }

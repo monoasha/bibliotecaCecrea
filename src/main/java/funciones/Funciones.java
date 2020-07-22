@@ -1067,4 +1067,16 @@ public class Funciones {
         }
         return null;
     }
+       public static void eliminarusuarios(Long id) {
+        try {
+            String sql = "DELETE from biblioteca.usuario"
+                    + " WHERE idusuario=" + id + ";";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el participante");
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar participante, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
+        }
+    }
 }

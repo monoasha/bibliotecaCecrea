@@ -53,7 +53,7 @@ public class Admin extends javax.swing.JFrame {
         salir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         agregarusuarios = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        Editareliminarusuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         ingresarprestamo = new javax.swing.JMenuItem();
         devolucionprestamo = new javax.swing.JMenuItem();
@@ -77,7 +77,8 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("CECREA LA LIGUA- ");
 
-        user.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        user.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        user.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("HOLA");
@@ -97,16 +98,17 @@ public class Admin extends javax.swing.JFrame {
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                .addContainerGap(439, Short.MAX_VALUE)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1))
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)))
-                .addGap(19, 19, 19))
+            .addGroup(contenedorLayout.createSequentialGroup()
+                .addContainerGap(450, Short.MAX_VALUE)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addContainerGap())))
         );
 
         jMenu1.setText("MENU");
@@ -162,14 +164,14 @@ public class Admin extends javax.swing.JFrame {
         });
         jMenu4.add(agregarusuarios);
 
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem3.setText("EDITAR/ELIMINAR USUARIOS");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        Editareliminarusuarios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Editareliminarusuarios.setText("EDITAR/ELIMINAR USUARIOS");
+        Editareliminarusuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                EditareliminarusuariosActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(Editareliminarusuarios);
 
         jMenuBar1.add(jMenu4);
 
@@ -381,16 +383,17 @@ public class Admin extends javax.swing.JFrame {
         FuncionesPDF.generarPDFReporteMensual(FechaUtils.obtenerMes(), FechaUtils.obtenerAño());
     }//GEN-LAST:event_generarreporteActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void EditareliminarusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditareliminarusuariosActionPerformed
 EditarEliminarUsuarios eeu= new EditarEliminarUsuarios(userLogin);
         this.setSize(780, 600);
         eeu.setSize(780,600);
         contenedor.removeAll();
        contenedor.add(eeu,BorderLayout.CENTER);
         contenedor.revalidate();
-        contenedor.repaint();    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        contenedor.repaint();    }//GEN-LAST:event_EditareliminarusuariosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Editareliminarusuarios;
     private javax.swing.JMenu LABORATORIOS;
     private javax.swing.JMenu REPORTES;
     private javax.swing.JMenuItem agregarusuarios;
@@ -413,7 +416,6 @@ EditarEliminarUsuarios eeu= new EditarEliminarUsuarios(userLogin);
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu modificareliminarfichas;
     private javax.swing.JMenuItem salir;
     private javax.swing.JLabel user;
