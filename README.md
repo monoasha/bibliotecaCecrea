@@ -1,5 +1,5 @@
-# bibliotecaCecrea
-Repo para proyecto de gestion bibliotecaria para CECREA La Ligua, por Sofia Berrios
+# SistemaInternoCecrea
+Repositorio para proyecto de gestion interna para CECREA La Ligua, por Sofia Berrios
 
 Documentacion pendiente.
 
