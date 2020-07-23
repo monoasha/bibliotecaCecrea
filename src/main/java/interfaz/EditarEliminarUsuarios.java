@@ -6,6 +6,8 @@ import dto.Usuario;
 import funciones.Funciones;
 import funciones.FuncionesFichaInscripcion;
 import funciones.FuncionesPDF;
+import static interfaz.Admin.contenedor;
+import java.awt.BorderLayout;
 import java.awt.Window;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,7 +21,7 @@ import static vo.CargoVO.CARGO_USER;
  *
  * @author shofy
  */
-public class EditarEliminarUsuarios extends javax.swing.JPanel {
+public class EditarEliminarUsuarios extends javax.swing.JPanel{
 
     private UserLogin userLogin;
 
@@ -27,6 +29,10 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
         this.userLogin = userLogin;
         initComponents();
 
+    }
+
+    EditarEliminarUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +44,7 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         nombreparticipante = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaBusquedaFicha = new javax.swing.JTable();
+        tablaBusquedaUsuario = new javax.swing.JTable();
         BUSQ = new javax.swing.JButton();
         cerrarbusq = new javax.swing.JButton();
         user = new javax.swing.JLabel();
@@ -62,7 +68,7 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
         });
         add(nombreparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 81, 375, -1));
 
-        tablaBusquedaFicha.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBusquedaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -85,19 +91,19 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tablaBusquedaFicha.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(tablaBusquedaFicha);
-        tablaBusquedaFicha.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tablaBusquedaFicha.getColumnModel().getColumnCount() > 0) {
-            tablaBusquedaFicha.getColumnModel().getColumn(0).setMinWidth(20);
-            tablaBusquedaFicha.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tablaBusquedaFicha.getColumnModel().getColumn(0).setMaxWidth(30);
-            tablaBusquedaFicha.getColumnModel().getColumn(1).setMinWidth(250);
-            tablaBusquedaFicha.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tablaBusquedaFicha.getColumnModel().getColumn(1).setMaxWidth(500);
-            tablaBusquedaFicha.getColumnModel().getColumn(2).setMinWidth(50);
-            tablaBusquedaFicha.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tablaBusquedaFicha.getColumnModel().getColumn(2).setMaxWidth(150);
+        tablaBusquedaUsuario.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tablaBusquedaUsuario);
+        tablaBusquedaUsuario.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tablaBusquedaUsuario.getColumnModel().getColumnCount() > 0) {
+            tablaBusquedaUsuario.getColumnModel().getColumn(0).setMinWidth(20);
+            tablaBusquedaUsuario.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaBusquedaUsuario.getColumnModel().getColumn(0).setMaxWidth(30);
+            tablaBusquedaUsuario.getColumnModel().getColumn(1).setMinWidth(250);
+            tablaBusquedaUsuario.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaBusquedaUsuario.getColumnModel().getColumn(1).setMaxWidth(500);
+            tablaBusquedaUsuario.getColumnModel().getColumn(2).setMinWidth(50);
+            tablaBusquedaUsuario.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tablaBusquedaUsuario.getColumnModel().getColumn(2).setMaxWidth(150);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 121, 680, 299));
@@ -141,11 +147,11 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
 
         try {
-            DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
+            DefaultTableModel model = (DefaultTableModel) tablaBusquedaUsuario.getModel();
             model.setRowCount(0);
             List<Usuario> fichas = Funciones.buscarusuarios(nombreparticipante.getText());
             if (fichas.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No hay fichas");
+                JOptionPane.showMessageDialog(null, "No hay usuarios");
                 return;
             }
 
@@ -158,9 +164,9 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            System.out.println("Error al cargar tabla con las fichas, error: " + e);
+            System.out.println("Error al cargar los usuarios" + ", error: " + e);
         }
-            
+
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
@@ -174,22 +180,28 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_cerrarbusqActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        Long idusuario    = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
-        new FormularioFichaCecrea(idusuario).setVisible(true);
+        Long idusuario = Long.parseLong(tablaBusquedaUsuario.getValueAt(tablaBusquedaUsuario.getSelectedRow(), 0).toString());
+        AgregarUsuarioCecrea auc = new AgregarUsuarioCecrea(idusuario);
+        this.setSize(800, 600);
+        auc.setSize(800,600);
+        contenedor.removeAll();
+        contenedor.add(auc, BorderLayout.LINE_START);
+        contenedor.revalidate();
+        contenedor.repaint();
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaBusquedaFicha.getModel();
-        Long idUsuario = Long.parseLong(tablaBusquedaFicha.getValueAt(tablaBusquedaFicha.getSelectedRow(), 0).toString());
+        DefaultTableModel model = (DefaultTableModel) tablaBusquedaUsuario.getModel();
+        Long idUsuario = Long.parseLong(tablaBusquedaUsuario.getValueAt(tablaBusquedaUsuario.getSelectedRow(), 0).toString());
 
         if (idUsuario == null) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna opción", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
             int respuesta = JOptionPane.showConfirmDialog(null, "¿Está seguro?", "Alerta", JOptionPane.YES_NO_OPTION);
-            if(respuesta == JOptionPane.YES_OPTION){
-            Funciones.eliminarusuarios(idUsuario);
+            if (respuesta == JOptionPane.YES_OPTION) {
+                Funciones.eliminarusuarios(idUsuario);
 
-            model.removeRow(tablaBusquedaFicha.getSelectedRow());
+                model.removeRow(tablaBusquedaUsuario.getSelectedRow());
             }
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
@@ -209,7 +221,7 @@ public class EditarEliminarUsuarios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombreparticipante;
-    private javax.swing.JTable tablaBusquedaFicha;
+    private javax.swing.JTable tablaBusquedaUsuario;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

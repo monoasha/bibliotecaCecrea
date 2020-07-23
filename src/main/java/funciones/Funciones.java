@@ -56,10 +56,11 @@ public class Funciones {
                 throw new Exception("Error");
             }
             System.out.println("Conexion a la base exitosa");
+           
         } catch (Exception e) {
             System.out.println("Error al conectar con la base de datos, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al conectar con la base de datos").setVisible(true);
+           JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
         }
     }
 
@@ -195,6 +196,7 @@ public class Funciones {
             return libros;
         } catch (SQLException e) {
             System.out.println("Error en la busqueda de libros " + e);
+            JOptionPane.showMessageDialog(null, "Error al al consultar libros");
         }
         return null;
     }
@@ -234,7 +236,7 @@ public class Funciones {
             String sql = "INSERT into usuario VALUES(null, '" + name + "', '" + contacto + "', md5('" + contraseña + "'), '" + rut + "', " + combocargo + ")";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            new Mensaje("Datos Ingresados correctamente ").setVisible(true);
+         JOptionPane.showMessageDialog(null, " datos ingresados correctamente");
         } catch (SQLException e) {
             System.out.println("Error en la conexión" + e);
         }
@@ -257,7 +259,7 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de nacionalidades, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de nacionalidades").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Error al al consultar informacion de tipo de nacionalidades");
         }
         return lista;
     }
@@ -279,7 +281,7 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de cursos, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de cursos").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Error al al consultar informacion de tipo de Cursos");;
         }
         return enlista;
     }
@@ -299,7 +301,8 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de pueblos Originarios, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de Pueblos Originarios").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Error al al consultar informacion de tipo de Pueblos Originarios");
+        
         }
         return enlista;
     }
@@ -320,7 +323,8 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de tipo de discapacidad, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de tipo de discapacidad").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Error al al consultar informacion de tipo de discapacidad");
+
         }
         return enlistadoo;
     }
@@ -342,7 +346,8 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de tipo de establecimiento, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de tipo de establecimiento").setVisible(true);
+            JOptionPane.showMessageDialog(null, "Error al al consultar informacion de tipo de establecimiento");
+            
         }
         return enlistad;
     }
@@ -364,7 +369,8 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de tipo de parentezco, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de tipo de parentezco").setVisible(true);
+              JOptionPane.showMessageDialog(null, "Error al al consultar informacion de tipo de parentezco");
+            
         }
         return enlistad;
     }
@@ -386,7 +392,8 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de tipo de genero, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de tipo de genero").setVisible(true);
+          
+              JOptionPane.showMessageDialog(null, "Error al consultar informacion de tipo de genero");
         }
         return enlistad;
     }
@@ -405,7 +412,8 @@ public class Funciones {
         } catch (Exception e) {
             System.out.println("Error rellenar datos de cargo, error " + e);
             e.printStackTrace();
-            new Mensaje("Error al consultar informacion de cargo").setVisible(true);
+            
+            JOptionPane.showMessageDialog(null, "Error al consultar informacion de cargo");
         }
         return cargos;
     }
@@ -414,7 +422,7 @@ public class Funciones {
 
         String mensajesError = "";
         if (StringUtils.isNullOrEmpty(formulario.getNombreparticipante())) {
-            mensajesError += "<html> El apellido paterno no puede estar vacio <br> <br> <html>";
+         JOptionPane.showMessageDialog(null, "Error el nombre no puede estar vacío");
         }
         if (!validarRut(formulario.getRutParticipante())) {
             mensajesError += "<html>El rut del participante es invalido <br> <br> <html> ";
@@ -1045,9 +1053,9 @@ public class Funciones {
             Statement stmt;
             stmt = conn.createStatement();
             ResultSet rs;
-            String sql = "SELECT usuario.idusuario,usuario.nombre,usuario.contacto,usuario.contraseña,usuario.Rutusuario\n"
-                    + "FROM usuario\n"
-                    + "WHERE usuario.nombre  LIKE '%" +nombreparticipante + "%'";
+            String sql = "SELECT *"
+                    + " FROM usuario"
+                    + " WHERE usuario.nombre  LIKE '%" +nombreparticipante + "%'";
 
             rs = stmt.executeQuery(sql);
 
@@ -1058,12 +1066,13 @@ public class Funciones {
                         rs.getString("nombre"),
                         rs.getString("contacto"),
                         rs.getString("contraseña"),
-                        rs.getString("Rutusuario")
+                        rs.getString("Rutusuario"),
+                        rs.getLong("cargo_idcargo")
                 ));
             }
             return fichas;
         } catch (SQLException e) {
-            System.out.println("Error inesperado en la busqueda de fichas, error " + e);
+            System.out.println("Error inesperado en la usuarios, error " + e);
         }
         return null;
     }
@@ -1073,10 +1082,53 @@ public class Funciones {
                     + " WHERE idusuario=" + id + ";";
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha eliminado el participante");
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el usuario");
         } catch (SQLException e) {
-            System.out.println("Error al eliminar participante, error: " + e);
-            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el participante");
+            System.out.println("Error al eliminar usuario, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al eliminar el usuario");
+        }
+    }
+
+    public static List<Usuario> listarUsuario() {
+        try {
+            Statement stmt;
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM biblioteca.usuario u";
+            ResultSet rs = stmt.executeQuery(sql);
+            List<Usuario> listaUsuario = new ArrayList();
+            while (rs.next()) {
+                listaUsuario.add(Usuario.builder()
+                        .id (rs.getLong("idusuario"))
+                        .nombre(rs.getString("nombre"))
+                        .contacto(rs.getString("contacto"))
+                        .contraseña(rs.getString("Contraseña"))
+                        .Rutusuario(rs.getString("rutusuario"))
+                        .idCargo(rs.getLong("cargo_idcargo"))
+                        
+                        .build());
+            }
+            return listaUsuario;
+        } catch (Exception e) {
+            System.out.println("Error inesperado al buscar usuario " + e);
+            JOptionPane.showMessageDialog(null, "Error al buscar Usuario");
+        }
+        return null;
+    }
+    public static void actualizarusuario(Long id, Usuario usuario) {
+        try {
+            String sql = "UPDATE biblioteca.usuario"
+                    + " SET nombre='" + usuario.getNombre() + "',"
+                    + " contacto='" + usuario.getContacto() + "',"
+                    + " contraseña='" + usuario.getContraseña() + "',"
+                    + " Rutusuario='" + limpiarRut(usuario.getRutusuario()) + "',"
+                    + " cargo_idcargo='" + usuario.getIdCargo() + "'"
+                    + " WHERE idusuario=" + id + ";";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha actualizado el usuario");
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar el usuario, error: " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado al actualizar el usuario");
         }
     }
 }

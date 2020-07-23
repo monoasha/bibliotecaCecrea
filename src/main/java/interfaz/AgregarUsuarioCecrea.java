@@ -5,10 +5,12 @@
  */
 package interfaz;
 
+import dto.Usuario;
 import tablas.Cargo;
 import funciones.Funciones;
-import java.util.ArrayList;
+import funciones.FuncionesUsuarios;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -19,27 +21,50 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
+    
+    private Long idUsuario;
+    
     public AgregarUsuarioCecrea() {
         initComponents();
-        
+        ActualizarUsuario.setVisible(false);
         cargo.removeAllItems();
         List<Cargo> cargos = Funciones.llenarComboCargo();
-        for(Cargo c : cargos) {
-            cargo.addItem(c);
-        }
-        
+        cargos.forEach(c -> {cargo.addItem(c);});
     }
 
-   
-private void limpiarcajas() {
+    public AgregarUsuarioCecrea(Long idusuario) {
+        this();
+        Usuario usuario = FuncionesUsuarios.buscarUsuarioPorId(idusuario);
+        llenarCajas(usuario);
+        Registrarusuario.setVisible(false);
+        ActualizarUsuario.setVisible(true);        
+        this.idUsuario = idusuario;
+    }
 
-       conatctouser.setText(null);
-       nomuser.setText(null);
+    private void llenarCajas(Usuario usuario) {
+        nomuser.setText(usuario.getNombre());
+        conatctouser.setText(usuario.getContacto());
+        rutuser.setText(usuario.getRutusuario());
+        contraseñauser.setText(usuario.getContraseña());
+
+        Cargo item;
+        for (int i = 0; i < cargo.getItemCount(); i++) {
+            item = (Cargo) cargo.getItemAt(i);
+            if (Objects.equals(item.getId(), usuario.getIdCargo())) {
+                cargo.setSelectedIndex(i);
+            }
+        }
+
+    }
+
+    private void limpiarcajas() {
+        conatctouser.setText(null);
+        nomuser.setText(null);
         rutuser.setText(null);
         contraseñauser.setText(null);
         cargo.setSelectedIndex(0);
-     
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,9 +84,10 @@ private void limpiarcajas() {
         jLabel5 = new javax.swing.JLabel();
         nomuser = new javax.swing.JTextField();
         contraseñauser = new javax.swing.JTextField();
-        btnresgistraruser = new javax.swing.JButton();
+        Registrarusuario = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cargo = new javax.swing.JComboBox<Cargo>();
+        ActualizarUsuario = new javax.swing.JButton();
 
         jLabel6.setText("CONTRASEÑA");
 
@@ -90,16 +116,23 @@ private void limpiarcajas() {
             }
         });
 
-        btnresgistraruser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnresgistraruser.setText("Registrar usuario");
-        btnresgistraruser.addActionListener(new java.awt.event.ActionListener() {
+        Registrarusuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Registrarusuario.setText("Registrar usuario");
+        Registrarusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnresgistraruserActionPerformed(evt);
+                RegistrarusuarioActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("CARGO");
+
+        ActualizarUsuario.setText("Actualizar Usuario");
+        ActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,23 +144,28 @@ private void limpiarcajas() {
                 .addGap(0, 87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nomuser)
-                    .addComponent(rutuser)
-                    .addComponent(conatctouser)
-                    .addComponent(contraseñauser, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(cargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nomuser)
+                            .addComponent(rutuser)
+                            .addComponent(conatctouser)
+                            .addComponent(contraseñauser, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(cargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(ActualizarUsuario)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnresgistraruser)
+                .addComponent(Registrarusuario)
                 .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
@@ -162,34 +200,48 @@ private void limpiarcajas() {
                     .addComponent(jLabel7)
                     .addComponent(cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnresgistraruser)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Registrarusuario)
+                    .addComponent(ActualizarUsuario))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnresgistraruserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresgistraruserActionPerformed
+    private void RegistrarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarusuarioActionPerformed
 
-        String name= nomuser.getText();
-     String rut=rutuser.getText();
-     String contacto= conatctouser.getText();
-     String contraseña =contraseñauser.getText();
-     int lab=cargo.getSelectedIndex();
-     
-    Funciones.validarRut(rut);
-     Funciones.registrarUsuarios(name,rut,contacto,contraseña,lab);
-     
-     limpiarcajas();
-     
-     nomuser.requestFocus();
-    }//GEN-LAST:event_btnresgistraruserActionPerformed
+        String name = nomuser.getText();
+        String rut = rutuser.getText();
+        String contacto = conatctouser.getText();
+        String contraseña = contraseñauser.getText();
+        int lab = cargo.getSelectedIndex();
+
+        Funciones.validarRut(rut);
+        Funciones.registrarUsuarios(name, rut, contacto, contraseña, lab);
+
+        limpiarcajas();
+
+        nomuser.requestFocus();
+    }//GEN-LAST:event_RegistrarusuarioActionPerformed
 
     private void nomuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomuserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomuserActionPerformed
 
+    private void ActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarUsuarioActionPerformed
+        Usuario usuario = Usuario.builder()
+                .nombre(nomuser.getText())
+                .Rutusuario(rutuser.getText())
+                .contacto(conatctouser.getText())
+                .contraseña(contraseñauser.getText())
+                .idCargo(((Cargo) cargo.getSelectedItem()).getId())
+                .build();
+        Funciones.actualizarusuario(this.idUsuario, usuario);
+    }//GEN-LAST:event_ActualizarUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnresgistraruser;
+    private javax.swing.JButton ActualizarUsuario;
+    private javax.swing.JButton Registrarusuario;
     private javax.swing.JComboBox<Cargo> cargo;
     private javax.swing.JTextField conatctouser;
     private javax.swing.JTextField contraseñauser;

@@ -16,18 +16,18 @@ import utils.FechaUtils;
  *
  * @author Sofia
  */
-public class User extends javax.swing.JFrame {
+public class Admin extends javax.swing.JFrame {
 
     /**
      * Creates new form User
      */
-    private UserLogin userLogin;
+    private UserLogin AdminLogin;
 
-    public User(UserLogin userLogin) {
-        this.userLogin = userLogin;
+    public Admin(UserLogin userLogin) {
+        this.AdminLogin = userLogin;
         initComponents();
         this.setTitle(" Sistema Interno Cecrea La Ligua");
-        user.setText(this.userLogin.getNombre());
+        user.setText(this.AdminLogin.getNombre());
     }
 
     /**
@@ -59,6 +59,9 @@ public class User extends javax.swing.JFrame {
         ingresarprestamo = new javax.swing.JMenuItem();
         eliminarprestamo = new javax.swing.JMenuItem();
         salir = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        agregarusuario = new javax.swing.JMenuItem();
+        EditarEliminarUsuario = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         ingresofichascecrea = new javax.swing.JMenuItem();
         EDITARELIMINARFICHA = new javax.swing.JMenuItem();
@@ -120,7 +123,7 @@ public class User extends javax.swing.JFrame {
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 445, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -185,6 +188,29 @@ public class User extends javax.swing.JFrame {
         jMenu1.add(salir);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu9.setText("USUARIOS");
+        jMenu9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        agregarusuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarusuario.setText("AGREGAR USUARIO");
+        agregarusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarusuarioActionPerformed(evt);
+            }
+        });
+        jMenu9.add(agregarusuario);
+
+        EditarEliminarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        EditarEliminarUsuario.setText("EDITAR/ELIMINAR USUARIO");
+        EditarEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarEliminarUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu9.add(EditarEliminarUsuario);
+
+        jMenuBar1.add(jMenu9);
 
         jMenu3.setText("FICHAS");
         jMenu3.setFocusable(false);
@@ -281,7 +307,7 @@ public class User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarlibriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarlibriActionPerformed
-        IngresoLibros il = new IngresoLibros(userLogin);
+        IngresoLibros il = new IngresoLibros(AdminLogin);
         this.setSize(490, 400);
         il.setSize(485, 331);
         il.setLocation(5, 5);
@@ -300,7 +326,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void ingresosolicitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresosolicitanteActionPerformed
-        IngresoSolicitante iu = new IngresoSolicitante(userLogin);
+        IngresoSolicitante iu = new IngresoSolicitante(AdminLogin);
         this.setSize(590, 570);
         iu.setSize(550, 500);
         iu.setLocation(5, 5);
@@ -311,7 +337,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresosolicitanteActionPerformed
 
     private void busquedalibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalibrosActionPerformed
-        BusquedaLibros bl = new BusquedaLibros(userLogin);
+        BusquedaLibros bl = new BusquedaLibros(AdminLogin);
         this.setSize(600, 600);
         bl.setSize(600, 600);
         bl.setLocation(5, 5);
@@ -322,7 +348,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_busquedalibrosActionPerformed
 
     private void ingresarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarprestamoActionPerformed
-        Prestamo p = new Prestamo(userLogin);
+        Prestamo p = new Prestamo(AdminLogin);
         this.setSize(620, 650);
         p.setSize(600, 600);
         p.setLocation(5, 5);
@@ -337,7 +363,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresofichascecreaActionPerformed
 
     private void eliminarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarprestamoActionPerformed
-        DevolucionPrestamo dp = new DevolucionPrestamo(userLogin);
+        DevolucionPrestamo dp = new DevolucionPrestamo(AdminLogin);
         this.setSize(500, 490);
         dp.setSize(460, 432);
         dp.setLocation(5, 5);
@@ -348,7 +374,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarprestamoActionPerformed
 
     private void EDITARELIMINARFICHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARELIMINARFICHAActionPerformed
-        BusquedaFicha bf = new BusquedaFicha(userLogin);
+        BusquedaFicha bf = new BusquedaFicha(AdminLogin);
         this.setSize(780, 600);
         bf.setSize(780, 600);
         contenedor.removeAll();
@@ -368,7 +394,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_ingesolaboratoriosActionPerformed
 
     private void busquedalabexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedalabexpActionPerformed
-        BusquedaLabExp labexp = new BusquedaLabExp(userLogin);
+        BusquedaLabExp labexp = new BusquedaLabExp(AdminLogin);
         this.setSize(780, 600);
         labexp.setSize(780, 600);
         contenedor.removeAll();
@@ -382,7 +408,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_GENERARREPORTEActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        BusquedaFichaAnuales bfh = new BusquedaFichaAnuales(userLogin);
+        BusquedaFichaAnuales bfh = new BusquedaFichaAnuales(AdminLogin);
         this.setSize(780, 600);
         bfh.setSize(780, 600);
         contenedor.removeAll();
@@ -392,7 +418,7 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void INSCRIPCIONLAB_EXPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSCRIPCIONLAB_EXPActionPerformed
-    InscripcionLaboratorio ile = new InscripcionLaboratorio(userLogin);
+    InscripcionLaboratorio ile = new InscripcionLaboratorio(AdminLogin);
         this.setSize(600, 600);
         ile.setSize(600,600);
         contenedor.removeAll();
@@ -401,14 +427,36 @@ public class User extends javax.swing.JFrame {
         contenedor.repaint();
     }//GEN-LAST:event_INSCRIPCIONLAB_EXPActionPerformed
 
+    private void agregarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarusuarioActionPerformed
+        AgregarUsuarioCecrea auc = new AgregarUsuarioCecrea();
+        this.setSize(800, 600);
+        auc.setSize(800,600);
+        contenedor.removeAll();
+        contenedor.add(auc, BorderLayout.LINE_START);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_agregarusuarioActionPerformed
+
+    private void EditarEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEliminarUsuarioActionPerformed
+     EditarEliminarUsuarios eeu = new EditarEliminarUsuarios(AdminLogin);
+        this.setSize(780, 600);
+        eeu.setSize(780,600);
+        contenedor.removeAll();
+        contenedor.add(eeu, BorderLayout.LINE_START);
+        contenedor.revalidate();
+        contenedor.repaint();
+    }//GEN-LAST:event_EditarEliminarUsuarioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EDITARELIMINARFICHA;
+    private javax.swing.JMenuItem EditarEliminarUsuario;
     private javax.swing.JMenuItem GENERARREPORTE;
     private javax.swing.JMenuItem INSCRIPCIONLAB_EXP;
     private javax.swing.JMenu LABORATORIOS;
+    private javax.swing.JMenuItem agregarusuario;
     private javax.swing.JMenuItem busquedalabexp;
     private javax.swing.JMenuItem busquedalibros;
-    private javax.swing.JPanel contenedor;
+    public static javax.swing.JPanel contenedor;
     private javax.swing.JMenuItem eliminarprestamo;
     private javax.swing.JMenuItem ingesolaboratorios;
     private javax.swing.JMenuItem ingresarlibri;
@@ -424,6 +472,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;

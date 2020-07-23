@@ -6,9 +6,11 @@
 package dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import tablas.Cargo;
 
-
+@Builder
 @Data
 @AllArgsConstructor
 public class Usuario {
@@ -18,6 +20,7 @@ public class Usuario {
     private String contacto;
     private String contraseña;
     private String Rutusuario;
+    private Long idCargo;
 
     
 
