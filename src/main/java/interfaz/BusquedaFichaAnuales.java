@@ -45,13 +45,14 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
         botonEliminar = new javax.swing.JButton();
         botonGenerarPDF = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("BÚSQUEDA DE FICHA");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 11, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("AÑO PARA FILTRAR :");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 51, 155, -1));
 
@@ -60,7 +61,7 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 añoparafiltarActionPerformed(evt);
             }
         });
-        add(añoparafiltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 190, -1));
+        add(añoparafiltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 300, -1));
 
         tablaBusquedaFicha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,7 +117,7 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 cerrarbusqActionPerformed(evt);
             }
         });
-        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 130, -1));
+        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 130, -1));
 
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 6, 124, 27));

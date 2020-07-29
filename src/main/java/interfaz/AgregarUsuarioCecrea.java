@@ -9,8 +9,12 @@ import dto.Usuario;
 import tablas.Cargo;
 import funciones.Funciones;
 import funciones.FuncionesUsuarios;
+import java.awt.Window;
 import java.util.List;
 import java.util.Objects;
+import javax.swing.SwingUtilities;
+import static vo.CargoVO.CARGO_ADMIN;
+import static vo.CargoVO.CARGO_USER;
 
 /**
  *
@@ -75,6 +79,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jLabel1 = new javax.swing.JLabel();
         conatctouser = new javax.swing.JTextField();
         rutuser = new javax.swing.JTextField();
@@ -88,6 +93,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         cargo = new javax.swing.JComboBox<Cargo>();
         ActualizarUsuario = new javax.swing.JButton();
+        CerrarAgregarUsuario = new javax.swing.JButton();
 
         jLabel6.setText("CONTRASEÑA");
 
@@ -134,6 +140,13 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
             }
         });
 
+        CerrarAgregarUsuario.setText("CERRAR");
+        CerrarAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarAgregarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,34 +157,38 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
                 .addGap(0, 87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomuser)
-                            .addComponent(rutuser)
-                            .addComponent(conatctouser)
-                            .addComponent(contraseñauser, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                            .addComponent(cargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(ActualizarUsuario)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nomuser)
+                    .addComponent(rutuser)
+                    .addComponent(conatctouser)
+                    .addComponent(contraseñauser, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(cargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Registrarusuario)
-                .addGap(98, 98, 98))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ActualizarUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Registrarusuario)
+                        .addGap(98, 98, 98))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(CerrarAgregarUsuario)
+                        .addGap(32, 32, 32))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(15, 15, 15)
+                .addComponent(CerrarAgregarUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -238,9 +255,16 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
         Funciones.actualizarusuario(this.idUsuario, usuario);
     }//GEN-LAST:event_ActualizarUsuarioActionPerformed
 
+    private void CerrarAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarAgregarUsuarioActionPerformed
+         Window w = SwingUtilities.getWindowAncestor(AgregarUsuarioCecrea.this);
+        w.setVisible(false);
+        
+    }//GEN-LAST:event_CerrarAgregarUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarUsuario;
+    private javax.swing.JButton CerrarAgregarUsuario;
     private javax.swing.JButton Registrarusuario;
     private javax.swing.JComboBox<Cargo> cargo;
     private javax.swing.JTextField conatctouser;
@@ -252,6 +276,7 @@ public class AgregarUsuarioCecrea extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JTextField nomuser;
     private javax.swing.JTextField rutuser;
     // End of variables declaration//GEN-END:variables

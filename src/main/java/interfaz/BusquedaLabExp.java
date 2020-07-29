@@ -43,6 +43,7 @@ public class BusquedaLabExp extends javax.swing.JPanel {
         user = new javax.swing.JLabel();
         botonEliminar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -125,7 +126,7 @@ public class BusquedaLabExp extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
-        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 90, -1));
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed

@@ -45,6 +45,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
         botonEliminar = new javax.swing.JButton();
         botonGenerarPDF = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -116,7 +117,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 cerrarbusqActionPerformed(evt);
             }
         });
-        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 130, -1));
+        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 130, -1));
 
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 6, 124, 27));
