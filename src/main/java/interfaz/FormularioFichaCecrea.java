@@ -200,6 +200,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         jLabel3.setText("APELLIDO PATERNO");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("DATOS PERSONALES PARTICIPANTE");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 17, -1, -1));
         getContentPane().add(NOMPARTICIPANTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 91, 199, -1));
@@ -336,7 +337,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 botonRegistrarParticipanteActionPerformed(evt);
             }
         });
-        getContentPane().add(botonRegistrarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 721, -1, -1));
+        getContentPane().add(botonRegistrarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, -1, -1));
 
         jLabel33.setText("NOMBRE");
         getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 580, -1, -1));
@@ -362,7 +363,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 CERRARFORMActionPerformed(evt);
             }
         });
-        getContentPane().add(CERRARFORM, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 721, -1, -1));
+        getContentPane().add(CERRARFORM, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 680, -1, -1));
 
         checkboxPuebloOriginario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,7 +386,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 botonActualizarParticipanteActionPerformed(evt);
             }
         });
-        getContentPane().add(botonActualizarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 721, 165, -1));
+        getContentPane().add(botonActualizarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 680, 165, -1));
 
         labelAcuerdo.setText("ACUERDA USO DE IMAGEN DEL NNJ");
         getContentPane().add(labelAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 250, -1));

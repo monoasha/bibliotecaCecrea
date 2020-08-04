@@ -1129,6 +1129,63 @@ public class Funciones {
         } catch (SQLException e) {
             System.out.println("Error al actualizar el usuario, error: " + e);
             JOptionPane.showMessageDialog(null, "Error inesperado al actualizar el usuario");
+        }}
+        public static Integer consultarfichasencontradas() {
+        try {
+            String sql = "select count(*)  from biblioteca.fichainscripcion fi ";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar cantidad de fichas encontradas " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
         }
+        return null;
+        
     }
+        public static Integer ConsultarLibrosEncontrados() {
+        try {
+            String sql = "select count(*)  from biblioteca.libro l ";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar cantidad de libros encontrados " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+    }
+        public static Integer consultarlaboratoriosyexperiencias() {
+        try {
+            String sql = "select count(*)  from biblioteca.componenteprogramaticos ";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar cantidad de laboratorios y fichas encontrados " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+        }
+         public static Integer consultarcantidaddefichasporaño( String añoaconsultar) {
+        try {
+            String sql = "select count(*)  from biblioteca.fichainscripcion "
+                        + "WHERE fichainscripcion.fecha_inscripcion   LIKE '%" + añoaconsultar + "%'";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar cantidad de laboratorios y fichas encontrados " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+        }
 }

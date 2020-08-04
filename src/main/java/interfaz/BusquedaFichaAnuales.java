@@ -3,6 +3,8 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
+import static funciones.Funciones.consultarcantidaddefichasporaño;
+import static funciones.Funciones.consultarfichasencontradas;
 import funciones.FuncionesFichaInscripcion;
 import funciones.FuncionesPDF;
 import java.awt.Window;
@@ -44,13 +46,15 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
         botonEditar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonGenerarPDF = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        labelfichasporaño = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("BÚSQUEDA DE FICHA");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("AÑO PARA FILTRAR :");
@@ -109,7 +113,7 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 BUSQActionPerformed(evt);
             }
         });
-        add(BUSQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 78, 129, -1));
+        add(BUSQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 129, -1));
 
         cerrarbusq.setText("CERRAR");
         cerrarbusq.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +121,7 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 cerrarbusqActionPerformed(evt);
             }
         });
-        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 130, -1));
+        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 130, -1));
 
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 6, 124, 27));
@@ -128,7 +132,7 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 botonEditarActionPerformed(evt);
             }
         });
-        add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 90, -1));
+        add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 90, -1));
 
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +140,7 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
-        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 90, -1));
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 90, -1));
 
         botonGenerarPDF.setText("Generar PDF");
         botonGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +148,12 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 botonGenerarPDFActionPerformed(evt);
             }
         });
-        add(botonGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 110, -1));
+        add(botonGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 110, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
+
+        labelfichasporaño.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        labelfichasporaño.setText("    ");
+        add(labelfichasporaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
@@ -165,11 +174,11 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
                 fila[2] = fr.getRun();
                 model.addRow(fila);
             }
-
+        labelfichasporaño.setText("fichas encontradas en el año consultado son : " +consultarcantidaddefichasporaño(añoparafiltar.getText()).toString()); 
+        
         } catch (Exception e) {
             System.out.println("Error al cargar tabla con las fichas, error: " + e);
-        }
-            
+        }       
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
@@ -225,7 +234,9 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelfichasporaño;
     private javax.swing.JTable tablaBusquedaFicha;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables

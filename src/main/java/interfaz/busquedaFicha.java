@@ -3,6 +3,7 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
+import static funciones.Funciones.consultarfichasencontradas;
 import funciones.FuncionesFichaInscripcion;
 import funciones.FuncionesPDF;
 import java.awt.Window;
@@ -44,6 +45,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
         botonEditar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonGenerarPDF = new javax.swing.JButton();
+        labelfichas = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,7 +103,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
             tablaBusquedaFicha.getColumnModel().getColumn(2).setMaxWidth(150);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 121, 680, 299));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 121, 680, 300));
 
         BUSQ.setText("BUSCAR");
         BUSQ.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +119,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 cerrarbusqActionPerformed(evt);
             }
         });
-        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 130, -1));
+        add(cerrarbusq, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 130, -1));
 
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 6, 124, 27));
@@ -128,7 +130,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 botonEditarActionPerformed(evt);
             }
         });
-        add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 90, -1));
+        add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 90, -1));
 
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +138,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
-        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 90, -1));
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 90, -1));
 
         botonGenerarPDF.setText("Generar PDF");
         botonGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +146,10 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 botonGenerarPDFActionPerformed(evt);
             }
         });
-        add(botonGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 110, -1));
+        add(botonGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 110, -1));
+
+        labelfichas.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        add(labelfichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 400, 10));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
@@ -165,11 +170,11 @@ public class BusquedaFicha extends javax.swing.JPanel {
                 fila[2] = fr.getRun();
                 model.addRow(fila);
             }
-
+           
         } catch (Exception e) {
             System.out.println("Error al cargar tabla con las fichas, error: " + e);
         }
-            
+              labelfichas.setText("fichas encontradas: " +consultarfichasencontradas().toString());
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
@@ -225,6 +230,7 @@ public class BusquedaFicha extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelfichas;
     private javax.swing.JTextField nombreparticipante;
     private javax.swing.JTable tablaBusquedaFicha;
     private javax.swing.JLabel user;

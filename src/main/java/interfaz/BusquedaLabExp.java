@@ -3,6 +3,8 @@ package interfaz;
 import dto.ResumenFicha;
 import dto.UserLogin;
 import funciones.Funciones;
+import static funciones.Funciones.consultarfichasencontradas;
+import static funciones.Funciones.consultarlaboratoriosyexperiencias;
 import funciones.FuncionesPDF;
 import java.awt.Window;
 import java.util.List;
@@ -42,6 +44,7 @@ public class BusquedaLabExp extends javax.swing.JPanel {
         cerrarbusq = new javax.swing.JButton();
         user = new javax.swing.JLabel();
         botonEliminar = new javax.swing.JButton();
+        labelLabyExp = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,7 +129,10 @@ public class BusquedaLabExp extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
-        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 90, -1));
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 90, -1));
+
+        labelLabyExp.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        add(labelLabyExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSQActionPerformed
@@ -153,7 +159,7 @@ public class BusquedaLabExp extends javax.swing.JPanel {
         } catch (Exception e) {
             System.out.println("Error al cargar tabla con laboratorios o experiencias, error: " + e);
         }
-
+   labelLabyExp.setText(" Total de laboratorios y experiencias ingresadas: " +consultarlaboratoriosyexperiencias().toString());
     }//GEN-LAST:event_BUSQActionPerformed
 
     private void cerrarbusqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarbusqActionPerformed
@@ -194,6 +200,7 @@ public class BusquedaLabExp extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelLabyExp;
     private javax.swing.JTextField nombrelabexp;
     private javax.swing.JTable tablabusquedalab;
     private javax.swing.JLabel user;
