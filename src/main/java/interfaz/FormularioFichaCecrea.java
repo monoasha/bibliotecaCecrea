@@ -192,29 +192,29 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("NOMBRE");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 73, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jLabel2.setText("APELLIDO MATERNO");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, -1, -1));
 
         jLabel3.setText("APELLIDO PATERNO");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("DATOS PERSONALES PARTICIPANTE");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 17, -1, -1));
-        getContentPane().add(NOMPARTICIPANTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 91, 199, -1));
-        getContentPane().add(APELPATPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 190, -1));
-        getContentPane().add(APELMATPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 190, -1));
+        getContentPane().add(NOMPARTICIPANTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 199, -1));
+        getContentPane().add(APELPATPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 190, -1));
+        getContentPane().add(APELMATPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 190, -1));
 
         jLabel5.setText("FECHA NACIMIENTO");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         jLabel6.setText("RUN");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 34, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 34, -1));
 
         jLabel7.setText("GENERO");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         CBESPPO.setModel(new javax.swing.DefaultComboBoxModel<>());
         CBESPPO.addActionListener(new java.awt.event.ActionListener() {
@@ -223,34 +223,34 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             }
         });
         CBESPPO.setEnabled(false);
-        getContentPane().add(CBESPPO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 191, -1));
+        getContentPane().add(CBESPPO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 191, -1));
 
         jLabel9.setText("NACIONALIDAD");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
-        getContentPane().add(RUNPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 191, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
+        getContentPane().add(RUNPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 191, -1));
 
         jLabel11.setText("PERTENECE  A PUEBLO ORIGINARIO");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 250, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 250, -1));
 
         jLabel12.setText("CUÁL?");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
         jLabel14.setText("DOMICILIO");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 22));
-        getContentPane().add(DOMPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 236, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, 22));
+        getContentPane().add(DOMPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 236, -1));
 
         jLabel15.setText("FONO");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
-        getContentPane().add(FONOPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 191, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+        getContentPane().add(FONOPAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 191, -1));
 
         jLabel16.setText("DISCAPACIDAD");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         CBCURSO.setModel(new javax.swing.DefaultComboBoxModel<>());
-        getContentPane().add(CBCURSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 191, -1));
+        getContentPane().add(CBCURSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 191, -1));
 
         jLabel17.setText("CURSO");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
         CBNAC1.setModel(new javax.swing.DefaultComboBoxModel<>());
         CBNAC1.addActionListener(new java.awt.event.ActionListener() {
@@ -258,10 +258,10 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 CBNAC1ActionPerformed(evt);
             }
         });
-        getContentPane().add(CBNAC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 159, 20));
+        getContentPane().add(CBNAC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 159, 20));
 
         jLabel19.setText("TIPO ESTABLECIMIENTO");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         CBESPDISC.setModel(new javax.swing.DefaultComboBoxModel<>());
         CBESPDISC.addActionListener(new java.awt.event.ActionListener() {
@@ -270,65 +270,65 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             }
         });
         CBESPDISC.setEnabled(false);
-        getContentPane().add(CBESPDISC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 191, -1));
+        getContentPane().add(CBESPDISC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 191, -1));
 
         jLabel20.setText("TIPO DE DISCAPACIDAD");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 364, 703, 10));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 703, 10));
 
         jLabel21.setText("NOMBRES");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
         jLabel22.setText("APELLIDO MATERNO");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 127, -1));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 127, -1));
 
         jLabel23.setText("APELLIDO PATERNO");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
-        getContentPane().add(nombadresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 199, -1));
-        getContentPane().add(respappat, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 183, -1));
-        getContentPane().add(apematresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 189, -1));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+        getContentPane().add(nombadresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 199, -1));
+        getContentPane().add(respappat, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 183, -1));
+        getContentPane().add(apematresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 189, -1));
 
         jLabel24.setText("DIRECCION");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
-        getContentPane().add(dirresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 440, 300, -1));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        getContentPane().add(dirresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 300, -1));
 
         jLabel26.setText("FONO");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, -1, -1));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, -1, -1));
 
         fonoresp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fonorespActionPerformed(evt);
             }
         });
-        getContentPane().add(fonoresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 190, -1));
+        getContentPane().add(fonoresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 190, -1));
 
         jLabel27.setText("RELACION");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
 
-        getContentPane().add(cbrelacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 470, 180, 20));
-        getContentPane().add(emailresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 280, -1));
+        getContentPane().add(cbrelacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 180, 20));
+        getContentPane().add(emailresp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, 280, -1));
 
         jLabel28.setText("E-MAIL");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, -1, -1));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 529, 703, 10));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, -1, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 703, 10));
 
         jLabel29.setText("DATOS PERSONALES ADULTO AUTORIZADO A RETIRAR");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 545, -1, -1));
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, -1, -1));
 
         jLabel30.setText("NOMBRE");
-        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 580, -1, -1));
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, -1, -1));
 
         jLabel31.setText("RUN");
-        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 615, -1, -1));
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, -1, -1));
 
         jLabel32.setText("FONO");
-        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 654, -1, -1));
-        getContentPane().add(Nombreresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 578, 233, -1));
-        getContentPane().add(runresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 615, 233, -1));
-        getContentPane().add(fonoresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 652, 233, -1));
+        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, -1, -1));
+        getContentPane().add(Nombreresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 233, -1));
+        getContentPane().add(runresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 580, 233, -1));
+        getContentPane().add(fonoresp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 620, 233, -1));
 
         jLabel36.setText("DATOS ADULTO RESPONSABLE");
-        getContentPane().add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
+        getContentPane().add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
         getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 17, -1, -1));
 
         botonRegistrarParticipante.setText("REGISTRAR PARTICIPANTE");
@@ -337,25 +337,25 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 botonRegistrarParticipanteActionPerformed(evt);
             }
         });
-        getContentPane().add(botonRegistrarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, -1, -1));
+        getContentPane().add(botonRegistrarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, -1, -1));
 
         jLabel33.setText("NOMBRE");
-        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 580, -1, -1));
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, -1, -1));
 
         jLabel34.setText("RUN");
-        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 615, -1, -1));
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, -1, -1));
 
         jLabel35.setText("FONO");
-        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 652, -1, -1));
-        getContentPane().add(Nombreresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 578, 227, -1));
-        getContentPane().add(runresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 615, 227, -1));
-        getContentPane().add(fonoresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 652, 227, -1));
+        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 620, -1, -1));
+        getContentPane().add(Nombreresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 227, -1));
+        getContentPane().add(runresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 580, 227, -1));
+        getContentPane().add(fonoresp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 620, 227, -1));
 
         CBGENERO.setModel(new javax.swing.DefaultComboBoxModel<>());
-        getContentPane().add(CBGENERO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 154, -1));
+        getContentPane().add(CBGENERO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 154, -1));
 
         CBESTABLECIMIENTO.setModel(new javax.swing.DefaultComboBoxModel<>());
-        getContentPane().add(CBESTABLECIMIENTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 150, -1));
+        getContentPane().add(CBESTABLECIMIENTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 150, -1));
 
         CERRARFORM.setText("CERRAR FORMULARIO");
         CERRARFORM.addActionListener(new java.awt.event.ActionListener() {
@@ -363,22 +363,22 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 CERRARFORMActionPerformed(evt);
             }
         });
-        getContentPane().add(CERRARFORM, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 680, -1, -1));
+        getContentPane().add(CERRARFORM, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, -1, -1));
 
         checkboxPuebloOriginario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkboxPuebloOriginarioActionPerformed(evt);
             }
         });
-        getContentPane().add(checkboxPuebloOriginario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 20, 20));
+        getContentPane().add(checkboxPuebloOriginario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 20, 20));
 
         checkboxDiscapacidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkboxDiscapacidadActionPerformed(evt);
             }
         });
-        getContentPane().add(checkboxDiscapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
-        getContentPane().add(jDFechanacparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 154, -1));
+        getContentPane().add(checkboxDiscapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
+        getContentPane().add(jDFechanacparticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 154, -1));
 
         botonActualizarParticipante.setText("GUARDAR");
         botonActualizarParticipante.addActionListener(new java.awt.event.ActionListener() {
@@ -386,11 +386,11 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
                 botonActualizarParticipanteActionPerformed(evt);
             }
         });
-        getContentPane().add(botonActualizarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 680, 165, -1));
+        getContentPane().add(botonActualizarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 650, 165, -1));
 
         labelAcuerdo.setText("ACUERDA USO DE IMAGEN DEL NNJ");
-        getContentPane().add(labelAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 250, -1));
-        getContentPane().add(checkboxAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, -1, -1));
+        getContentPane().add(labelAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 250, -1));
+        getContentPane().add(checkboxAcuerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
