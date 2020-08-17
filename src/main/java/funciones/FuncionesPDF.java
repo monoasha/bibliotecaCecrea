@@ -23,6 +23,8 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
 import tablas.ComponenteProgramatico;
 import tablas.FichaInscripcion;
+import utils.FileUtils;
+import vo.Plantillas;
 import vo.TipoComponenteProgramaticoVO;
 
 public class FuncionesPDF {
@@ -47,8 +49,7 @@ public class FuncionesPDF {
 
     public static PDDocument generarPDFFichaCecrea(FichaInscripcion ficha) {
         try {
-            URL uri = FuncionesPDF.class.getClass().getResource("/plantillas/plantillaFichaCecrea.html");
-            String contenidoHtml = new String(Files.readAllBytes(Paths.get(uri.toURI())));
+            String contenidoHtml = FileUtils.abrirPlantilla(Plantillas.FICHA_CECREA);
             contenidoHtml = contenidoHtml
                     .replaceAll("#NOMBRE", ficha.getNombreparticipante())
                     .replaceAll("#APELLIDOP", ficha.getApelldpaternopart())
@@ -83,8 +84,7 @@ public class FuncionesPDF {
     public static PDDocument generarPDFReporteMensual(Integer mes, Integer año) {
         try {
             ReporteMensual reporte = FuncionesReporte.generarDatosReporteMensual(mes, año);
-            URL uri = FuncionesPDF.class.getClass().getResource("/plantillas/plantillaReporteMensual.html");
-            String contenidoHtml = new String(Files.readAllBytes(Paths.get(uri.toURI())));
+            String contenidoHtml = FileUtils.abrirPlantilla(Plantillas.REPORTE_MENSUAL);
             String htmlLaboratorioFacilitador = "";
             String htmlExperienciaFacilitador = "";
             Long cantidadLaboratorios = reporte.getComponentesProgramaticos().stream().filter(c -> c.getTipo().equals(TipoComponenteProgramaticoVO.COMPONENTE_LABORATORIO)).count();
