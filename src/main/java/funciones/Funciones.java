@@ -352,7 +352,7 @@ public class Funciones {
         return enlistad;
     }
 
-    public static ArrayList<Parentezco> llenarComboParentezco() {
+    public static ArrayList<Parentezco> obtenerParentezcos() {
         ArrayList<Parentezco> enlistad = new ArrayList<Parentezco>();
         String q = "SELECT * FROM parentezco";
         try {
@@ -1188,4 +1188,33 @@ public class Funciones {
         }
         return null;
         }
+         public static Integer consultarTotalfichasCecrea() {
+        try {
+            String sql = "select count(*)  from biblioteca.fichainscripcion fi ";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar total de fichas de inscripción Cecrea " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+    }
+           public static Integer consultarTotalinscritoslab() {
+        try {
+            String sql = "select count(*)  from biblioteca.ficha_laboratorio fl ";
+            PreparedStatement pps = conn.prepareStatement(sql);
+            ResultSet rs = pps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar total de inscritos en lanoratotios y experiencias " + e);
+            JOptionPane.showMessageDialog(null, "Error inesperado ");
+        }
+        return null;
+    } 
+
 }

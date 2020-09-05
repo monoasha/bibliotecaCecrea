@@ -25,6 +25,7 @@ public class FileUtils {
                     FileSystem fs = FileSystems.newFileSystem(URI.create(array[0]), env);
                     Path path = fs.getPath(array[1]);
                     contenidoHtml = new String(Files.readAllBytes(path));
+                    fs.close();
                     break;
                 case 1:
                     contenidoHtml = new String(Files.readAllBytes(Paths.get(uri.toURI())));  

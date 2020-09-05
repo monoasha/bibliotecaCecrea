@@ -91,15 +91,21 @@ public class BusquedaLabExp extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tablabusquedalab);
         tablabusquedalab.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tablabusquedalab.getColumnModel().getColumnCount() > 0) {
-            tablabusquedalab.getColumnModel().getColumn(0).setMinWidth(20);
+            tablabusquedalab.getColumnModel().getColumn(0).setMinWidth(55);
             tablabusquedalab.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tablabusquedalab.getColumnModel().getColumn(0).setMaxWidth(30);
-            tablabusquedalab.getColumnModel().getColumn(1).setMinWidth(250);
-            tablabusquedalab.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tablabusquedalab.getColumnModel().getColumn(1).setMaxWidth(500);
-            tablabusquedalab.getColumnModel().getColumn(2).setMinWidth(50);
+            tablabusquedalab.getColumnModel().getColumn(0).setMaxWidth(60);
+            tablabusquedalab.getColumnModel().getColumn(1).setMinWidth(200);
+            tablabusquedalab.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tablabusquedalab.getColumnModel().getColumn(1).setMaxWidth(250);
+            tablabusquedalab.getColumnModel().getColumn(2).setMinWidth(60);
             tablabusquedalab.getColumnModel().getColumn(2).setPreferredWidth(50);
             tablabusquedalab.getColumnModel().getColumn(2).setMaxWidth(150);
+            tablabusquedalab.getColumnModel().getColumn(3).setMinWidth(100);
+            tablabusquedalab.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tablabusquedalab.getColumnModel().getColumn(3).setMaxWidth(150);
+            tablabusquedalab.getColumnModel().getColumn(4).setMinWidth(100);
+            tablabusquedalab.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tablabusquedalab.getColumnModel().getColumn(4).setMaxWidth(150);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 730, 299));

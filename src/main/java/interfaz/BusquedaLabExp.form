@@ -96,27 +96,27 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="1">
-                <Column maxWidth="30" minWidth="20" prefWidth="20" resizable="true">
+                <Column maxWidth="60" minWidth="55" prefWidth="20" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="500" minWidth="250" prefWidth="200" resizable="true">
+                <Column maxWidth="250" minWidth="200" prefWidth="100" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="150" minWidth="50" prefWidth="50" resizable="true">
+                <Column maxWidth="150" minWidth="60" prefWidth="50" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="150" minWidth="100" prefWidth="50" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="150" minWidth="100" prefWidth="80" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>

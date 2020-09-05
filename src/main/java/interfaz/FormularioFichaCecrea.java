@@ -64,7 +64,7 @@ public class FormularioFichaCecrea extends javax.swing.JFrame {
             CBESTABLECIMIENTO.addItem(enlistad.get(i));
 
         }
-        ArrayList<Parentezco> listad = Funciones.llenarComboParentezco();
+        ArrayList<Parentezco> listad = Funciones.obtenerParentezcos();
         for (int i = 0; i < listad.size(); i++) {
             cbrelacion.addItem(listad.get(i));
 

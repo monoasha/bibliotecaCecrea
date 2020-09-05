@@ -94,18 +94,18 @@ public class BusquedaFichaAnuales extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tablaBusquedaFicha);
         tablaBusquedaFicha.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tablaBusquedaFicha.getColumnModel().getColumnCount() > 0) {
-            tablaBusquedaFicha.getColumnModel().getColumn(0).setMinWidth(20);
+            tablaBusquedaFicha.getColumnModel().getColumn(0).setMinWidth(50);
             tablaBusquedaFicha.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tablaBusquedaFicha.getColumnModel().getColumn(0).setMaxWidth(30);
+            tablaBusquedaFicha.getColumnModel().getColumn(0).setMaxWidth(60);
             tablaBusquedaFicha.getColumnModel().getColumn(1).setMinWidth(250);
             tablaBusquedaFicha.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tablaBusquedaFicha.getColumnModel().getColumn(1).setMaxWidth(500);
-            tablaBusquedaFicha.getColumnModel().getColumn(2).setMinWidth(50);
+            tablaBusquedaFicha.getColumnModel().getColumn(1).setMaxWidth(450);
+            tablaBusquedaFicha.getColumnModel().getColumn(2).setMinWidth(70);
             tablaBusquedaFicha.getColumnModel().getColumn(2).setPreferredWidth(50);
             tablaBusquedaFicha.getColumnModel().getColumn(2).setMaxWidth(150);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 121, 680, 299));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 660, 299));
 
         BUSQ.setText("BUSCAR");
         BUSQ.addActionListener(new java.awt.event.ActionListener() {
