@@ -534,8 +534,8 @@ public class Funciones {
                     + request.getTipoDiscapacidadParticipante() + ","//discapacidad
                     + request.getPueblosoriginarios() + ","//pueblo originario
                     + request.getAcuerdoUsoImagen() + "," // acuerdo_uso_imagen
-                    + "'" + new Date(request.getFechaNacimientoParticipante().getTime()) + "')"
-                    + "'" + new Date(new java.util.Date().getTime()) + "')";//fonorespretirar2
+                    + "'" + new Date(request.getFechaNacimientoParticipante().getTime()) + "',"//fechaNacimiento
+                    + "'" + new Date(new java.util.Date().getTime()) + "')";//fechaingreso
 
             PreparedStatement pps = conn.prepareStatement(sql);
             pps.executeUpdate();
